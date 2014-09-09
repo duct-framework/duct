@@ -1,14 +1,20 @@
 (ns leiningen.new.duct
-  (:require [leiningen.new.templates :refer [renderer name-to-path ->files]]
-            [leiningen.core.main :as main]))
-
-(def render (renderer "duct"))
+  (:require [leiningen.core.main :as main]
+            [leiningen.new.templates :refer [renderer year project-name
+                                             ->files sanitize-ns name-to-path
+                                             multi-segment]]))
 
 (defn duct
   "FIXME: write documentation"
   [name]
-  (let [data {:name name
-              :sanitized (name-to-path name)}]
-    (main/info "Generating fresh 'lein new' duct project.")
+  (let [render  (renderer "duct")
+        main-ns (multi-segment (sanitize-ns name))
+        data    {:raw-name    name
+                 :name        (project-name name)
+                 :namespace   main-ns
+                 :nested-dirs (name-to-path main-ns)
+                 :year        (year)}]
+    (main/info "Generating a new Duct project.")
     (->files data
-             ["src/{{sanitized}}/foo.clj" (render "foo.clj" data)])))
+             ["project.clj" (render "project.clj" data)]
+             [".gitignore"  (render "gitignore" data)])))
