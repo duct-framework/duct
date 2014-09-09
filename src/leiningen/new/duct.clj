@@ -16,8 +16,9 @@
                  :year        (year)}]
     (main/info "Generating a new Duct project.")
     (->files data
-             ["project.clj" (render "project.clj" data)]
-             [".gitignore"  (render "gitignore" data)]
+             ["project.clj"  (render "project.clj" data)]
+             [".gitignore"   (render "gitignore" data)]
+             ["dev/user.clj" (render "user.clj" data)]
              ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
              ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
              ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)])))
