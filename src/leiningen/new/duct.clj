@@ -17,4 +17,5 @@
     (main/info "Generating a new Duct project.")
     (->files data
              ["project.clj" (render "project.clj" data)]
-             [".gitignore"  (render "gitignore" data)])))
+             [".gitignore"  (render "gitignore" data)]
+             ["src/{{nested-dirs}}/main.clj" (render "main.clj" data)])))
