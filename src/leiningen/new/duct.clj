@@ -19,6 +19,7 @@
              ["project.clj"  (render "project.clj" data)]
              [".gitignore"   (render "gitignore" data)]
              ["dev/user.clj" (render "user.clj" data)]
+             ["profiles.clj.sample" (render "profiles.clj" data)]
              ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
              ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
              ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)]
