@@ -21,4 +21,6 @@
              ["dev/user.clj" (render "user.clj" data)]
              ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
              ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
-             ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)])))
+             ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)]
+             "resources/public"
+             "test/{{nested-dirs}}")))
