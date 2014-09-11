@@ -10,4 +10,7 @@
 (def config
   {:http {:port 3000}})
 
+(when (io/resource "local.clj")
+  (load "local"))
+
 (reloaded.repl/set-init! #(new-system config))
