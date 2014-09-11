@@ -11,11 +11,13 @@
   :plugins [[lein-environ "1.0.0"]]
   :main ^:skip-aot {{namespace}}.main
   :profiles
-  {:uberjar {:aot :all}
-   :test    [:local/test]
-   :dev     [{:source-paths ["dev"]
-              :repl-options {:init-ns user}
-              :dependencies [[reloaded.repl "0.1.0"]
-                             [org.clojure/tools.namespace "0.2.4"]]
-              :env {:port 3000}}
-             :local/dev]})
+  {:local/dev  {}
+   :local/test {}
+   :uberjar    {:aot :all}
+   :test [:local/test]
+   :dev  [{:source-paths ["dev"]
+           :repl-options {:init-ns user}
+           :dependencies [[reloaded.repl "0.1.0"]
+                          [org.clojure/tools.namespace "0.2.4"]]
+           :env {:port 3000}}
+          :local/dev]})
