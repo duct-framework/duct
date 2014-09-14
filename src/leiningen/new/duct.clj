@@ -5,7 +5,7 @@
                                              multi-segment]]))
 
 (defn duct
-  "FIXME: write documentation"
+  "Create a new Duct project."
   [name]
   (let [render  (renderer "duct")
         main-ns (multi-segment (sanitize-ns name))
