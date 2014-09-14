@@ -14,7 +14,7 @@
                  :namespace   main-ns
                  :nested-dirs (name-to-path main-ns)
                  :year        (year)}]
-    (main/info "Generating a new Duct project.")
+    (main/info (str "Generating a new Duct project named " name "..."))
     (->files data
              ["project.clj"  (render "project.clj" data)]
              [".gitignore"   (render "gitignore" data)]
