@@ -1,16 +1,8 @@
 (ns {{namespace}}.system
   (:require [com.stuartsierra.component :as component]
             [ring.component.jetty :refer [jetty-server]]
+            [duct.support :as support]
             [{{namespace}}.handler :refer [new-handler]]))
-
-(defrecord Application []
-  component/Lifecycle
-  (start [component]
-    (if-not (:handler component)
-      (assoc component :handler (new-handler component))
-      component))
-  (stop [component]
-    (dissoc component :handler)))
 
 (def default-config
   {:app  {}
@@ -19,6 +11,6 @@
 (defn new-system [config]
   (let [config (merge default-config config)]
     (component/system-map
-     :app  (map->Application (:app config))
+     :app  (support/app-component new-handler (:app config))
      :http (-> (jetty-server (:http config))
                (component/using [:app])))))

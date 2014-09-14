@@ -4,6 +4,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [com.stuartsierra/component "0.2.2"]
                  [compojure "1.1.9"]
+                 [duct/support "0.1.0-SNAPSHOT"]
                  [environ "1.0.0"]
                  [ring "1.3.1"]
                  [ring/ring-defaults "0.1.1"]
