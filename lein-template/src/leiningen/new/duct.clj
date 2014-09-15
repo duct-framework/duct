@@ -1,5 +1,6 @@
 (ns leiningen.new.duct
-  (:require [leiningen.core.main :as main]
+  (:require [clojure.java.io :as io]
+            [leiningen.core.main :as main]
             [leiningen.new.templates :refer [renderer year project-name
                                              ->files sanitize-ns name-to-path
                                              multi-segment]]))
@@ -24,5 +25,5 @@
              ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
              ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
              ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)]
-             "resources/public"
+             ["resources/public/favicon.ico" (render "favicon.ico")]
              "test/{{nested-dirs}}")))
