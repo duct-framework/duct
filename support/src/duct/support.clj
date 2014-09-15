@@ -10,6 +10,5 @@
   (stop [component]
     (dissoc component :handler)))
 
-(defn app-component [new-handler options]
-  (-> (->Application new-handler)
-      (into options)))
+(defn app-component [options]
+  (map->Application options))
