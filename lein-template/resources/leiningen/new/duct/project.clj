@@ -8,7 +8,7 @@
                  [environ "1.0.0"]
                  [ring "1.3.1"]
                  [ring/ring-defaults "0.1.1"]
-                 [ring-jetty-component "0.2.0"]]
+                 [ring-jetty-component "0.2.1"]]
   :plugins [[lein-environ "1.0.0"]]
   :main ^:skip-aot {{namespace}}.main
   :profiles
