@@ -25,6 +25,8 @@
              ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
              ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
              ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)]
-             ["resources/public/favicon.ico" (render "favicon.ico")]
-             ["resources/public/500.html"    (render "500.html")]
+             ["resources/public/favicon.ico"       (render "favicon.ico")]
+             ["resources/public/500.html"          (render "500.html")]
+             ["resources/public/css/normalize.css" (render "normalize.css")]
+             ["resources/public/css/site.css"      (render "site.css")]
              "test/{{nested-dirs}}")))

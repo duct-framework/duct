@@ -1,0 +1,17 @@
+.server-error body {
+    background: #eee;
+}
+
+.server-error h1 {
+    margin: 15% 0 0 0;
+    text-align: center;
+    font-size: 42px;
+    color: #900;
+}
+
+.server-error h2 {
+    text-align: center;
+    font-size: 31px;
+    font-weight: normal;
+    color: #333;
+}
