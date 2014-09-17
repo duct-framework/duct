@@ -5,11 +5,12 @@
             [{{namespace}}.handler :refer [new-handler]]))
 
 (def base-config
-  {:app  {:new-handler new-handler}
-   :http {:port 3000}})
+  {:http {:port 3000}
+   :app  {:new-handler new-handler
+          :middleware  []}})
 
 (defn new-system [config]
-  (let [config (merge base-config config)]
+  (let [config (merge-with merge base-config config)]
     (component/system-map
      :app  (support/app-component (:app config))
      :http (-> (jetty-server (:http config))
