@@ -30,4 +30,4 @@
              ["resources/public/500.html"    (render "500.html")]
              ["resources/public/css/normalize.css" (render "normalize.css")]
              ["resources/public/css/site.css"      (render "site.css")]
-             "test/{{nested-dirs}}")))
+             ["test/{{nested-dirs}}/handler_test.clj" (render "handler_test.clj" data)])))

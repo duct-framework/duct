@@ -19,6 +19,7 @@
    :dev  [{:source-paths ["dev"]
            :repl-options {:init-ns user}
            :dependencies [[reloaded.repl "0.1.0"]
-                          [org.clojure/tools.namespace "0.2.4"]]
+                          [org.clojure/tools.namespace "0.2.4"]
+                          [kerodon "0.4.0"]]
            :env {:port 3000}}
           :local/dev]})
