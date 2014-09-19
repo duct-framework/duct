@@ -1,7 +1,6 @@
 (ns duct.support
   (:require [com.stuartsierra.component :as component]
             [ring.util.response :as response]
-            [ring.util.request :as request]
             [taoensso.timbre :as log]))
 
 (defn html-resource [resource]
