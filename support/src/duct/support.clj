@@ -1,10 +1,20 @@
 (ns duct.support
   (:require [com.stuartsierra.component :as component]
-            [ring.util.response :as response]))
+            [ring.util.response :as response]
+            [ring.util.request :as request]
+            [taoensso.timbre :as log]))
 
 (defn html-resource [resource]
   (-> (response/resource-response resource)
       (response/content-type "text/html")))
+
+(defn wrap-log-errors [handler]
+  (fn [request]
+    (try
+      (handler request)
+      (catch Throwable t
+        (log/error t)
+        (throw t)))))
 
 (defn wrap-hide-errors
   ([handler]
