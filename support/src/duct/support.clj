@@ -15,6 +15,10 @@
 (defn app-component [options]
   (map->Application options))
 
+(defn html-resource [resource]
+  (-> (response/resource-response resource)
+      (response/content-type "text/html")))
+
 (defn wrap-hide-errors
   ([handler]
      (wrap-hide-errors handler "public/500.html"))
@@ -23,5 +27,7 @@
        (try
          (handler request)
          (catch Throwable _
-           (-> (response/resource-response error-resource)
-               (assoc :status 500)))))))
+           (-> (html-resource error-resource)
+               (response/status 500)))))))
+
+
