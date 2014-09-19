@@ -25,7 +25,8 @@
              ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
              ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
              ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)]
-             ["resources/public/favicon.ico"  (render "favicon.ico")]
+             ["resources/public/favicon.ico"
+              (io/input-stream (io/resource "leiningen/new/duct/favicon.ico"))]
              ["resources/public/404.html"     (render "404.html")]
              ["resources/public/500.html"     (render "500.html")]
              ["resources/public/welcome.html" (render "welcome.html")]
