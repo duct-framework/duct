@@ -4,23 +4,11 @@
             [environ.core :refer [env]]
             [duct.support :as support]
             [taoensso.timbre :as log]
-            [ring.util.request :as request]
             [{{namespace}}.system :refer [new-system]]))
-
-(defn wrap-logging [handler]
-  (fn [request]
-    (let [response (handler request)]
-      (log/info {:request
-                 {:client (:remote-addr request)
-                  :method (:request-method request)
-                  :url    (request/request-url request)}
-                 :response
-                 {:status (:status response)}})
-      response)))
 
 (def config
   {:http {:port (Integer. (env :port "3000"))}
-   :app  {:middleware [wrap-logging
+   :app  {:middleware [support/wrap-log-requests
                        support/wrap-log-errors
                        support/wrap-hide-errors]}})
 
