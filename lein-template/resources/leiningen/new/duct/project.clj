@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [com.stuartsierra/component "0.2.2"]
-                 [compojure "1.1.9"]
+                 [compojure "1.2.0"]
                  [duct "0.1.0-SNAPSHOT"]
                  [environ "1.0.0"]
                  [ring "1.3.1"]
