@@ -11,7 +11,8 @@
 
 (defn new-system [config]
   (let [config (merge-with merge base-config config)]
-    (component/system-map
-     :app  (handler-component (:app config))
-     :http (-> (jetty-server (:http config))
-               (component/using [:app])))))
+    (-> (component/system-map
+         :app  (handler-component (:app config))
+         :http (jetty-server (:http config)))
+        (component/system-using
+         {:http [:app]}))))
