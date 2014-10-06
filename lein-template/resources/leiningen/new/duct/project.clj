@@ -6,6 +6,7 @@
                  [compojure "1.2.0"]
                  [duct "0.1.0-SNAPSHOT"]
                  [environ "1.0.0"]
+                 [meta-merge "0.1.0"]
                  [ring "1.3.1"]
                  [ring/ring-defaults "0.1.2"]
                  [ring-jetty-component "0.2.1"]]

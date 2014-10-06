@@ -2,6 +2,7 @@
   (:require [com.stuartsierra.component :as component]
             [ring.component.jetty :refer [jetty-server]]
             [duct.component.handler :refer [handler-component]]
+            [meta-merge.core :refer [meta-merge]]
             [{{namespace}}.handler :refer [new-handler]]))
 
 (def base-config
@@ -10,7 +11,7 @@
           :middleware []}})
 
 (defn new-system [config]
-  (let [config (merge-with merge base-config config)]
+  (let [config (meta-merge base-config config)]
     (-> (component/system-map
          :app  (handler-component (:app config))
          :http (jetty-server (:http config)))
