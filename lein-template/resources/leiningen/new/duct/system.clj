@@ -1,19 +1,22 @@
 (ns {{namespace}}.system
   (:require [com.stuartsierra.component :as component]
-            [ring.component.jetty :refer [jetty-server]]
             [duct.component.handler :refer [handler-component]]
             [meta-merge.core :refer [meta-merge]]
-            [{{namespace}}.handler :refer [new-handler]]))
+            [ring.component.jetty :refer [jetty-server]]
+            [ring.middleware.defaults :as defaults]
+            [{{namespace}}.component.example :as example]))
 
 (def base-config
   {:http {:port 3000}
-   :app  {:build-handler new-handler
-          :middleware []}})
+   :app  {:middleware [[defaults/wrap-defaults :defaults]]
+          :defaults   defaults/site-defaults}})
 
 (defn new-system [config]
   (let [config (meta-merge base-config config)]
     (-> (component/system-map
-         :app  (handler-component (:app config))
-         :http (jetty-server (:http config)))
+         :app     (handler-component (:app config))
+         :http    (jetty-server (:http config))
+         :example example/component)
         (component/system-using
-         {:http [:app]}))))
+         {:http [:app]
+          :app  [:example]}))))

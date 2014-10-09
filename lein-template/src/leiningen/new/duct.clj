@@ -22,14 +22,15 @@
              ["dev/user.clj" (render "user.clj" data)]
              ["profiles.clj.sample"  (render "profiles.clj" data)]
              ["dev/local.clj.sample" (render "local.clj" data)]
-             ["src/{{nested-dirs}}/handler.clj" (render "handler.clj" data)]
-             ["src/{{nested-dirs}}/main.clj"    (render "main.clj" data)]
-             ["src/{{nested-dirs}}/system.clj"  (render "system.clj" data)]
+             ["src/{{nested-dirs}}/main.clj"   (render "main.clj" data)]
+             ["src/{{nested-dirs}}/system.clj" (render "system.clj" data)]
+             ["src/{{nested-dirs}}/component/example.clj" (render "example.clj" data)]
+             ["test/{{nested-dirs}}/component/example_test.clj"
+              (render "example_test.clj" data)]
              ["resources/public/favicon.ico"
               (io/input-stream (io/resource "leiningen/new/duct/favicon.ico"))]
              ["resources/public/404.html"     (render "404.html" data)]
              ["resources/public/500.html"     (render "500.html" data)]
              ["resources/public/welcome.html" (render "welcome.html" data)]
              ["resources/public/css/normalize.css" (render "normalize.css" data)]
-             ["resources/public/css/site.css"      (render "site.css" data)]
-             ["test/{{nested-dirs}}/handler_test.clj" (render "handler_test.clj" data)])))
+             ["resources/public/css/site.css"      (render "site.css" data)])))
