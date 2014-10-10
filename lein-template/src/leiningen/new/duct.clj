@@ -24,8 +24,9 @@
              ["dev/local.clj.sample" (render "local.clj" data)]
              ["src/{{nested-dirs}}/main.clj"   (render "main.clj" data)]
              ["src/{{nested-dirs}}/system.clj" (render "system.clj" data)]
-             ["src/{{nested-dirs}}/component/example.clj" (render "example.clj" data)]
-             ["test/{{nested-dirs}}/component/example_test.clj"
+             "src/{{nested-dirs}}/component"
+             ["src/{{nested-dirs}}/endpoint/example.clj" (render "example.clj" data)]
+             ["test/{{nested-dirs}}/endpoint/example_test.clj"
               (render "example_test.clj" data)]
              ["resources/public/favicon.ico"
               (io/input-stream (io/resource "leiningen/new/duct/favicon.ico"))]

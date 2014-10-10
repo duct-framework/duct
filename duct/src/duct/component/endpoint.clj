@@ -1,7 +1,7 @@
-(ns duct.component.routes
+(ns duct.component.endpoint
   (:require [com.stuartsierra.component :as component]))
 
-(defrecord RoutesComponent [build-routes]
+(defrecord EndpointComponent [build-routes]
   component/Lifecycle
   (start [component]
     (if (:routes component)
@@ -10,5 +10,5 @@
   (stop [component]
     (dissoc component key)))
 
-(defn routes-component [build-routes]
-  (->RoutesComponent build-routes))
+(defn endpoint-component [build-routes]
+  (->EndpointComponent build-routes))
