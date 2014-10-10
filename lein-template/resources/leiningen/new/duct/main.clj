@@ -6,10 +6,11 @@
             [{{namespace}}.system :refer [new-system]]))
 
 (def config
-  {:http {:port (Integer. (env :port "3000"))}
+  {:http {:port (some-> env :port Integer.)}
    :app  {:middleware     [[wrap-hide-errors :internal-error]]
           :internal-error "errors/500.html"}})
 
 (defn -main [& args]
-  (println "Starting HTTP server on port" (-> config :http :port))
-  (component/start (new-system config)))
+  (let [system (new-system config)]
+    (println "Starting HTTP server on port" (-> system :http :port))
+    (component/start system)))
