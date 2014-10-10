@@ -4,13 +4,13 @@
             [duct.component.handler :refer [handler-component]]
             [meta-merge.core :refer [meta-merge]]
             [ring.component.jetty :refer [jetty-server]]
-            [ring.middleware.defaults :as defaults]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [{{namespace}}.endpoint.example :refer [example-endpoint]]))
 
 (def base-config
   {:http {:port 3000}
-   :app  {:middleware [[defaults/wrap-defaults :defaults]]
-          :defaults   defaults/site-defaults}})
+   :app  {:middleware [[wrap-defaults :defaults]]
+          :defaults   site-defaults}})
 
 (defn new-system [config]
   (let [config (meta-merge base-config config)]
