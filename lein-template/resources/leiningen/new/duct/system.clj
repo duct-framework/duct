@@ -2,6 +2,7 @@
   (:require [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
             [duct.component.handler :refer [handler-component]]
+            [duct.middleware.not-found :refer [wrap-not-found]]
             [meta-merge.core :refer [meta-merge]]
             [ring.component.jetty :refer [jetty-server]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
@@ -9,7 +10,7 @@
 
 (def base-config
   {:http {:port 3000}
-   :app  {:middleware [[wrap-defaults :defaults]]
+   :app  {:middleware [wrap-not-found [wrap-defaults :defaults]]
           :defaults   site-defaults}})
 
 (defn new-system [config]
