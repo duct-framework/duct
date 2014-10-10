@@ -18,6 +18,7 @@
     (main/info (str "Generating a new Duct project named " name "..."))
     (->files data
              ["project.clj"  (render "project.clj" data)]
+             ["README.md"    (render "README.md" data)]
              [".gitignore"   (render "gitignore" data)]
              ["dev/user.clj" (render "user.clj" data)]
 
