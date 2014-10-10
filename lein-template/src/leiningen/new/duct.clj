@@ -38,9 +38,10 @@
       ["src/{{dirs}}/endpoint/example.clj"       (render "example.clj" data)]
       ["test/{{dirs}}/endpoint/example_test.clj" (render "example_test.clj" data)]
 
+      ["resources/errors/404.html" (resource "404.html")]
+      ["resources/errors/500.html" (resource "500.html")]
+
       ["resources/public/favicon.ico"       (resource "favicon.ico")]
-      ["resources/public/404.html"          (render "404.html" data)]
-      ["resources/public/500.html"          (render "500.html" data)]
       ["resources/public/welcome.html"      (render "welcome.html" data)]
       ["resources/public/css/normalize.css" (render "normalize.css" data)]
       ["resources/public/css/site.css"      (render "site.css" data)])))

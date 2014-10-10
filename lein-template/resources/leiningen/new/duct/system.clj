@@ -10,7 +10,9 @@
 
 (def base-config
   {:http {:port 3000}
-   :app  {:middleware [wrap-not-found [wrap-defaults :defaults]]
+   :app  {:middleware [[wrap-not-found :not-found]
+                       [wrap-defaults :defaults]]
+          :not-found  "errors/404.html"
           :defaults   site-defaults}})
 
 (defn new-system [config]

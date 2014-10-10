@@ -7,7 +7,8 @@
 
 (def config
   {:http {:port (Integer. (env :port "3000"))}
-   :app  {:middleware [wrap-hide-errors]}})
+   :app  {:middleware     [[wrap-hide-errors :internal-error]]
+          :internal-error "errors/500.html"}})
 
 (defn -main [& args]
   (println "Starting HTTP server on port" (-> config :http :port))
