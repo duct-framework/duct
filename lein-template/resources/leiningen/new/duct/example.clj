@@ -1,8 +1,7 @@
 (ns {{namespace}}.endpoint.example
   (:require [compojure.core :refer :all]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [duct.util.endpoint :refer [defendpoint]]))
 
-(defn example-endpoint [config]
-  (routes
-   (GET "/" []
-     (io/resource "public/welcome.html"))))
+(defendpoint example-endpoint []
+  (GET "/" [] (io/resource "public/welcome.html")))
