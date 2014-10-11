@@ -10,30 +10,41 @@ Duct is **experimental** and **unreleased** software. Stay tuned.
 
 ## Concepts
 
-Duct is built upon existing libraries, including [Ring][],
-[Compojure][] and [Component][].
+Duct consists of a [Leiningen][] template and a small support library.
+
+Duct depends on existing libraries for the majority of its functionality.
 
 Externally, Duct follows the [Twelve-Factor App][] methodology.
 
-Internally, Duct uses the [Reloaded Workflow][].
+Internally, Duct uses Stuart Sierra's [Reloaded Workflow][].
 
-Duct discourages global state and dynamic binding.
+Duct discourages global state and dynamic bindings.
 
 Duct encourages lexical scoping and component isolation.
 
-[Ring]: https://github.com/ring-clojure/ring
-[Compojure]: https://github.com/weavejester/compojure
-[Component]: https://github.com/stuartsierra/component
+[Leiningen]: https://github.com/technomancy/leiningen
 [Twelve-Factor App]: http://12factor.net/
 [Reloaded Workflow]: http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
 
 
-## Getting Started
+## Usage
 
-Create a new Duct project by running:
+Create a new Duct project with Leiningen.
 
 ```sh
 lein new duct <<your project name>>
+```
+
+Change directory into your new project.
+
+```sh
+cd <<your project name>>
+```
+
+Then start a REPL.
+
+```sh
+lein repl
 ```
 
 
