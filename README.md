@@ -16,7 +16,7 @@ Duct depends on existing libraries for the majority of its functionality.
 
 Externally, Duct follows the [Twelve-Factor App][] methodology.
 
-Internally, Duct uses Stuart Sierra's [Reloaded Workflow][].
+Internally, Duct uses Stuart Sierra's [Reloaded Workflow][] via [Component][].
 
 Duct discourages global state and dynamic bindings.
 
@@ -25,6 +25,7 @@ Duct encourages lexical scoping and component isolation.
 [Leiningen]: https://github.com/technomancy/leiningen
 [Twelve-Factor App]: http://12factor.net/
 [Reloaded Workflow]: http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
+[Component]: https://github.com/stuartsierra/component
 
 
 ## Usage
