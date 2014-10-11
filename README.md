@@ -30,8 +30,6 @@ Duct encourages lexical scoping and component isolation.
 
 ## Usage
 
-### Setting Up
-
 Create a new Duct project with Leiningen.
 
 ```sh
@@ -44,31 +42,7 @@ Change directory into your new project.
 cd <<your project name>>
 ```
 
-### Development
-
-Like most Clojure projects, we develop against a running REPL.
-
-```sh
-lein repl
-```
-
-Run `go` to initiate and start the system.
-
-```clojure
-user=> (go)
-:started
-```
-
-By default this creates a web server at http://localhost:3000/
-
-When you make changes to your source files, use `reset` to reload the
-environment and restart the server.
-
-```clojure
-user=> (reset)
-:reloading (...)
-:started
-```
+Check out the `README.md` file for instructions on getting started.
 
 
 ## License
