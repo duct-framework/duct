@@ -20,6 +20,7 @@
                  :dirs        (name-to-path main-ns)
                  :year        (year)}]
     (main/info (str "Generating a new Duct project named " name "..."))
+    (main/warn "WARNING: This template is still experimental.")
     (->files data
       ["project.clj"  (render "project.clj" data)]
       ["README.md"    (render "README.md" data)]
