@@ -7,18 +7,26 @@ Duct is **experimental** and **unreleased** software. Stay tuned.
 
 [simplicity]: http://www.infoq.com/presentations/Simple-Made-Easy
 
+
+## Usage
+
+Create a new Duct project by running:
+
+```sh
+lein new duct <<your project name>>
+```
+
 ## Concepts
 
-Duct is built upon existing tools, such as [Ring][] and [Compojure][].
+Duct is built upon existing tools and libraries.
 
 Externally, Duct follows the [Twelve-Factor App][] methodology.
 
 Internally, Duct uses the [Reloaded Workflow][].
 
-[Ring]: https://github.com/ring-clojure/ring
-[Compojure]: https://github.com/weavejester/compojure
 [Twelve-Factor App]: http://12factor.net/
 [Reloaded Workflow]: http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
+
 
 ## License
 
