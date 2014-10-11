@@ -8,26 +8,6 @@ Duct is **experimental** and **unreleased** software. Stay tuned.
 [simplicity]: http://www.infoq.com/presentations/Simple-Made-Easy
 
 
-## Concepts
-
-Duct consists of a [Leiningen][] template and a small support library.
-
-Duct depends on existing libraries for the majority of its functionality.
-
-Externally, Duct follows the [Twelve-Factor App][] methodology.
-
-Internally, Duct uses Stuart Sierra's [Reloaded Workflow][] via [Component][].
-
-Duct discourages global state and dynamic bindings.
-
-Duct encourages lexical scoping and component isolation.
-
-[Leiningen]: https://github.com/technomancy/leiningen
-[Twelve-Factor App]: http://12factor.net/
-[Reloaded Workflow]: http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
-[Component]: https://github.com/stuartsierra/component
-
-
 ## Usage
 
 Create a new Duct project with Leiningen.
@@ -43,6 +23,28 @@ cd <<your project name>>
 ```
 
 Check out the `README.md` file for instructions on getting started.
+
+
+## Concepts
+
+Duct consists of a [Leiningen][] template and a small support library.
+
+Duct depends on existing libraries for the majority of its functionality.
+
+Externally, Duct follows the [Twelve-Factor App][12-factor] methodology.
+
+Internally, Duct uses Stuart Sierra's [Reloaded Workflow][reloaded].
+
+Duct prefers local bindings over global state.
+
+Duct separates configuration and environment.
+
+Duct applications are divided by purpose, rather than layer.
+
+[leiningen]: https://github.com/technomancy/leiningen
+[12-factor]: http://12factor.net/
+[reloaded]:  http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
+[component]: https://github.com/stuartsierra/component
 
 
 ## License
