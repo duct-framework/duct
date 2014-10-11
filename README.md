@@ -3,7 +3,9 @@
 Duct is a minimal framework for building web applications in Clojure,
 with a strong emphasis on [simplicity][].
 
-Duct is **experimental** and **unreleased** software. Stay tuned.
+Duct is **experimental** software and subject to future change. The
+current releases are primarily meant for testing and development
+purposes. Use at your own risk.
 
 [simplicity]: http://www.infoq.com/presentations/Simple-Made-Easy
 
