@@ -22,7 +22,8 @@ Change directory into your new project.
 cd <<your project name>>
 ```
 
-Check out the `README.md` file for instructions on getting started.
+Then check your new project's `README.md` file for instructions on
+setting up a development environment.
 
 
 ## Concepts
