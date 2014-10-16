@@ -4,4 +4,4 @@
             [duct.util.endpoint :refer [defendpoint]]))
 
 (defendpoint example-endpoint []
-  (GET "/" [] (io/resource "public/welcome.html")))
+  (GET "/" [] (io/resource "example/welcome.html")))
