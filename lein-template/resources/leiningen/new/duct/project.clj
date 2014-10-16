@@ -14,15 +14,15 @@
   :plugins [[lein-environ "1.0.0"]]
   :main ^:skip-aot {{namespace}}.main
   :profiles
-  {:dev        [:local/dev :repo/dev]
-   :test       [:local/test :repo/test]
-   :local/dev  {}
-   :local/test {}
-   :repo/dev   {:source-paths ["dev"]
-                :repl-options {:init-ns user}
-                :dependencies [[reloaded.repl "0.1.0"]
-                               [org.clojure/tools.namespace "0.2.4"]
-                               [kerodon "0.4.0"]]
-                :env {:port 3000}}
-   :repo/test  {}
-   :uberjar    {:aot :all}})
+  {:dev  [:project/dev  :profiles/dev]
+   :test [:project/test :profiles/test]
+   :uberjar {:aot :all}
+   :profiles/dev  {}
+   :profiles/test {}
+   :project/dev   {:source-paths ["dev"]
+                   :repl-options {:init-ns user}
+                   :dependencies [[reloaded.repl "0.1.0"]
+                                  [org.clojure/tools.namespace "0.2.4"]
+                                  [kerodon "0.4.0"]]
+                   :env {:port 3000}}
+   :project/test  {}})

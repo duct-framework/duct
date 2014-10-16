@@ -2,5 +2,5 @@
 ;; This file should contain Leiningen profiles you want kept out of
 ;; source control.
 
-{:local/dev  {}
- :local/test {}}
+{:profiles/dev  {}
+ :profiles/test {}}
