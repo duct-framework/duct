@@ -2,8 +2,7 @@
   (:require [clojure.java.io :as io]
             [leiningen.core.main :as main]
             [leiningen.new.templates :refer [renderer year project-name
-                                             ->files sanitize-ns name-to-path
-                                             multi-segment]]))
+                                             ->files sanitize-ns name-to-path]]))
 
 (def render (renderer "duct"))
 
@@ -13,7 +12,7 @@
 (defn duct
   "Create a new Duct project."
   [name]
-  (let [main-ns (multi-segment (sanitize-ns name))
+  (let [main-ns (sanitize-ns name)
         data    {:raw-name    name
                  :name        (project-name name)
                  :namespace   main-ns
