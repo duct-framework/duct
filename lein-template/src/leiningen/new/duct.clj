@@ -37,7 +37,7 @@
 
       ["src/{{dirs}}/endpoint/example.clj"       (render "example.clj" data)]
       ["test/{{dirs}}/endpoint/example_test.clj" (render "example_test.clj" data)]
-      ["resources/example/welcome.html"          (render "welcome.html" data)]
+      ["resources/{{dirs}}/endpoint/example/welcome.html" (render "welcome.html" data)]
 
       ["resources/errors/404.html" (resource "404.html")]
       ["resources/errors/500.html" (resource "500.html")]

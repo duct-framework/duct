@@ -4,4 +4,4 @@
             [duct.util.endpoint :refer [defendpoint]]))
 
 (defendpoint example-endpoint []
-  (GET "/" [] (io/resource "example/welcome.html")))
+  (GET "/" [] (io/resource "{{dirs}}/endpoint/example/welcome.html")))
