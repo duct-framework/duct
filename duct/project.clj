@@ -7,5 +7,5 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.macro "0.1.5"]
                  [com.stuartsierra/component "0.2.2"]
-                 [compojure "1.2.0"]
+                 [compojure "1.2.1"]
                  [ring/ring-core "1.3.1"]])
