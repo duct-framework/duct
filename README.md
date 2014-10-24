@@ -76,6 +76,39 @@ post. Strive to keep your endpoints small and focused.
 [ring]:   https://github.com/ring-clojure/ring
 
 
+## File structure
+
+Duct projects are structured as below. Files marked with a * are kept
+out of version control.
+
+```handlebars
+.
+├── README.md
+├── dev
+│   ├── local.clj *
+│   └── user.clj
+├── profiles.clj *
+├── project.clj
+├── resources
+│   ├── errors
+│   ├── public
+│   └── {{project}}
+│       └── endpoint
+│           └── {{endpoint}}
+├── src
+│   └── {{project}}
+│       ├── component
+│       ├── endpoint
+│       │   └── {{endpoint}}.clj
+│       ├── main.clj
+│       └── system.clj
+└── test
+    └── {{project}}
+        └── endpoint
+            └── {{endpoint}}_test.clj
+```
+
+
 ## License
 
 Copyright © 2014 James Reeves
