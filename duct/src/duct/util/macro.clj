@@ -1,4 +1,4 @@
-(ns duct.util.endpoint
+(ns duct.util.macro
   (:require [compojure.core :as compojure]
             [clojure.tools.macro :as macro]))
 
