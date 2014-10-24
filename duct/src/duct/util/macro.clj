@@ -6,3 +6,5 @@
   (let [[name [bindings & routes]] (macro/name-with-attributes name body)]
     `(defn ~name [{:keys ~bindings}]
        (compojure/routes ~@routes))))
+
+(defmacro this-ns [] *ns*)
