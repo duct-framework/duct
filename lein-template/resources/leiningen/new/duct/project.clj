@@ -11,7 +11,10 @@
                  [ring "1.3.1"]
                  [ring/ring-defaults "0.1.2"]
                  [ring-jetty-component "0.2.1"]]
-  :plugins [[lein-environ "1.0.0"]]
+  :plugins [[lein-environ "1.0.0"]
+            [lein-gen "0.2.0"]]
+  :generators [[duct/generators "0.0.3-SNAPSHOT"]]
+  :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main
   :profiles
   {:dev  [:project/dev  :profiles/dev]
