@@ -2,7 +2,7 @@
 
 FIXME: description
 
-### Developing
+### Development
 
 To setup a development environment, start a REPL.
 
@@ -27,3 +27,12 @@ user=> (reset)
 :reloading (...)
 :started
 ```
+
+### Generators
+
+This project has several [generators][] to help you get started.
+
+* `lein gen endpoint <name>` to create a new endpoint
+* `lein gen component <name>` to create a new component
+
+[generators]: https://github.com/weavejester/lein-generate
