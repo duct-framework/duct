@@ -2,7 +2,7 @@
 
 FIXME: description
 
-## Development
+## Developing
 
 ### Environment
 
@@ -38,6 +38,11 @@ This project has several [generators][] to help you create files.
 * `lein gen component <name>` to create a new component
 
 [generators]: https://github.com/weavejester/lein-generate
+
+
+## Deploying
+
+FIXME: steps to deploy
 
 
 ## Legal
