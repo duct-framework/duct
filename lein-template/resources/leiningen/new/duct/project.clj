@@ -16,6 +16,7 @@
   :generators [[duct/generators "0.0.3-SNAPSHOT"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main
+  :aliases {"gen" ["generate"]}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
