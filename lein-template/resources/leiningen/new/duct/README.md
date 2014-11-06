@@ -36,3 +36,7 @@ This project has several [generators][] to help you get started.
 * `lein gen component <name>` to create a new component
 
 [generators]: https://github.com/weavejester/lein-generate
+
+### Legal
+
+Copyright © {{year}} FIXME
