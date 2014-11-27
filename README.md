@@ -18,14 +18,20 @@ Create a new Duct project with Leiningen.
 lein new duct <<your project name>>
 ```
 
-Change directory into your new project.
+This will create a minimal Duct project. You can extend this by
+appending profile hints to add extra functionality.
+
+* `+site` adds favicon, CSS, and an example web component
+
+For example:
 
 ```sh
-cd <<your project name>>
+lein new duct foobar +site
 ```
 
-Then check your new project's `README.md` file for instructions on
-setting up a development environment.
+As with all Leiningen templates, Duct will create a new directory with
+the same name as your project. For information on how to run and build
+your project, refer to the project's `README.md` file.
 
 
 ## Concepts
