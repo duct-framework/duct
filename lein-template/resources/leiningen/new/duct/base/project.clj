@@ -12,7 +12,7 @@
                  [ring/ring-defaults "0.1.2"]
                  [ring-jetty-component "0.2.1"]]
   :plugins [[lein-environ "1.0.0"]
-            [lein-gen "0.2.0"]]
+            [lein-gen "0.2.1"]]
   :generators [[duct/generators "0.0.3"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main
