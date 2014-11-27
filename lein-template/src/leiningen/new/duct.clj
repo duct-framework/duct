@@ -9,39 +9,57 @@
 (defn resource [name]
   (io/input-stream (io/resource (str "leiningen/new/duct/" name))))
 
+(defmulti module-data  (fn [module name] module))
+(defmulti module-files (fn [module data] module))
+
+(defmethod module-data  :default [_ _] {})
+(defmethod module-files :default [_ _] [])
+
+(defmethod module-data :base [_ name]
+  (let [main-ns (sanitize-ns name)]
+    {:raw-name    name
+     :name        (project-name name)
+     :namespace   main-ns
+     :dirs        (name-to-path main-ns)
+     :year        (year)}))
+
+(defmethod module-files :base [_ data]
+  [["project.clj"               (render "base/project.clj" data)]
+   ["README.md"                 (render "base/README.md" data)]
+   [".gitignore"                (render "base/gitignore" data)]
+   ["dev/user.clj"              (render "base/user.clj" data)]
+   ["profiles.clj.sample"       (render "base/profiles.clj" data)]
+   ["dev/local.clj.sample"      (render "base/local.clj" data)]
+   ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
+   ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
+   ["resources/errors/404.html" (resource "base/404.html")]
+   ["resources/errors/500.html" (resource "base/500.html")]
+   "src/{{dirs}}/component"
+   "src/{{dirs}}/endpoint"])
+
+(defmethod module-data :site [_ _]
+  {:site?    true
+   :defaults "site-defaults"
+   :example? true})
+
+(defmethod module-files :site [_ data]
+  [["src/{{dirs}}/endpoint/example.clj"       (render "site/example.clj" data)]
+   ["test/{{dirs}}/endpoint/example_test.clj" (render "site/example_test.clj" data)]
+   ["resources/{{dirs}}/endpoint/example/welcome.html" (render "site/welcome.html" data)]
+   ["resources/public/favicon.ico"       (resource "site/favicon.ico")]
+   ["resources/public/css/normalize.css" (render "site/normalize.css" data)]
+   ["resources/public/css/site.css"      (render "site/site.css" data)]])
+
+(defn active-modules [args]
+  (for [arg args :when (re-matches #"\+[A-Za-z0-9-]+" arg)]
+    (keyword (subs arg 1))))
+
 (defn duct
   "Create a new Duct project."
-  [name]
-  (let [main-ns (sanitize-ns name)
-        data    {:raw-name    name
-                 :name        (project-name name)
-                 :namespace   main-ns
-                 :dirs        (name-to-path main-ns)
-                 :year        (year)}]
-    (main/info (str "Generating a new Duct project named " name "..."))
-    (main/warn "WARNING: This template is still experimental.")
-    (->files data
-      ["project.clj"  (render "project.clj" data)]
-      ["README.md"    (render "README.md" data)]
-      [".gitignore"   (render "gitignore" data)]
-      ["dev/user.clj" (render "user.clj" data)]
-
-      ["profiles.clj.sample"  (render "profiles.clj" data)]
-      ["dev/local.clj.sample" (render "local.clj" data)]
-
-      ["src/{{dirs}}/main.clj"   (render "main.clj" data)]
-      ["src/{{dirs}}/system.clj" (render "system.clj" data)]
-
-      "src/{{dirs}}/component"
-      "src/{{dirs}}/endpoint"
-
-      ["src/{{dirs}}/endpoint/example.clj"       (render "example.clj" data)]
-      ["test/{{dirs}}/endpoint/example_test.clj" (render "example_test.clj" data)]
-      ["resources/{{dirs}}/endpoint/example/welcome.html" (render "welcome.html" data)]
-
-      ["resources/errors/404.html" (resource "404.html")]
-      ["resources/errors/500.html" (resource "500.html")]
-
-      ["resources/public/favicon.ico"       (resource "favicon.ico")]
-      ["resources/public/css/normalize.css" (render "normalize.css" data)]
-      ["resources/public/css/site.css"      (render "site.css" data)])))
+  [name & args]
+  (main/info (str "Generating a new Duct project named " name "..."))
+  (main/warn "WARNING: This template is still experimental.")
+  (let [mods  (cons :base (active-modules args))
+        data  (reduce into {} (map #(module-data % name) mods))
+        files (reduce into [] (map #(module-files % data) mods))]
+    (apply ->files data files)))
