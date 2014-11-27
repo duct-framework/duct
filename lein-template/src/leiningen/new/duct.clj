@@ -32,8 +32,8 @@
    ["dev/local.clj.sample"      (render "base/local.clj" data)]
    ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
    ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
-   ["resources/errors/404.html" (resource "base/404.html")]
-   ["resources/errors/500.html" (resource "base/500.html")]
+   ["resources/errors/404.html" (render "base/404.html" data)]
+   ["resources/errors/500.html" (render "base/500.html" data)]
    "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"])
 
