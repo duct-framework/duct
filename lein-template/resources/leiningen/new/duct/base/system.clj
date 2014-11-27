@@ -4,16 +4,16 @@
             [duct.component.handler :refer [handler-component]]
             [duct.middleware.not-found :refer [wrap-not-found]]
             [meta-merge.core :refer [meta-merge]]
-            [ring.component.jetty :refer [jetty-server]]{{#defaults}}
-            [ring.middleware.defaults :refer [wrap-defaults {{defaults}}]]{{/defaults}}{{#example?}}
+            [ring.component.jetty :refer [jetty-server]]
+            [ring.middleware.defaults :refer [wrap-defaults {{defaults}}]]{{#example?}}
             [{{namespace}}.endpoint.example :refer [example-endpoint]]{{/example?}}))
 
 (def base-config
   {:http {:port 3000}
-   :app  {:middleware [[wrap-not-found :not-found]{{#defaults}}
-                       [wrap-defaults :defaults]{{/defaults}}]
-          :not-found  "errors/404.html"{{#defaults}}
-          :defaults   {{defaults}}{{/defaults}}}})
+   :app  {:middleware [[wrap-not-found :not-found]
+                       [wrap-defaults :defaults]]
+          :not-found  "errors/404.html"
+          :defaults   {{defaults}}}})
 
 (defn new-system [config]
   (let [config (meta-merge base-config config)]

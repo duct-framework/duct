@@ -21,7 +21,8 @@
      :name        (project-name name)
      :namespace   main-ns
      :dirs        (name-to-path main-ns)
-     :year        (year)}))
+     :year        (year)
+     :defaults    "api-defaults"}))
 
 (defmethod module-files :base [_ data]
   [["project.clj"               (render "base/project.clj" data)]
