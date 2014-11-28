@@ -8,7 +8,7 @@
                  [duct "0.0.3"]
                  [environ "1.0.0"]
                  [meta-merge "0.1.0"]
-                 [ring "1.3.1"]
+                 [ring "1.3.2"]
                  [ring/ring-defaults "0.1.2"]
                  [ring-jetty-component "0.2.1"]]
   :plugins [[lein-environ "1.0.0"]
