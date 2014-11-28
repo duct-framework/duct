@@ -5,12 +5,14 @@
             [duct.middleware.not-found :refer [wrap-not-found]]
             [meta-merge.core :refer [meta-merge]]
             [ring.component.jetty :refer [jetty-server]]
-            [ring.middleware.defaults :refer [wrap-defaults {{defaults}}]]{{#example?}}
+            [ring.middleware.defaults :refer [wrap-defaults {{defaults}}]]{{#site?}}
+            [ring.middleware.webjars :refer [wrap-webjars]]{{/site?}}{{#example?}}
             [{{namespace}}.endpoint.example :refer [example-endpoint]]{{/example?}}))
 
 (def base-config
   {:http {:port 3000}
-   :app  {:middleware [[wrap-not-found :not-found]
+   :app  {:middleware [[wrap-not-found :not-found]{{#site?}}
+                       [wrap-webjars]{{/site?}}
                        [wrap-defaults :defaults]]
           :not-found  "errors/404.html"
           :defaults   {{defaults}}}})

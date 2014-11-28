@@ -10,7 +10,9 @@
                  [meta-merge "0.1.0"]
                  [ring "1.3.2"]
                  [ring/ring-defaults "0.1.2"]
-                 [ring-jetty-component "0.2.1"]]
+                 [ring-jetty-component "0.2.1"]{{#site?}}
+                 [ring-webjars "0.1.0"]
+                 [org.webjars/normalize.css "3.0.1"]{{/site?}}]
   :plugins [[lein-environ "1.0.0"]
             [lein-gen "0.2.1"]]
   :generators [[duct/generators "0.0.4"]]

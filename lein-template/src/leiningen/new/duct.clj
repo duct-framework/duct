@@ -47,9 +47,8 @@
   [["src/{{dirs}}/endpoint/example.clj"       (render "site/example.clj" data)]
    ["test/{{dirs}}/endpoint/example_test.clj" (render "site/example_test.clj" data)]
    ["resources/{{dirs}}/endpoint/example/welcome.html" (render "site/welcome.html" data)]
-   ["resources/public/favicon.ico"       (resource "site/favicon.ico")]
-   ["resources/public/css/normalize.css" (render "site/normalize.css" data)]
-   ["resources/public/css/site.css"      (render "site/site.css" data)]])
+   ["resources/public/favicon.ico"  (resource "site/favicon.ico")]
+   ["resources/public/css/site.css" (render "site/site.css" data)]])
 
 (defn active-modules [args]
   (for [arg args :when (re-matches #"\+[A-Za-z0-9-]+" arg)]
