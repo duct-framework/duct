@@ -14,7 +14,7 @@
                  [ring-webjars "0.1.0"]
                  [org.webjars/normalize.css "3.0.1"]{{/site?}}]
   :plugins [[lein-environ "1.0.0"]
-            [lein-gen "0.2.1"]]
+            [lein-gen "0.2.2"]]
   :generators [[duct/generators "0.0.4"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main
