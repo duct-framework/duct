@@ -15,4 +15,5 @@
       (main/abort ":ns-prefix not set in :duct map."))
     (doto (tmpl/renderer "endpoint")
       (tmpl/create-file "source.clj" "src/{{path}}.clj" data)
-      (tmpl/create-file "test.clj" "test/{{path}}_test.clj" data))))
+      (tmpl/create-file "test.clj" "test/{{path}}_test.clj" data))
+    (tmpl/create-dir "resources/{{path}}" data)))
