@@ -4,7 +4,7 @@
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [com.stuartsierra/component "0.2.2"]
-                 [compojure "1.2.1"]
+                 [compojure "1.2.2"]
                  [duct "0.0.4"]
                  [environ "1.0.0"]
                  [meta-merge "0.1.0"]
