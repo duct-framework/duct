@@ -36,7 +36,8 @@
    ["resources/errors/404.html" (render "base/404.html" data)]
    ["resources/errors/500.html" (render "base/500.html" data)]
    "src/{{dirs}}/component"
-   "src/{{dirs}}/endpoint"])
+   "src/{{dirs}}/endpoint"
+   "test/{{dirs}}"])
 
 (defmethod module-data :site [_ _]
   {:site?    true
