@@ -1,11 +1,12 @@
 (ns duct.middleware.errors
-  (:require [ring.util.response :as response]))
+  (:require [compojure.response :as compojure]
+            [ring.util.response :as response]))
 
-(defn wrap-hide-errors [handler error-resource]
+(defn wrap-hide-errors [handler error-response]
   (fn [request]
     (try
       (handler request)
       (catch Throwable _
-        (-> (response/resource-response error-resource)
+        (-> (compojure/render error-response request)
             (response/content-type "text/html")
             (response/status 500))))))

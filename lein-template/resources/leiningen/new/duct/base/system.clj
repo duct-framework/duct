@@ -1,5 +1,6 @@
 (ns {{namespace}}.system
-  (:require [com.stuartsierra.component :as component]
+  (:require [clojure.java.io :as io]
+            [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
             [duct.component.handler :refer [handler-component]]
             [duct.middleware.not-found :refer [wrap-not-found]]
@@ -14,7 +15,7 @@
    :app  {:middleware [[wrap-not-found :not-found]{{#site?}}
                        [wrap-webjars]{{/site?}}
                        [wrap-defaults :defaults]]
-          :not-found  "errors/404.html"
+          :not-found  (io/resource "errors/404.html")
           :defaults   {{defaults}}}})
 
 (defn new-system [config]

@@ -1,10 +1,11 @@
 (ns duct.middleware.not-found
-  (:require [ring.util.response :as response]))
+  (:require [compojure.response :as compojure]
+            [ring.util.response :as response]))
 
 (defn wrap-not-found
-  [handler not-found-resource]
+  [handler error-response]
   (fn [request]
     (or (handler request)
-        (-> (response/resource-response not-found-resource)
+        (-> (compojure/render error-response request)
             (response/content-type "text/html")
             (response/status 404)))))
