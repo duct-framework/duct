@@ -39,17 +39,25 @@
    "src/{{dirs}}/endpoint"
    "test/{{dirs}}"])
 
+(defmethod module-data :example [_ _]
+  {:example? true})
+
+(defmethod module-files :example [_ data]
+  [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
+   ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]
+   "resources/{{dirs}}/endpoint/example"])
+
 (defmethod module-data :site [_ _]
   {:site?    true
-   :defaults "site-defaults"
-   :example? true})
+   :defaults "site-defaults"})
 
 (defmethod module-files :site [_ data]
-  [["src/{{dirs}}/endpoint/example.clj"       (render "site/example.clj" data)]
-   ["test/{{dirs}}/endpoint/example_test.clj" (render "site/example_test.clj" data)]
-   ["resources/{{dirs}}/endpoint/example/welcome.html" (render "site/welcome.html" data)]
-   ["resources/public/favicon.ico"  (resource "site/favicon.ico")]
-   ["resources/public/css/site.css" (render "site/site.css" data)]])
+  (concat
+   [["resources/public/favicon.ico"  (resource "site/favicon.ico")]
+    ["resources/public/css/site.css" (render "site/site.css" data)]]
+   (if (:example? data)
+     [["resources/{{dirs}}/endpoint/example/welcome.html"
+       (render "site/welcome.html" data)]])))
 
 (defn active-modules [args]
   (for [arg args :when (re-matches #"\+[A-Za-z0-9-]+" arg)]

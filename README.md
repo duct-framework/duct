@@ -21,12 +21,13 @@ lein new duct <<your project name>>
 This will create a minimal Duct project. You can extend this by
 appending profile hints to add extra functionality.
 
-* `+site` adds favicon, CSS, and an example web component
+* `+site` adds site middleware, a favicon, webjars and more
+* `+example` adds an example endpoint
 
 For example:
 
 ```sh
-lein new duct foobar +site
+lein new duct foobar +site +example
 ```
 
 As with all Leiningen templates, Duct will create a new directory with
