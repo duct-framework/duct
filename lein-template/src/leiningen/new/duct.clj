@@ -52,6 +52,7 @@
 (defmethod module-files :site [_ data]
   (concat
    [["resources/public/favicon.ico"  (resource "site/favicon.ico")]
+    ["resources/public/robots.txt"   (resource "site/robots.txt")]
     ["resources/public/css/site.css" (resource "site/site.css")]
     ["resources/errors/404.html"     (resource "site/404.html")]
     ["resources/errors/500.html"     (resource "site/500.html")]]
