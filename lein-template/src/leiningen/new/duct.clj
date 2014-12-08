@@ -66,6 +66,8 @@
 (defn duct
   "Create a new Duct project."
   [name & args]
+  (when (.startsWith name "+")
+    (main/abort "Failed to create project: no project name specified."))
   (main/info (str "Generating a new Duct project named " name "..."))
   (main/warn "WARNING: This template is still experimental.")
   (let [mods  (cons :base (active-modules args))
