@@ -5,7 +5,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [com.stuartsierra/component "0.2.2"]
                  [compojure "1.3.1"]
-                 [duct "0.0.5"]
+                 [duct "0.0.6"]
                  [environ "1.0.0"]
                  [meta-merge "0.1.0"]
                  [ring "1.3.2"]
@@ -15,7 +15,7 @@
                  [org.webjars/normalize.css "3.0.1"]{{/site?}}]
   :plugins [[lein-environ "1.0.0"]
             [lein-gen "0.2.2"]]
-  :generators [[duct/generators "0.0.5"]]
+  :generators [[duct/generators "0.0.6"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main
   :aliases {"gen" ["generate"]}
