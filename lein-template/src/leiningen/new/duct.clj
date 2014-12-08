@@ -29,8 +29,6 @@
    ["README.md"                 (render "base/README.md" data)]
    [".gitignore"                (render "base/gitignore" data)]
    ["dev/user.clj"              (render "base/user.clj" data)]
-   ["profiles.clj.sample"       (render "base/profiles.clj" data)]
-   ["dev/local.clj.sample"      (render "base/local.clj" data)]
    ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
    ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
    "src/{{dirs}}/component"

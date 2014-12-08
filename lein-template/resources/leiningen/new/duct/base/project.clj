@@ -18,7 +18,8 @@
   :generators [[duct/generators "0.0.6"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main
-  :aliases {"gen" ["generate"]}
+  :aliases {"gen"   ["generate"]
+            "setup" ["do" ["generate" "locals"]]}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
