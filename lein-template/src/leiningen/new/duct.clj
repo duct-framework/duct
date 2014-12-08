@@ -33,8 +33,6 @@
    ["dev/local.clj.sample"      (render "base/local.clj" data)]
    ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
    ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
-   ["resources/errors/404.html" (render "base/404.html" data)]
-   ["resources/errors/500.html" (render "base/500.html" data)]
    "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"
    "test/{{dirs}}"])
@@ -54,7 +52,9 @@
 (defmethod module-files :site [_ data]
   (concat
    [["resources/public/favicon.ico"  (resource "site/favicon.ico")]
-    ["resources/public/css/site.css" (render "site/site.css" data)]]
+    ["resources/public/css/site.css" (resource "site/site.css")]
+    ["resources/errors/404.html"     (resource "site/404.html")]
+    ["resources/errors/500.html"     (resource "site/500.html")]]
    (if (:example? data)
      [["resources/{{dirs}}/endpoint/example/welcome.html"
        (render "site/welcome.html" data)]])))

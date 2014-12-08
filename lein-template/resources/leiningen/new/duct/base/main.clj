@@ -9,7 +9,7 @@
 (def config
   {:http {:port (some-> env :port Integer.)}
    :app  {:middleware     [[wrap-hide-errors :internal-error]]
-          :internal-error (io/resource "errors/500.html")}})
+          :internal-error {{^site?}}"Internal Server Error"{{/site?}}{{#site?}}(io/resource "errors/500.html"){{/site?}}}})
 
 (defn -main [& args]
   (let [system (new-system config)]

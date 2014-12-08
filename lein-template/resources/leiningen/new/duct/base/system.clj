@@ -15,7 +15,7 @@
    :app  {:middleware [[wrap-not-found :not-found]{{#site?}}
                        [wrap-webjars]{{/site?}}
                        [wrap-defaults :defaults]]
-          :not-found  (io/resource "errors/404.html")
+          :not-found  {{^site?}}"Resource Not Found"{{/site?}}{{#site?}}(io/resource "errors/404.html"){{/site?}}
           :defaults   {{defaults}}}})
 
 (defn new-system [config]
