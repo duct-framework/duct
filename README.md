@@ -23,6 +23,7 @@ appending profile hints to add extra functionality.
 
 * `+site` adds site middleware, a favicon, webjars and more
 * `+example` adds an example endpoint
+* `+heroku` adds configuration for deploying to Heroku
 
 For example:
 
