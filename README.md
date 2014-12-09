@@ -21,9 +21,9 @@ lein new duct <<your project name>>
 This will create a minimal Duct project. You can extend this by
 appending profile hints to add extra functionality.
 
-* `+site` adds site middleware, a favicon, webjars and more
+* `+site`    adds site middleware, a favicon, webjars and more
 * `+example` adds an example endpoint
-* `+heroku` adds configuration for deploying to Heroku
+* `+heroku`  adds configuration for deploying to Heroku
 
 For example:
 
