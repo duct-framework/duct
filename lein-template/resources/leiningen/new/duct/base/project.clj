@@ -20,7 +20,10 @@
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :aliases {"gen"   ["generate"]
-            "setup" ["do" ["generate" "locals"]]}
+            "setup" ["do" ["generate" "locals"]]{{#heroku?}}
+            "deploy" ["do"
+                      ["vcs" "assert-committed"]
+                      ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
