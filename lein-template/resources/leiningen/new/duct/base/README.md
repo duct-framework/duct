@@ -4,9 +4,20 @@ FIXME: description
 
 ## Developing
 
+### Setup
+
+When you first clone this repository, run:
+
+```sh
+lein setup
+```
+
+This will create files for local configuration, and prep your system
+for the project.
+
 ### Environment
 
-To setup a development environment, start a REPL.
+To begin developing, start with a REPL.
 
 ```sh
 lein repl
