@@ -60,6 +60,7 @@
 
 (defmethod module-data :heroku [_ name]
   {:heroku? true
+   :lein-deploy? true
    :uberjar-name (str (project-name name) "-standalone.jar")})
 
 (defmethod module-files :heroku [_ data]

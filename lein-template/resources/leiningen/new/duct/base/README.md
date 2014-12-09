@@ -13,7 +13,15 @@ lein setup
 ```
 
 This will create files for local configuration, and prep your system
-for the project.
+for the project.{{#heroku?}}
+
+Next connect the repository to the [Heroku][] app:
+
+```sh
+heroku git:remote -a FIXME
+```
+
+[heroku]: https://www.heroku.com/{{/heroku?}}
 
 ### Environment
 
@@ -53,7 +61,11 @@ This project has several [generators][] to help you create files.
 
 ## Deploying
 
-FIXME: steps to deploy
+{{^lein-deploy?}}FIXME: steps to deploy{{/lein-deploy?}}{{#lein-deploy?}}To deploy the project, run:
+
+```clojure
+lein deploy
+```{{/lein-deploy?}}
 
 
 ## Legal
