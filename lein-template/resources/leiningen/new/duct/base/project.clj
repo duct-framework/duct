@@ -17,7 +17,8 @@
             [lein-gen "0.2.2"]]
   :generators [[duct/generators "0.0.6"]]
   :duct {:ns-prefix {{namespace}}}
-  :main ^:skip-aot {{namespace}}.main
+  :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
+  :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :aliases {"gen"   ["generate"]
             "setup" ["do" ["generate" "locals"]]}
   :profiles

@@ -58,6 +58,13 @@
      [["resources/{{dirs}}/endpoint/example/welcome.html"
        (render "site/welcome.html" data)]])))
 
+(defmethod module-data :heroku [_ name]
+  {:heroku? true
+   :uberjar-name (str (project-name name) "-standalone.jar")})
+
+(defmethod module-files :heroku [_ data]
+  [["Procfile" (render "heroku/Procfile" data)]])
+
 (defn active-modules [args]
   (for [arg args :when (re-matches #"\+[A-Za-z0-9-]+" arg)]
     (keyword (subs arg 1))))
