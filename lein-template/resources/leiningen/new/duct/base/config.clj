@@ -7,12 +7,14 @@
             [ring.middleware.webjars :refer [wrap-webjars]]{{/site?}}))
 
 (def base
-  {:http {:port 3000}
-   :app  {:middleware [[wrap-not-found :not-found]{{#site?}}
+  {:app  {:middleware [[wrap-not-found :not-found]{{#site?}}
                        [wrap-webjars]{{/site?}}
                        [wrap-defaults :defaults]]
           :not-found  {{^site?}}"Resource Not Found"{{/site?}}{{#site?}}(io/resource "errors/404.html"){{/site?}}
           :defaults   {{defaults}}}})
+
+(def defaults
+  ^:displace {:http {:port 3000}})
 
 (def environ
   {:http {:port (some-> env :port Integer.)}})

@@ -7,6 +7,7 @@
 
 (def config
   (meta-merge config/base
+              config/defaults
               config/environ
               config/production))
 
