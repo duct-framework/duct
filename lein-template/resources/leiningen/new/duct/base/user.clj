@@ -10,10 +10,13 @@
             [{{namespace}}.config :as config]
             [{{namespace}}.system :as system]))
 
+(def dev-config
+  {:app {:middleware [wrap-stacktrace]}})
+
 (def config
   (meta-merge config/defaults
               config/environ
-              {:app {:middleware [wrap-stacktrace]}}))
+              dev-config))
 
 (when (io/resource "local.clj")
   (load "local"))
