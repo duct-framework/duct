@@ -11,8 +11,7 @@
             [{{namespace}}.system :as system]))
 
 (def config
-  (meta-merge config/base
-              config/defaults
+  (meta-merge config/defaults
               config/environ
               {:app {:middleware [wrap-stacktrace]}}))
 

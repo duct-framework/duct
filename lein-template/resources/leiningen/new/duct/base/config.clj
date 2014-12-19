@@ -1,17 +1,7 @@
 (ns {{namespace}}.config
   (:require [clojure.java.io :as io]
             [duct.middleware.errors :refer [wrap-hide-errors]]
-            [duct.middleware.not-found :refer [wrap-not-found]]
-            [environ.core :refer [env]]
-            [ring.middleware.defaults :refer [wrap-defaults {{defaults}}]]{{#site?}}
-            [ring.middleware.webjars :refer [wrap-webjars]]{{/site?}}))
-
-(def base
-  {:app  {:middleware [[wrap-not-found :not-found]{{#site?}}
-                       [wrap-webjars]{{/site?}}
-                       [wrap-defaults :defaults]]
-          :not-found  {{^site?}}"Resource Not Found"{{/site?}}{{#site?}}(io/resource "errors/404.html"){{/site?}}
-          :defaults   {{defaults}}}})
+            [environ.core :refer [env]]))
 
 (def defaults
   ^:displace {:http {:port 3000}})
