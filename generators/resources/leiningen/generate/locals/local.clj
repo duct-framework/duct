@@ -1,4 +1,3 @@
 ;; Local REPL configuration
 
-(def config
-  {:http {:port 3000}})
+(alter-var-root #'config meta-merge {})
