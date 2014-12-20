@@ -1,4 +1,6 @@
 ;; Local profile overrides
 
-{:profiles/dev  {}
+{{=<< >>=}}
+{:profiles/dev  {:env {<<#database-url>>:database-url "<<database-url>>"<</database-url>>}}
  :profiles/test {}}
+<<={{ }}=>>
