@@ -67,6 +67,12 @@
 (defmethod module-files :heroku [_ data]
   [["Procfile" (render "heroku/Procfile" data)]])
 
+(defmethod module-data :postgres [_ name]
+  {:jdbc? true
+   :postgres? true})
+
+(defmethod module-files :postgres [_ name] [])
+
 (defn active-modules [args]
   (for [arg args :when (re-matches #"\+[A-Za-z0-9-]+" arg)]
     (keyword (subs arg 1))))
