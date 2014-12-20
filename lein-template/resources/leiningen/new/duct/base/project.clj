@@ -9,7 +9,7 @@
                  [environ "1.0.0"]
                  [meta-merge "0.1.1"]
                  [ring "1.3.2"]
-                 [ring/ring-defaults "0.1.2"]
+                 [ring/ring-defaults "0.1.3"]
                  [ring-jetty-component "0.2.2"]{{#site?}}
                  [ring-webjars "0.1.0"]
                  [org.webjars/normalize.css "3.0.1"]{{/site?}}]
@@ -33,7 +33,7 @@
    :project/dev   {:source-paths ["dev"]
                    :repl-options {:init-ns user}
                    :dependencies [[reloaded.repl "0.1.0"]
-                                  [org.clojure/tools.namespace "0.2.4"]
-                                  [kerodon "0.4.0"]]
+                                  [org.clojure/tools.namespace "0.2.8"]
+                                  [kerodon "0.5.0"]]
                    :env {:port 3000}}
    :project/test  {}})
