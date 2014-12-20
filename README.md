@@ -106,6 +106,7 @@ out of version control.
 ├── src
 │   └── {{project}}
 │       ├── component
+│       ├── config.clj
 │       ├── endpoint
 │       │   └── {{endpoint}}.clj
 │       ├── main.clj
