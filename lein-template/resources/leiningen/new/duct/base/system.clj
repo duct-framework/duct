@@ -1,13 +1,13 @@
 (ns {{namespace}}.system
-  (:require [clojure.java.io :as io]
-            [com.stuartsierra.component :as component]
+  (:require {{#site?}}[clojure.java.io :as io]
+            {{/site?}}[com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
             [duct.component.handler :refer [handler-component]]
             [duct.middleware.not-found :refer [wrap-not-found]]
             [meta-merge.core :refer [meta-merge]]
             [ring.component.jetty :refer [jetty-server]]
             [ring.middleware.defaults :refer [wrap-defaults {{defaults}}]]{{#site?}}
-            [ring.middleware.webjars :refer [wrap-webjars]]{{/site?}} {{#example?}}
+            [ring.middleware.webjars :refer [wrap-webjars]]{{/site?}}{{#example?}}
             [{{namespace}}.endpoint.example :refer [example-endpoint]]{{/example?}}))
 
 (def base-config
