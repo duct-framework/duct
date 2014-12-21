@@ -78,7 +78,12 @@
     (keyword (subs hint 1))))
 
 (defn duct
-  "Create a new Duct project."
+  "Create a new Duct web application.
+
+Accepts the following profile hints:
+  +example - adds an example endpoint
+  +heroku  - adds configuration for deploying to Heroku
+  +site    - adds site middleware, a favicon, webjars and more"
   [name & hints]
   (when (.startsWith name "+")
     (main/abort "Failed to create project: no project name specified."))
