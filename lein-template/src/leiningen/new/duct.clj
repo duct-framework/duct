@@ -81,9 +81,10 @@
   "Create a new Duct web application.
 
 Accepts the following profile hints:
-  +example - adds an example endpoint
-  +heroku  - adds configuration for deploying to Heroku
-  +site    - adds site middleware, a favicon, webjars and more"
+  +example  - adds an example endpoint
+  +heroku   - adds configuration for deploying to Heroku
+  +postgres - adds a PostgreSQL dependency and database component
+  +site     - adds site middleware, a favicon, webjars and more"
   [name & hints]
   (when (.startsWith name "+")
     (main/abort "Failed to create project: no project name specified."))
