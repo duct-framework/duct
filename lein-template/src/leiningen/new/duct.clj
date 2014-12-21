@@ -9,13 +9,13 @@
 (defn resource [name]
   (io/input-stream (io/resource (str "leiningen/new/duct/" name))))
 
-(defmulti module-data  (fn [module name] module))
-(defmulti module-files (fn [module data] module))
+(defmulti profile-data  (fn [module name] module))
+(defmulti profile-files (fn [module data] module))
 
-(defmethod module-data  :default [_ _] {})
-(defmethod module-files :default [_ _] [])
+(defmethod profile-data  :default [_ _] {})
+(defmethod profile-files :default [_ _] [])
 
-(defmethod module-data :base [_ name]
+(defmethod profile-data :base [_ name]
   (let [main-ns (sanitize-ns name)]
     {:raw-name    name
      :name        (project-name name)
@@ -24,7 +24,7 @@
      :year        (year)
      :defaults    "api-defaults"}))
 
-(defmethod module-files :base [_ data]
+(defmethod profile-files :base [_ data]
   [["project.clj"               (render "base/project.clj" data)]
    ["README.md"                 (render "base/README.md" data)]
    [".gitignore"                (render "base/gitignore" data)]
@@ -36,19 +36,19 @@
    "src/{{dirs}}/endpoint"
    "test/{{dirs}}"])
 
-(defmethod module-data :example [_ _]
+(defmethod profile-data :example [_ _]
   {:example? true})
 
-(defmethod module-files :example [_ data]
+(defmethod profile-files :example [_ data]
   [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
    ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]
    "resources/{{dirs}}/endpoint/example"])
 
-(defmethod module-data :site [_ _]
+(defmethod profile-data :site [_ _]
   {:site?    true
    :defaults "site-defaults"})
 
-(defmethod module-files :site [_ data]
+(defmethod profile-files :site [_ data]
   (concat
    [["resources/public/favicon.ico"  (resource "site/favicon.ico")]
     ["resources/public/robots.txt"   (resource "site/robots.txt")]
@@ -59,32 +59,32 @@
      [["resources/{{dirs}}/endpoint/example/welcome.html"
        (render "site/welcome.html" data)]])))
 
-(defmethod module-data :heroku [_ name]
+(defmethod profile-data :heroku [_ name]
   {:heroku? true
    :lein-deploy? true
    :uberjar-name (str (project-name name) "-standalone.jar")})
 
-(defmethod module-files :heroku [_ data]
+(defmethod profile-files :heroku [_ data]
   [["Procfile" (render "heroku/Procfile" data)]])
 
-(defmethod module-data :postgres [_ name]
+(defmethod profile-data :postgres [_ name]
   {:jdbc? true
    :postgres? true})
 
-(defmethod module-files :postgres [_ name] [])
+(defmethod profile-files :postgres [_ name] [])
 
-(defn active-modules [args]
-  (for [arg args :when (re-matches #"\+[A-Za-z0-9-]+" arg)]
-    (keyword (subs arg 1))))
+(defn profiles [hints]
+  (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
+    (keyword (subs hint 1))))
 
 (defn duct
   "Create a new Duct project."
-  [name & args]
+  [name & hints]
   (when (.startsWith name "+")
     (main/abort "Failed to create project: no project name specified."))
   (main/info (str "Generating a new Duct project named " name "..."))
   (main/warn "WARNING: This template is still experimental.")
-  (let [mods  (cons :base (active-modules args))
-        data  (reduce into {} (map #(module-data % name) mods))
-        files (reduce into [] (map #(module-files % data) mods))]
+  (let [mods  (cons :base (profiles hints))
+        data  (reduce into {} (map #(profile-data % name) mods))
+        files (reduce into [] (map #(profile-files % data) mods))]
     (apply ->files data files)))
