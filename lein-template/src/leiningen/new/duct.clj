@@ -93,4 +93,5 @@ Accepts the following profile hints:
   (let [mods  (cons :base (profiles hints))
         data  (reduce into {} (map #(profile-data % name) mods))
         files (reduce into [] (map #(profile-files % data) mods))]
-    (apply ->files data files)))
+    (apply ->files data files))
+  (main/info "Run 'lein setup' in the project directory to create local config files."))
