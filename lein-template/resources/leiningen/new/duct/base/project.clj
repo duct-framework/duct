@@ -5,7 +5,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [com.stuartsierra/component "0.2.2"]
                  [compojure "1.3.1"]
-                 [duct "0.0.8"]
+                 [duct "0.0.9"]
                  [environ "1.0.0"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
@@ -18,7 +18,7 @@
                  [org.postgresql/postgresql "9.3-1102-jdbc4"]{{/postgres?}}]
   :plugins [[lein-environ "1.0.0"]
             [lein-gen "0.2.2"]]
-  :generators [[duct/generators "0.0.8"]]
+  :generators [[duct/generators "0.0.9"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
