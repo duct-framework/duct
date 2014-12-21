@@ -4,9 +4,14 @@
 (defn- dependency-in? [artifact project]
   (some #{artifact} (map first (:dependencies project))))
 
+(defn- postgres-url [project]
+  (if (dependency-in? 'hanami/hanami project)
+    "postgres://localhost/postgres"
+    "jdbc:postgresql://localhost/postgres"))
+
 (defn- dev-database-url [project]
   (condp dependency-in? project
-    'org.postgresql/postgresql "jdbc:postgresql://localhost/postgres"
+    'org.postgresql/postgresql (postgres-url project)
     nil))
 
 (defn locals
