@@ -54,7 +54,7 @@ Duct applications are divided by purpose, rather than layer.
 [reloaded]:  http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
 
 
-## Details
+## Overview
 
 Duct is designed to produce a standalone web application, configured
 with environment variables, and logging to STDOUT. Typically it will
@@ -66,8 +66,8 @@ library. Components handle the lifecycle of the web server, and
 connections to other services and databases. It's highly recommended
 you avoid any global state, and even dynamic bindings are discouraged.
 
-The routes of the application are divided into *endpoints*. These are
-functions that take a component map, and return a [Ring][] handler
+The routes of the application are divided into **endpoints**. These
+are functions that take a component map, and return a [Ring][] handler
 function. Duct therefore relies on closures and lexical scoping to
 pass database connections and other configuration data to the routes.
 
@@ -112,6 +112,82 @@ out of version control.
     └── {{project}}
         └── endpoint
             └── {{endpoint}}_test.clj
+```
+
+
+## Components
+
+Duct comes with **endpoint** and **handler** components.
+
+
+### Endpoints
+
+An endpoint component turns an endpoint function into a component.
+For example:
+
+```clojure
+(require '[duct.component.endpoint :as e])
+
+(e/endpoint-component example-endpoint)
+=> #duct.component.endpoint.EndpointComponent{...}
+```
+
+When the component is started, the component is passed to the endpoint
+function, which returns a [Ring][] handler. This handler is then
+stored in the `:routes` key.
+
+
+### Handlers
+
+A handler component combines all of its dependent endpoints into a
+composite handler.
+
+```clojure
+(require '[com.stuartsierra.component :as component]
+         '[duct.component.endpoint :as e]
+         '[duct.component.handler :as h])
+
+(-> (component/system-map
+     :example (e/endpoint-component example-endpoint)
+     :app     (h/handler-component {}))
+    (component/system-using
+     {:app [:example]}))
+```
+
+The handler component collects up the contents of the `:routes` keys,
+then tries each route function in turn until one returns a non-nil
+value.
+
+You can also specify what middleware to apply to the handler, via the
+`:middleware` key. This should contain an ordered collection of
+middleware functions, or vectors representing partially applied
+middleware.
+
+The first type should be self-explantory:
+
+```clojure
+(h/handler-component {:middleware [wrap-params wrap-cookies]})
+```
+
+The second type of middleware option consists of a middleware function
+followed by a sequence of keys:
+
+```clojure
+[middleware & keys]
+```
+
+The keys will be substituted for their values in the component. So a
+configuration like:
+
+```clojure
+{:middleware [[wrap-not-found :not-found]]
+ :not-found  "Page not found"})
+```
+
+Is equivalent to:
+
+```clojure
+{:middleware [#(wrap-not-found % "Page not found")]}
 ```
 
 
