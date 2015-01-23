@@ -83,6 +83,7 @@ post. Strive to keep your endpoints small and focused.
 
 ## Documentation
 
+* [Configuration](https://github.com/weavejester/duct/wiki/Configuration)
 * [Components](https://github.com/weavejester/duct/wiki/Components)
 
 
