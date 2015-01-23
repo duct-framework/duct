@@ -81,6 +81,11 @@ post. Strive to keep your endpoints small and focused.
 [ring]:   https://github.com/ring-clojure/ring
 
 
+## Documentation
+
+* [Components](https://github.com/weavejester/duct/wiki/Components)
+
+
 ## File structure
 
 Duct projects are structured as below. Files marked with a * are kept
@@ -112,82 +117,6 @@ out of version control.
     └── {{project}}
         └── endpoint
             └── {{endpoint}}_test.clj
-```
-
-
-## Components
-
-Duct comes with **endpoint** and **handler** components.
-
-
-### Endpoints
-
-An endpoint component turns an endpoint function into a component.
-For example:
-
-```clojure
-(require '[duct.component.endpoint :as e])
-
-(e/endpoint-component example-endpoint)
-=> #duct.component.endpoint.EndpointComponent{...}
-```
-
-When the component is started, the component is passed to the endpoint
-function, which returns a [Ring][] handler. This handler is then
-stored in the `:routes` key.
-
-
-### Handlers
-
-A handler component combines all of its dependent endpoints into a
-composite handler.
-
-```clojure
-(require '[com.stuartsierra.component :as component]
-         '[duct.component.endpoint :as e]
-         '[duct.component.handler :as h])
-
-(-> (component/system-map
-     :example (e/endpoint-component example-endpoint)
-     :app     (h/handler-component {}))
-    (component/system-using
-     {:app [:example]}))
-```
-
-The handler component collects up the contents of the `:routes` keys,
-then tries each route function in turn until one returns a non-nil
-value.
-
-You can also specify what middleware to apply to the handler, via the
-`:middleware` key. This should contain an ordered collection of
-middleware functions, or vectors representing partially applied
-middleware.
-
-The first type should be self-explantory:
-
-```clojure
-(h/handler-component {:middleware [wrap-params wrap-cookies]})
-```
-
-The second type of middleware option consists of a middleware function
-followed by a sequence of keys:
-
-```clojure
-[middleware & keys]
-```
-
-The keys will be substituted for their values in the component. So a
-configuration like:
-
-```clojure
-{:middleware [[wrap-not-found :not-found]]
- :not-found  "Page not found"})
-```
-
-Is equivalent to:
-
-```clojure
-{:middleware [#(wrap-not-found % "Page not found")]}
 ```
 
 
