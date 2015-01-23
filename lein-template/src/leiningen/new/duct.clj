@@ -89,7 +89,6 @@ Accepts the following profile hints:
   (when (.startsWith name "+")
     (main/abort "Failed to create project: no project name specified."))
   (main/info (str "Generating a new Duct project named " name "..."))
-  (main/warn "WARNING: This template is still experimental.")
   (let [mods  (cons :base (profiles hints))
         data  (reduce into {} (map #(profile-data % name) mods))
         files (reduce into [] (map #(profile-files % data) mods))]
