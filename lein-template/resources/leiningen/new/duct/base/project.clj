@@ -2,14 +2,14 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
-  :dependencies [[org.clojure/clojure "1.6.0"]
+  :dependencies [[org.clojure/clojure "1.7.0"]
                  [com.stuartsierra/component "0.2.3"]
-                 [compojure "1.3.3"]
+                 [compojure "1.4.0"]
                  [duct "0.1.1"]
                  [environ "1.0.0"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
-                 [ring "1.3.2"]
+                 [ring "1.4.0"]
                  [ring/ring-defaults "0.1.5"]
                  [ring-jetty-component "0.2.2"]{{#site?}}
                  [ring-webjars "0.1.0"]
@@ -36,7 +36,7 @@
    :project/dev   {:source-paths ["dev"]
                    :repl-options {:init-ns user}
                    :dependencies [[reloaded.repl "0.1.0"]
-                                  [org.clojure/tools.namespace "0.2.10"]
+                                  [org.clojure/tools.namespace "0.2.11"]
                                   [kerodon "0.6.1"]]
                    :env {:port 3000}}
    :project/test  {}})
