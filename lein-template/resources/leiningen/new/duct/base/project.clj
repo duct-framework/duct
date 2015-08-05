@@ -8,7 +8,8 @@
                  [duct "0.1.2"]
                  [environ "1.0.0"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
-                 [meta-merge "0.1.1"]
+                 [meta-merge "0.1.1"]{{#ragtime?}}
+                 [ragtime "0.5.0"]{{/ragtime?}}
                  [ring "1.4.0"]
                  [ring/ring-defaults "0.1.5"]
                  [ring-jetty-component "0.2.2"]{{#site?}}

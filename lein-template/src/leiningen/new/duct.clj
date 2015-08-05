@@ -73,6 +73,12 @@
 
 (defmethod profile-files :postgres [_ name] [])
 
+(defmethod profile-data :ragtime [_ _]
+  {:ragtime? true})
+
+(defmethod profile-files :ragtime [_ _]
+  ["resources/migrations"])
+
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
     (keyword (subs hint 1))))
