@@ -22,6 +22,7 @@
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
+  :target-path "target/%s/"
   :aliases {"gen"   ["generate"]
             "setup" ["do" ["generate" "locals"]]{{#heroku?}}
             "deploy" ["do"
