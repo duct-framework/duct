@@ -16,7 +16,7 @@
                  [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4-1201-jdbc4"]{{/postgres?}}{{#ragtime?}}
-                 [duct/ragtime-component "0.1.0"]{{/ragtime?}}]
+                 [duct/ragtime-component "0.1.1"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.0"]
             [lein-gen "0.2.2"]]
   :generators [[duct/generators "0.1.2"]]
