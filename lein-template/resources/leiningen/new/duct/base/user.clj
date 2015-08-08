@@ -6,7 +6,8 @@
             [com.stuartsierra.component :as component]
             [meta-merge.core :refer [meta-merge]]
             [reloaded.repl :refer [system init start stop go reset]]
-            [ring.middleware.stacktrace :refer [wrap-stacktrace]]
+            [ring.middleware.stacktrace :refer [wrap-stacktrace]]{{#ragtime?}}
+            [duct.component.ragtime :as ragtime]{{/ragtime?}}
             [{{namespace}}.config :as config]
             [{{namespace}}.system :as system]))
 
@@ -17,6 +18,15 @@
   (meta-merge config/defaults
               config/environ
               dev-config))
+
+{{#ragtime?}}
+(defn migrate []
+  (ragtime/migrate (:ragtime system)))
+
+(defn rollback
+  ([] (rollback 1))
+  ([x] (ragtime/rollback (:ragtime system) x)))
+{{/ragtime?}}
 
 (when (io/resource "local.clj")
   (load "local"))

@@ -3,7 +3,8 @@
             {{/site?}}[com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
             [duct.component.handler :refer [handler-component]]{{#jdbc?}}
-            [duct.component.hikaricp :refer [hikaricp]]{{/jdbc?}}
+            [duct.component.hikaricp :refer [hikaricp]]{{/jdbc?}}{{#ragtime?}}
+            [duct.component.ragtime :refer [ragtime]]{{/ragtime?}}
             [duct.middleware.not-found :refer [wrap-not-found]]
             [meta-merge.core :refer [meta-merge]]
             [ring.component.jetty :refer [jetty-server]]
@@ -16,16 +17,19 @@
                       [wrap-webjars]{{/site?}}
                       [wrap-defaults :defaults]]
          :not-found  {{^site?}}"Resource Not Found"{{/site?}}{{#site?}}(io/resource "errors/404.html"){{/site?}}
-         :defaults   {{defaults}}}})
+         :defaults   {{defaults}}}{{#ragtime?}}
+   :ragtime {:resource-path "migrations"}{{/ragtime?}}})
 
 (defn new-system [config]
   (let [config (meta-merge base-config config)]
     (-> (component/system-map
          :app  (handler-component (:app config))
          :http (jetty-server (:http config)){{#jdbc?}}
-         :db   (hikaricp (:db config)){{/jdbc?}}{{#example?}}
+         :db   (hikaricp (:db config)){{/jdbc?}}{{#ragtime?}}
+         :ragtime (ragtime (:ragtime config)){{/ragtime?}}{{#example?}}
          :example (endpoint-component example-endpoint){{/example?}})
         (component/system-using
          {:http [:app]
-          :app  [{{#example?}}:example{{/example?}}]{{#example?}}
+          :app  [{{#example?}}:example{{/example?}}]{{#ragtime?}}
+          :ragtime [:db]{{/ragtime?}}{{#example?}}
           :example [{{#jdbc?}}:db{{/jdbc?}}]{{/example?}}}))))

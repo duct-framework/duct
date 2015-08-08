@@ -74,7 +74,8 @@
 (defmethod profile-files :postgres [_ name] [])
 
 (defmethod profile-data :ragtime [_ _]
-  {:ragtime? true})
+  {:jdbc? true
+   :ragtime? true})
 
 (defmethod profile-files :ragtime [_ _]
   ["resources/migrations"])
