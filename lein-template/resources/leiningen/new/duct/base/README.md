@@ -49,6 +49,32 @@ user=> (reset)
 :started
 ```
 
+{{#ragtime?}}
+### Migrations
+
+Migrations are handled by [ragtime][]. Migration files are stored in
+the `resources/migrations` directory, and are applied in alphanumeric
+order.
+
+To update the database to the latest migration, open the REPL and run:
+
+```clojure
+user=> (migrate)
+Applying 20150815144312-create-users
+Applying 20150815145033-create-posts
+```
+
+To rollback the last migration, run:
+
+```clojure
+user=> (rollback)
+Rolling back 20150815145033-create-posts
+```
+
+Note that the system needs to be setup with `(init)` or `(go)` before
+migrations can be applied.
+
+{{/ragtime?}}
 ### Generators
 
 This project has several [generators][] to help you create files.
@@ -58,7 +84,6 @@ This project has several [generators][] to help you create files.
 
 [generators]: https://github.com/weavejester/lein-generate
 
-
 ## Deploying
 
 {{^lein-deploy?}}FIXME: steps to deploy{{/lein-deploy?}}{{#lein-deploy?}}To deploy the project, run:
@@ -66,7 +91,6 @@ This project has several [generators][] to help you create files.
 ```clojure
 lein deploy
 ```{{/lein-deploy?}}
-
 
 ## Legal
 
