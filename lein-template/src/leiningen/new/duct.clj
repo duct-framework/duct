@@ -91,6 +91,7 @@ Accepts the following profile hints:
   +example  - adds an example endpoint
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
+  +ragtime  - adds a Ragtime component to handle database migrations
   +site     - adds site middleware, a favicon, webjars and more"
   [name & hints]
   (when (.startsWith name "+")
