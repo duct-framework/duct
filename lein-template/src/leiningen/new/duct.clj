@@ -50,11 +50,11 @@
 
 (defmethod profile-files :site [_ data]
   (concat
-   [["resources/public/favicon.ico"  (resource "site/favicon.ico")]
-    ["resources/public/robots.txt"   (resource "site/robots.txt")]
-    ["resources/public/css/site.css" (resource "site/site.css")]
-    ["resources/errors/404.html"     (resource "site/404.html")]
-    ["resources/errors/500.html"     (resource "site/500.html")]]
+   [["resources/{{dirs}}/public/favicon.ico"  (resource "site/favicon.ico")]
+    ["resources/{{dirs}}/public/robots.txt"   (resource "site/robots.txt")]
+    ["resources/{{dirs}}/public/css/site.css" (resource "site/site.css")]
+    ["resources/{{dirs}}/errors/404.html"     (resource "site/404.html")]
+    ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]]
    (if (:example? data)
      [["resources/{{dirs}}/endpoint/example/welcome.html"
        (render "site/welcome.html" data)]])))
@@ -78,7 +78,7 @@
    :ragtime? true})
 
 (defmethod profile-files :ragtime [_ _]
-  ["resources/migrations"])
+  ["resources/{{dirs}}/migrations"])
 
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
