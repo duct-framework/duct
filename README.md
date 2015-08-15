@@ -104,6 +104,7 @@ out of version control.
 ├── project.clj
 ├── resources
 │   ├── errors
+│   ├── migrations
 │   ├── public
 │   └── {{project}}
 │       └── endpoint
