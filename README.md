@@ -104,12 +104,12 @@ out of version control.
 ├── profiles.clj *
 ├── project.clj
 ├── resources
-│   ├── errors
-│   ├── migrations
-│   ├── public
 │   └── {{project}}
-│       └── endpoint
-│           └── {{endpoint}}
+│       ├── endpoint
+│       │   └── {{endpoint}}
+│       ├── errors
+│       ├── migrations
+│       └── public
 ├── src
 │   └── {{project}}
 │       ├── component
