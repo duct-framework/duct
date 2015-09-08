@@ -45,11 +45,13 @@
    "resources/{{dirs}}/endpoint/example"])
 
 (defmethod profile-data :rest [_ _]
-  {:rest? true})
+  {:rest? true
+   :example? true})
 
 (defmethod profile-files :rest [_ data]
-  [["src/{{dirs}}/endpoint/rest_example.clj"       (render "example/rest_endpoint.clj" data)]
-   ["test/{{dirs}}/endpoint/rest_example_test.clj" (render "example/rest_endpoint_test.clj" data)]])
+  [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
+   ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]
+   "resources/{{dirs}}/endpoint/example"])
 
 (defmethod profile-data :site [_ _]
   {:site?    true

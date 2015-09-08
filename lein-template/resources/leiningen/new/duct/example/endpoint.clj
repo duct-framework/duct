@@ -1,6 +1,7 @@
 {{=<< >>=}}
 (ns <<namespace>>.endpoint.example
-  (:require [compojure.core :refer :all]
+  (:require [compojure.core :refer :all]<<#rest?>>
+            [ring.util.response :refer [response]]<</rest?>>
             [clojure.java.io :as io]))
 
 <<#site?>>
@@ -9,5 +10,6 @@
 
 <</site?>>
 (defn example-endpoint [<<#jdbc?>>{{db :spec} :db}<</jdbc?>><<^jdbc?>>config<</jdbc?>>]
-  (routes
-   (GET "/" [] <<^site?>>"Hello World"<</site?>><<#site?>>welcome-page<</site?>>)))
+  (routes<<#rest?>>
+    (GET "/hello" [] (response {:hello "world"}))<</rest?>>
+    (GET "/" [] <<^site?>>"Hello World"<</site?>><<#site?>>welcome-page<</site?>>)))

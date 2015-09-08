@@ -12,8 +12,7 @@
             [ring.component.jetty :refer [jetty-server]]
             [ring.middleware.defaults :refer [wrap-defaults <<defaults>>]]<<#site?>>
             [ring.middleware.webjars :refer [wrap-webjars]]<</site?>><<#example?>>
-            [<<namespace>>.endpoint.example :refer [example-endpoint]]<</example?>><<#rest?>>
-            [<<namespace>>.endpoint.rest-example :refer [rest-endpoint]]<</rest?>>))
+            [<<namespace>>.endpoint.example :refer [example-endpoint]]<</example?>>))
 
 (def base-config
   {:app {:middleware [[wrap-not-found :not-found]<<#site?>>
@@ -32,10 +31,9 @@
          :http (jetty-server (:http config))<<#jdbc?>>
          :db   (hikaricp (:db config))<</jdbc?>><<#ragtime?>>
          :ragtime (ragtime (:ragtime config))<</ragtime?>><<#example?>>
-         :example (endpoint-component example-endpoint)<</example?>><<#rest?>>
-         :rest (endpoint-component rest-endpoint))<</rest?>>
+         :example (endpoint-component example-endpoint)<</example?>>)
         (component/system-using
          {:http [:app]
-          :app  [<<#example?>>:example<</example?>><<#rest?>>:rest<</rest?>>]<<#ragtime?>>
+          :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
           :ragtime [:db]<</ragtime?>><<#example?>>
           :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}))))
