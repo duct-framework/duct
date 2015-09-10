@@ -90,6 +90,11 @@ post. Strive to keep your endpoints small and focused.
 * [Compatible Libraries](https://github.com/weavejester/duct/wiki/Compatible-Libraries)
 
 
+## Community
+
+* [Google Group](https://groups.google.com/forum/#!forum/duct-clojure)
+
+
 ## File structure
 
 Duct projects are structured as below. Files marked with a * are kept
