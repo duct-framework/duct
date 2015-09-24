@@ -3,10 +3,10 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [com.stuartsierra/component "0.2.3"]
+                 [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
                  [duct "0.3.0"]
-                 [environ "1.0.0"]{{#heroku?}}{{#jdbc?}}
+                 [environ "1.0.1"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
                  [ring "1.4.0"]
@@ -16,9 +16,9 @@
                  [org.slf4j/slf4j-nop "1.7.12"]
                  [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
-                 [org.postgresql/postgresql "9.4-1201-jdbc4"]{{/postgres?}}{{#ragtime?}}
+                 [org.postgresql/postgresql "9.4-1203-jdbc4"]{{/postgres?}}{{#ragtime?}}
                  [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
-  :plugins [[lein-environ "1.0.0"]
+  :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]]
   :generators [[duct/generators "0.3.0"]]
   :duct {:ns-prefix {{namespace}}}
@@ -38,8 +38,8 @@
    :profiles/test {}
    :project/dev   {:source-paths ["dev"]
                    :repl-options {:init-ns user}
-                   :dependencies [[reloaded.repl "0.1.0"]
+                   :dependencies [[reloaded.repl "0.2.0"]
                                   [org.clojure/tools.namespace "0.2.11"]
-                                  [kerodon "0.6.1"]]
+                                  [kerodon "0.7.0"]]
                    :env {:port 3000}}
    :project/test  {}})
