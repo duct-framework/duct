@@ -2,7 +2,8 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
-  :dependencies [[org.clojure/clojure "1.7.0"]
+  :dependencies [[org.clojure/clojure "1.7.0"]{{#cljs?}}
+                 [org.clojure/clojurescript "1.7.122"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
                  [duct "0.3.1"]
@@ -19,12 +20,20 @@
                  [org.postgresql/postgresql "9.4-1203-jdbc4"]{{/postgres?}}{{#ragtime?}}
                  [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.1"]
-            [lein-gen "0.2.2"]]
+            [lein-gen "0.2.2"]{{#cljs?}}
+            [lein-cljsbuild "1.1.0"]{{/cljs?}}]
   :generators [[duct/generators "0.3.1"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
-  :target-path "target/%s/"
+  :target-path "target/%s/"{{#cljs?}}
+  :resource-paths ["resources" "target/cljsbuild/out"]
+  :cljsbuild
+  {:builds
+   {:main {:jar true
+           :source-paths ["src"]
+           :compiler {:output-to "target/cljsbuild/out/{{dirs}}/public/js/main.js"
+                      :optimizations :advanced}}}}{{/cljs?}}
   :aliases {"gen"   ["generate"]
             "setup" ["do" ["generate" "locals"]]{{#heroku?}}
             "deploy" ["do"
@@ -33,7 +42,7 @@
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
-   :uberjar {:aot :all}
+   :uberjar {:aot :all{{#cljs?}}, :prep-tasks [["cljsbuild" "once"] ["compile"]]{{/cljs?}}}
    :profiles/dev  {}
    :profiles/test {}
    :project/dev   {:source-paths ["dev"]

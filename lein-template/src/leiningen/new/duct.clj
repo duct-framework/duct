@@ -59,6 +59,11 @@
      [["resources/{{dirs}}/endpoint/example/welcome.html"
        (render "site/welcome.html" data)]])))
 
+(defmethod profile-data :cljs [_ _]
+  {:cljs? true})
+
+(defmethod profile-files :cljs [_ _])
+
 (defmethod profile-data :heroku [_ name]
   {:heroku? true
    :lein-deploy? true
