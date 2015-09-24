@@ -5,7 +5,7 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
-                 [duct "0.3.0"]
+                 [duct "0.3.1"]
                  [environ "1.0.1"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
@@ -20,7 +20,7 @@
                  [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]]
-  :generators [[duct/generators "0.3.0"]]
+  :generators [[duct/generators "0.3.1"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
