@@ -27,12 +27,12 @@
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"{{#cljs?}}
-  :resource-paths ["resources" "target/cljsbuild/out"]
+  :resource-paths ["resources" "target/cljsbuild"]
   :cljsbuild
   {:builds
    {:main {:jar true
            :source-paths ["src"]
-           :compiler {:output-to "target/cljsbuild/out/{{dirs}}/public/js/main.js"
+           :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
                       :optimizations :advanced}}}}{{/cljs?}}
   :aliases {"gen"   ["generate"]
             "setup" ["do" ["generate" "locals"]]{{#heroku?}}
@@ -45,7 +45,8 @@
    :uberjar {:aot :all{{#cljs?}}, :prep-tasks [["cljsbuild" "once"] ["compile"]]{{/cljs?}}}
    :profiles/dev  {}
    :profiles/test {}
-   :project/dev   {:source-paths ["dev"]
+   :project/dev   {:source-paths ["dev"]{{#cljs?}}
+                   :resource-paths ^:replace ["resources" "target/figwheel"]{{/cljs?}}
                    :repl-options {:init-ns user}
                    :dependencies [[reloaded.repl "0.2.0"]
                                   [org.clojure/tools.namespace "0.2.11"]
