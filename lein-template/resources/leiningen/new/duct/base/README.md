@@ -41,7 +41,8 @@ user=> (go)
 By default this creates a web server at <http://localhost:3000>.
 
 When you make changes to your source files, use `reset` to reload any
-modified files and restart the server.
+modified files and reset the server.{{#cljs?}} Changes to CSS or ClojureScript
+files will be hot-loaded into the browser.{{/cljs?}}
 
 ```clojure
 user=> (reset)
