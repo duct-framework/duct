@@ -14,7 +14,16 @@
             [<<namespace>>.system :as system]))
 
 (def dev-config
-  {:app {:middleware [wrap-stacktrace]}})
+  {:app {:middleware [wrap-stacktrace]}<<#cljs?>>
+   :figwheel
+   {:css-dirs ["resources/<<dirs>>/public/css"]
+    :builds   [{:source-paths ["src" "dev"]
+                :build-options
+                {:optimizations :none
+                 :output-to  "target/cljsbuild/out/<<dirs>>/public/js/main.js"
+                 :output-dir "target/cljsbuild/out/<<dirs>>/public/js"
+                 :source-map true
+                 :source-map-path "js"}}]}<</cljs?>>})
 
 (def config
   (meta-merge config/defaults
