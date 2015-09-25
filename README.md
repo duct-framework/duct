@@ -17,6 +17,7 @@ lein new duct <<your project name>>
 This will create a minimal Duct project. You can extend this by
 appending profile hints to add extra functionality.
 
+* `+cljs`     adds in ClojureScript compilation and hot-loading
 * `+example`  adds an example endpoint
 * `+heroku`   adds configuration for deploying to Heroku
 * `+postgres` adds a PostgreSQL dependency and database component

@@ -94,6 +94,7 @@
   "Create a new Duct web application.
 
 Accepts the following profile hints:
+  +cljs     - adds in ClojureScript compilation and hot-loading
   +example  - adds an example endpoint
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
