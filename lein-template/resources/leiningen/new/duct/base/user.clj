@@ -20,6 +20,8 @@
     :builds   [{:source-paths ["src" "dev"]
                 :build-options
                 {:optimizations :none
+                 :main "cljs.user"
+                 :asset-path "js"
                  :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
                  :output-dir "target/figwheel/<<dirs>>/public/js"
                  :source-map true
