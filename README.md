@@ -77,10 +77,10 @@ Endpoints should resemble microservices, grouping routes by purpose.
 An endpoint might handle user authentication, or handle comments on a
 post. Strive to keep your endpoints small and focused.
 
-[heroku]: https://www.heroku.com/
-[docker]: https://www.docker.com/
+[heroku]:    https://www.heroku.com/
+[docker]:    https://www.docker.com/
 [component]: https://github.com/stuartsierra/component
-[ring]:   https://github.com/ring-clojure/ring
+[ring]:      https://github.com/ring-clojure/ring
 
 
 ## Documentation
