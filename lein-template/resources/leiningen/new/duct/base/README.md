@@ -46,7 +46,7 @@ modified files and restart the server.
 ```clojure
 user=> (reset)
 :reloading (...)
-:started
+:resumed
 ```
 
 {{#ragtime?}}
