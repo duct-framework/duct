@@ -28,6 +28,7 @@
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"{{#cljs?}}
   :resource-paths ["resources" "target/cljsbuild"]
+  :prep-tasks [["cljsbuild" "once"] ["compile"]]
   :cljsbuild
   {:builds
    {:main {:jar true
@@ -41,12 +42,13 @@
                       ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
-   :test [:project/test :profiles/test]
-   :uberjar {:aot :all{{#cljs?}}, :prep-tasks [["cljsbuild" "once"] ["compile"]]{{/cljs?}}}
+   :test [:project/test :profiles/test]{{#cljs?}}
+   :repl {:resource-paths ^:replace ["resources" "target/figwheel"]
+          :prep-tasks     ^:replace [["compile"]]}{{/cljs?}}
+   :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
-   :project/dev   {:source-paths ["dev"]{{#cljs?}}
-                   :resource-paths ^:replace ["resources" "target/figwheel"]{{/cljs?}}
+   :project/dev   {:source-paths ["dev"]
                    :repl-options {:init-ns user}
                    :dependencies [[reloaded.repl "0.2.0"]
                                   [org.clojure/tools.namespace "0.2.11"]
