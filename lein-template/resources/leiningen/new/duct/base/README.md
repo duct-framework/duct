@@ -105,7 +105,7 @@ This project has several [generators][] to help you create files.
 
 {{^lein-deploy?}}FIXME: steps to deploy{{/lein-deploy?}}{{#lein-deploy?}}To deploy the project, run:
 
-```clojure
+```sh
 lein deploy
 ```{{/lein-deploy?}}
 
