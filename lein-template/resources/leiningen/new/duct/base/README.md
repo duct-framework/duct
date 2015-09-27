@@ -50,6 +50,22 @@ user=> (reset)
 :resumed
 ```
 
+### Testing
+
+Testing is fastest through the REPL, as you avoid environment startup
+time.
+
+```clojure
+user=> (test)
+...
+```
+
+But you can also run tests through Leiningen.
+
+```sh
+lein test
+```
+
 {{#ragtime?}}
 ### Migrations
 
