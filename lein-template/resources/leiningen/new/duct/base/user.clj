@@ -43,8 +43,8 @@
 (defn rollback
   ([]  (rollback 1))
   ([x] (-> system :ragtime ragtime/reload (ragtime/rollback x))))
-<</ragtime?>>
 
+<</ragtime?>>
 (when (io/resource "local.clj")
   (load "local"))
 
