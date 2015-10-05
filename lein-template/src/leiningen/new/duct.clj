@@ -46,6 +46,7 @@
 
 (defmethod profile-data :site [_ _]
   {:site?    true
+   :static?  true
    :defaults "site-defaults"})
 
 (defmethod profile-files :site [_ data]
@@ -60,7 +61,8 @@
        (render "site/welcome.html" data)]])))
 
 (defmethod profile-data :cljs [_ _]
-  {:cljs? true})
+  {:cljs? true
+   :static? true})
 
 (defmethod profile-files :cljs [_ data]
   [["dev/cljs/user.cljs" (render "base/user.cljs" data)]])

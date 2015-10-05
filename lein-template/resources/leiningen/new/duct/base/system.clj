@@ -18,7 +18,7 @@
                       [wrap-webjars]<</site?>>
                       [wrap-defaults :defaults]]
          :not-found  <<^site?>>"Resource Not Found"<</site?>><<#site?>>(io/resource "<<dirs>>/errors/404.html")<</site?>>
-         :defaults   (meta-merge <<defaults>> {<<#site?>>:static {:resources "<<dirs>>/public"}<</site?>>})}<<#ragtime?>>
+         :defaults   (meta-merge <<defaults>> {<<#static?>>:static {:resources "<<dirs>>/public"}<</static?>>})}<<#ragtime?>>
    :ragtime {:resource-path "<<dirs>>/migrations"}<</ragtime?>>})
 
 (defn new-system [config]
