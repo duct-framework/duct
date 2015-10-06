@@ -8,4 +8,5 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 /profiles.clj
-dev/local.clj
+dev/local.clj{{#sqlite?}}
+db/dev.sqlite{{/sqlite?}}

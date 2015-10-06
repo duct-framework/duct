@@ -12,6 +12,7 @@
 (defn- dev-database-url [project]
   (condp dependency-in? project
     'org.postgresql/postgresql (postgres-url project)
+    'org.xerial/sqlite-jdbc    "jdbc:sqlite:db/dev.sqlite"
     nil))
 
 (defn locals

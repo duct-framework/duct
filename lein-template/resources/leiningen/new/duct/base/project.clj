@@ -17,7 +17,8 @@
                  [org.slf4j/slf4j-nop "1.7.12"]
                  [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
-                 [org.postgresql/postgresql "9.4-1203-jdbc4"]{{/postgres?}}{{#ragtime?}}
+                 [org.postgresql/postgresql "9.4-1203-jdbc4"]{{/postgres?}}{{#sqlite?}}
+                 [org.xerial/sqlite-jdbc "3.8.11.2"]{{/sqlite?}}{{#ragtime?}}
                  [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]{{#cljs?}}

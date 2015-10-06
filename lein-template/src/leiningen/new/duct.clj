@@ -81,6 +81,12 @@
 
 (defmethod profile-files :postgres [_ name] [])
 
+(defmethod profile-data :sqlite [_ _]
+  {:jdbc? true
+   :sqlite? true})
+
+(defmethod profile-files :sqlite [_ _] ["db"])
+
 (defmethod profile-data :ragtime [_ _]
   {:jdbc? true
    :ragtime? true})
@@ -101,7 +107,8 @@ Accepts the following profile hints:
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
   +ragtime  - adds a Ragtime component to handle database migrations
-  +site     - adds site middleware, a favicon, webjars and more"
+  +site     - adds site middleware, a favicon, webjars and more
+  +sqlite   - adds a SQLite dependency and database component"
   [name & hints]
   (when (.startsWith name "+")
     (main/abort "Failed to create project: no project name specified."))

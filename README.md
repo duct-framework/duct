@@ -23,6 +23,7 @@ appending profile hints to add extra functionality.
 * `+postgres` adds a PostgreSQL dependency and database component
 * `+ragtime`  adds a Ragtime component to handle database migrations
 * `+site`     adds site middleware, a favicon, webjars and more
+* `+sqlite`   adds a SQLite dependency and database component
 
 For example:
 
