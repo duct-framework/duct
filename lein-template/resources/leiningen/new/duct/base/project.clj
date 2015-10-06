@@ -28,7 +28,7 @@
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"{{#cljs?}}
   :resource-paths ["resources" "target/cljsbuild"]
-  :prep-tasks [["cljsbuild" "once"] ["compile"]]
+  :prep-tasks [["javac"] ["cljsbuild" "once"] ["compile"]]
   :cljsbuild
   {:builds
    {:main {:jar true
@@ -44,7 +44,7 @@
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]{{#cljs?}}
    :repl {:resource-paths ^:replace ["resources" "target/figwheel"]
-          :prep-tasks     ^:replace [["compile"]]}{{/cljs?}}
+          :prep-tasks     ^:replace [["javac"] ["compile"]]}{{/cljs?}}
    :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
