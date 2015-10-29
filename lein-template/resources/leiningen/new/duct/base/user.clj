@@ -42,6 +42,11 @@
 (defn test []
   (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))
 
+<<#cljs?>>
+(defn cljs-repl []
+  (figwheel/cljs-repl (:figwheel system)))
+
+<</cljs?>>
 <<#ragtime?>>
 (defn migrate []
   (-> system :ragtime ragtime/reload ragtime/migrate))

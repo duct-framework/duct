@@ -55,7 +55,7 @@
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [eftest "0.1.0"]
                                   [kerodon "0.7.0"]{{#cljs?}}
-                                  [duct/figwheel-component "0.2.0"]
+                                  [duct/figwheel-component "0.3.0"]
                                   [figwheel "0.4.0"]{{/cljs?}}]
                    :env {:port 3000}}
    :project/test  {}})
