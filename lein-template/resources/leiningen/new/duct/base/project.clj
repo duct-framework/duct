@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.7.0"]{{#cljs?}}
-                 [org.clojure/clojurescript "1.7.122"]{{/cljs?}}
+                 [org.clojure/clojurescript "1.7.145"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
                  [duct "0.4.4"]
@@ -51,7 +51,7 @@
    :profiles/test {}
    :project/dev   {:source-paths ["dev"]
                    :repl-options {:init-ns user}
-                   :dependencies [[reloaded.repl "0.2.0"]
+                   :dependencies [[reloaded.repl "0.2.1"]
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [eftest "0.1.0"]
                                   [kerodon "0.7.0"]{{#cljs?}}
