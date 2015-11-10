@@ -2,8 +2,12 @@
   (:require [com.stuartsierra.component :as component]
             [compojure.core :as compojure]))
 
+(defn- find-endpoint-keys [component]
+  (sort (map key (filter (comp :routes val) component))))
+
 (defn- find-routes [component]
-  (keep :routes (vals component)))
+  (map #(:routes (get component %))
+       (:endpoints component (find-endpoint-keys component))))
 
 (defn- middleware-fn [component middleware]
   (if (vector? middleware)
