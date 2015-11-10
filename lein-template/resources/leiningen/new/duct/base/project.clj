@@ -15,7 +15,9 @@
                  [ring-jetty-component "0.3.0"]{{#site?}}
                  [ring-webjars "0.1.1"]
                  [org.slf4j/slf4j-nop "1.7.12"]
-                 [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
+                 [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#rest?}}
+                 [ring/ring-json "0.3.1"]
+                 [cheshire "5.1.1"]{{/rest?}}{{#jdbc?}}
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4-1203-jdbc4"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.8.11.2"]{{/sqlite?}}{{#ragtime?}}

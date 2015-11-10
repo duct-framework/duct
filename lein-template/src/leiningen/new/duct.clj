@@ -44,6 +44,15 @@
    ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]
    "resources/{{dirs}}/endpoint/example"])
 
+(defmethod profile-data :rest [_ _]
+  {:rest? true
+   :example? true})
+
+(defmethod profile-files :rest [_ data]
+  [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
+   ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]
+   "resources/{{dirs}}/endpoint/example"])
+
 (defmethod profile-data :site [_ _]
   {:site?    true
    :static?  true
@@ -104,6 +113,7 @@
 Accepts the following profile hints:
   +cljs     - adds in ClojureScript compilation and hot-loading
   +example  - adds an example endpoint
+  +rest     - adds an example REST endpoint
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
   +ragtime  - adds a Ragtime component to handle database migrations
