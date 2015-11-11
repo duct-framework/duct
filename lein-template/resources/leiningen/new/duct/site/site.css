@@ -1,5 +1,4 @@
-.error-page body,
-.welcome body {
+.error-page body {
     background: #eee;
 }
 
@@ -17,22 +16,55 @@
     color: #333;
 }
 
-.welcome h2 {
-    margin: 10% 0 12px 0;
-    text-align: center;
-    font-size: 32px;
-    font-weight: normal;
-    color: #555;
+.welcome body {
+    background: #eee;
+    color: #333;
+    max-width: 700px;
+    margin: auto;
 }
 
 .welcome h1 {
-    margin: 0;
     text-align: center;
-    font-size: 42px;
-    color: #009;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 30px 0 22px 0;
 }
 
-.welcome .duct {
-    color: #000;
+.welcome .project-name {
     font-weight: bold;
+}
+
+.welcome .profiles {
+    margin-top: 25px;
+}
+
+.welcome .profiles h2 {
+    font-weight: normal;
+    font-size: 24px;
+    margin-bottom: 0;
+    color: #333;
+}
+
+.welcome .profiles h3 {
+    font-weight: normal;
+    font-size: 19px;
+    margin: 10px 0 3px 0;
+}
+
+.welcome .profiles p {
+    font-size: 14px;
+    margin: 8px 0 8px 0;
+}
+
+.welcome .profiles div {
+    margin-left: 10px;
+}
+
+.welcome .profiles .unused {
+    color: #bbb;
+}
+
+.welcome .profiles .unused h3 {
+    font-weight: lighter;
+    font-size: 15px;
 }

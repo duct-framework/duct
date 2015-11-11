@@ -6,8 +6,45 @@
     <link rel="stylesheet" href="/css/site.css">
   </head>
   <body>
-    <h2>Welcome to your new <span class="duct">Duct</span> project&hellip;</h2>
-    <h1>{{name}}</h1>{{#cljs?}}
-    <script src="/js/main.js"></script>{{/cljs?}}
+    <h1>Welcome to Duct</h1>
+    <div class="intro">
+      <p>Your Duct project, <span class="project-name">{{name}}</span>, is
+      fully operational.</p>
+    </div>
+    <div class="profiles">
+      <h2>Template Profiles</h2>
+      <div {{^cljs?}}class="unused"{{/cljs?}}>
+        <h3>+cljs</h3>
+      </div>
+      <div {{^example?}}class="unused"{{/example?}}>
+        <h3>+example</h3>
+        {{#example?}}
+        <p>Adds an example endpoint at <a href="/example">/example</a>.</p>
+        {{/example?}}
+      </div>
+      <div {{^heroku?}}class="unused"{{/heroku?}}>
+        <h3>+heroku</h3>
+      </div>
+      <div {{^postgres?}}class="unused"{{/postgres?}}>
+        <h3>+postgres</h3>
+      </div>
+      <div {{^ragtime?}}class="unused"{{/ragtime?}}>
+        <h3>+ragtime</h3>
+        {{#ragtime?}}
+        <p>Adds Ragtime migrations. Use <code>(migrate)</code> and <code>(rollback)</code>
+        in the REPL.</p>
+        {{/ragtime?}}
+      </div>
+      <div {{^site?}}class="unused"{{/site?}}>
+        <h3>+site</h3>
+        {{#site?}}
+        <p>Adds middleware and configuration suited for a user-facing website.</p>
+        {{/site?}}
+      </div>
+      <div {{^sqlite?}}class="unused"{{/sqlite?}}>
+        <h3>+sqlite</h3>
+      </div>
+    </div>
+    {{#cljs?}}<script src="/js/main.js"></script>{{/cljs?}}
   </body>
 </html>
