@@ -10,4 +10,4 @@
 <</site?>>
 (defn example-endpoint [<<#jdbc?>>{{db :spec} :db}<</jdbc?>><<^jdbc?>>config<</jdbc?>>]
   (routes
-   (GET "/" [] <<^site?>>"Hello World"<</site?>><<#site?>>welcome-page<</site?>>)))
+   (GET "/example" [] <<^site?>>"Hello World"<</site?>><<#site?>>welcome-page<</site?>>)))

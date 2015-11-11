@@ -55,7 +55,8 @@
     ["resources/{{dirs}}/public/robots.txt"   (resource "site/robots.txt")]
     ["resources/{{dirs}}/public/css/site.css" (resource "site/site.css")]
     ["resources/{{dirs}}/errors/404.html"     (resource "site/404.html")]
-    ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]]
+    ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]
+    ["resources/{{dirs}}/public/index.html"   (render "site/index.html" data)]]
    (if (:example? data)
      [["resources/{{dirs}}/endpoint/example/welcome.html"
        (render "site/welcome.html" data)]])))
