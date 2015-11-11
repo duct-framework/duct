@@ -24,6 +24,10 @@
     margin: auto;
 }
 
+.welcome p {
+    line-height: 1.4em;
+}
+
 .welcome code {
     font-family: Menlo, DejaVu Sans Mono, Lucida Console, monospace;
     font-size: 12px;
@@ -57,12 +61,12 @@
 }
 
 .welcome .profiles {
-    margin-top: 30px;
+    margin-top: 28px;
 }
 
 .welcome .profiles h2 {
     font-weight: normal;
-    font-size: 24px;
+    font-size: 23px;
     margin-bottom: 0;
     color: #333;
 }
