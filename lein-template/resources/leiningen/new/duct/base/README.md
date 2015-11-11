@@ -49,6 +49,19 @@ user=> (reset)
 :reloading (...)
 :resumed
 ```
+{{#cljs?}}
+
+If you want to access a ClojureScript REPL, make sure that the site is loaded
+in a browser and run:
+
+```clojure
+user=> (cljs-repl)
+Waiting for browser connection... Connected.
+To quit, type: :cljs/quit
+nil
+cljs.user=>
+```
+{{/cljs?}}
 
 ### Testing
 
