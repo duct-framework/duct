@@ -40,9 +40,12 @@
   {:example? true})
 
 (defmethod profile-files :example [_ data]
-  [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
-   ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]
-   "resources/{{dirs}}/endpoint/example"])
+  (concat
+   [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
+    ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]]
+   (if (:site? data)
+     [["resources/{{dirs}}/endpoint/example/example.html"
+       (resource "example/example.html")]])))
 
 (defmethod profile-data :site [_ _]
   {:site?    true
@@ -50,16 +53,12 @@
    :defaults "site-defaults"})
 
 (defmethod profile-files :site [_ data]
-  (concat
-   [["resources/{{dirs}}/public/favicon.ico"  (resource "site/favicon.ico")]
-    ["resources/{{dirs}}/public/robots.txt"   (resource "site/robots.txt")]
-    ["resources/{{dirs}}/public/css/site.css" (resource "site/site.css")]
-    ["resources/{{dirs}}/errors/404.html"     (resource "site/404.html")]
-    ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]
-    ["resources/{{dirs}}/public/index.html"   (render "site/index.html" data)]]
-   (if (:example? data)
-     [["resources/{{dirs}}/endpoint/example/welcome.html"
-       (render "site/welcome.html" data)]])))
+  [["resources/{{dirs}}/public/favicon.ico"  (resource "site/favicon.ico")]
+   ["resources/{{dirs}}/public/robots.txt"   (resource "site/robots.txt")]
+   ["resources/{{dirs}}/public/css/site.css" (resource "site/site.css")]
+   ["resources/{{dirs}}/errors/404.html"     (resource "site/404.html")]
+   ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]
+   ["resources/{{dirs}}/public/index.html"   (render "site/index.html" data)]])
 
 (defmethod profile-data :cljs [_ _]
   {:cljs? true

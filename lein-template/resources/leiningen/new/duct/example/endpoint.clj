@@ -4,10 +4,10 @@
             [clojure.java.io :as io]))
 
 <<#site?>>
-(def welcome-page
-  (io/resource "<<dirs>>/endpoint/example/welcome.html"))
+(def example-page
+  (io/resource "<<dirs>>/endpoint/example/example.html"))
 
 <</site?>>
 (defn example-endpoint [<<#jdbc?>>{{db :spec} :db}<</jdbc?>><<^jdbc?>>config<</jdbc?>>]
   (routes
-   (GET "/example" [] <<^site?>>"Hello World"<</site?>><<#site?>>welcome-page<</site?>>)))
+   (GET "/example" [] <<^site?>>"This is an example endpoint"<</site?>><<#site?>>example-page<</site?>>)))
