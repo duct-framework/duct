@@ -85,3 +85,14 @@
     font-size: 14px;
     margin: 8px 0 8px 0;
 }
+
+.example body {
+    background: #eee;
+}
+
+.example h1 {
+    margin: 15% 0 0 0;
+    text-align: center;
+    font-size: 36px;
+    font-weight: normal;
+}
