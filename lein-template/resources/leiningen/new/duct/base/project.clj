@@ -6,7 +6,7 @@
                  [org.clojure/clojurescript "1.7.145"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
-                 [duct "0.4.5"]
+                 [duct "0.5.0"]
                  [environ "1.0.1"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
@@ -23,7 +23,7 @@
   :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]{{#cljs?}}
             [lein-cljsbuild "1.1.0"]{{/cljs?}}]
-  :generators [[duct/generators "0.4.5"]]
+  :generators [[duct/generators "0.5.0"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
