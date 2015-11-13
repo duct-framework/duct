@@ -64,6 +64,10 @@
     margin-top: 30px;
 }
 
+.welcome .profiles code {
+    font-size: 11px;
+}
+
 .welcome .profiles h2 {
     font-weight: normal;
     font-size: 23px;
