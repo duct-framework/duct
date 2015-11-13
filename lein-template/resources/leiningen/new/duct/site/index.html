@@ -29,11 +29,13 @@
         {{/example?}}
         {{#heroku?}}
         <dt>+heroku</dt>
-        <dd></dd>
+        <dd>Adds files and middleware for deploying to
+          <a href="https://www.heroku.com/">Heroku</a>.</dd>
         {{/heroku?}}
         {{#postgres?}}
         <dt>+postgres</dt>
-        <dd></dd>
+        <dd>Adds a PostgreSQL dependency and database component. The database used for
+          development defaults to <code>postgres</code> on <code>localhost</code>.</dd>
         {{/postgres?}}
         {{#ragtime?}}
         <dt>+ragtime</dt>
@@ -46,7 +48,8 @@
         {{/site?}}
         {{#sqlite?}}
         <dt>+sqlite</dt>
-        <dd></dd>
+        <dd>Adds a SQLite dependency and database component. The database used for
+          development defaults to <code>db/dev.sqlite</code>.</dd>
         {{/sqlite?}}
       </dl>
     </div>
