@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.7.0"]{{#cljs?}}
-                 [org.clojure/clojurescript "1.7.145"]{{/cljs?}}
+                 [org.clojure/clojurescript "1.7.170"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
                  [duct "0.5.0"]
@@ -55,7 +55,7 @@
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [eftest "0.1.0"]
                                   [kerodon "0.7.0"]{{#cljs?}}
-                                  [duct/figwheel-component "0.3.0"]
-                                  [figwheel "0.4.0"]{{/cljs?}}]
+                                  [duct/figwheel-component "0.3.1"]
+                                  [figwheel "0.5.0-1"]{{/cljs?}}]
                    :env {:port 3000}}
    :project/test  {}})
