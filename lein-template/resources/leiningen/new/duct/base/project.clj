@@ -49,13 +49,15 @@
    :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
-   :project/dev   {:source-paths ["dev"]
-                   :repl-options {:init-ns user}
-                   :dependencies [[reloaded.repl "0.2.1"]
+   :project/dev   {:dependencies [[reloaded.repl "0.2.1"]
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [eftest "0.1.0"]
                                   [kerodon "0.7.0"]{{#cljs?}}
+                                  [com.cemerick/piggieback "0.2.1"]
                                   [duct/figwheel-component "0.3.1"]
                                   [figwheel "0.5.0-1"]{{/cljs?}}]
+                   :source-paths ["dev"]
+                   :repl-options {:init-ns user{{#cljs?}}
+                                  :middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}
                    :env {:port 3000}}
    :project/test  {}})
