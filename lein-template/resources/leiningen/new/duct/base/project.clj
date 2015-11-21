@@ -22,7 +22,7 @@
                  [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]{{#cljs?}}
-            [lein-cljsbuild "1.1.0"]{{/cljs?}}]
+            [lein-cljsbuild "1.1.1"]{{/cljs?}}]
   :generators [[duct/generators "0.5.2"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
