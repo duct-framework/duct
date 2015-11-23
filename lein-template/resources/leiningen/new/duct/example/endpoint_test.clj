@@ -9,7 +9,7 @@
   (example/example-endpoint {}))
 
 (deftest smoke-test
-  (testing "index page exists"
+  (testing "example page exists"
     (-> (session handler)
-        (visit "/")
+        (visit "/example")
         (has (status? 200) "page exists"))))
