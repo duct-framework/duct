@@ -59,6 +59,6 @@
                                   [figwheel "0.5.0-1"]{{/cljs?}}]
                    :source-paths ["dev"]
                    :repl-options {:init-ns user{{#cljs?}}
-                                  :middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}
                    :env {:port 3000}}
    :project/test  {}})
