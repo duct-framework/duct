@@ -22,11 +22,11 @@
                 :build-options
                 {:optimizations :none
                  :main "cljs.user"
-                 :asset-path "js"
+                 :asset-path "/js"
                  :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
                  :output-dir "target/figwheel/<<dirs>>/public/js"
                  :source-map true
-                 :source-map-path "js"}}]}<</cljs?>>})
+                 :source-map-path "/js"}}]}<</cljs?>>})
 
 (def config
   (meta-merge config/defaults
