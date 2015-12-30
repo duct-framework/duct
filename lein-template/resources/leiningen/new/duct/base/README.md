@@ -104,6 +104,8 @@ Rolling back 20150815145033-create-posts
 Note that the system needs to be setup with `(init)` or `(go)` before
 migrations can be applied.
 
+[ragtime]: https://github.com/weavejester/ragtime
+
 {{/ragtime?}}
 ### Generators
 
