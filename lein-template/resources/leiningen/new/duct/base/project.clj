@@ -19,7 +19,7 @@
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4-1203-jdbc4"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.8.11.2"]{{/sqlite?}}{{#ragtime?}}
-                 [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
+                 [duct/ragtime-component "0.1.3"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]{{#cljs?}}
             [lein-cljsbuild "1.1.2"]{{/cljs?}}]
