@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.7.0"]{{#cljs?}}
-                 [org.clojure/clojurescript "1.7.170"]{{/cljs?}}
+                 [org.clojure/clojurescript "1.7.228"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
                  [duct "0.5.6"]
@@ -22,7 +22,7 @@
                  [duct/ragtime-component "0.1.2"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.1"]
             [lein-gen "0.2.2"]{{#cljs?}}
-            [lein-cljsbuild "1.1.1"]{{/cljs?}}]
+            [lein-cljsbuild "1.1.2"]{{/cljs?}}]
   :generators [[duct/generators "0.5.6"]]
   :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
