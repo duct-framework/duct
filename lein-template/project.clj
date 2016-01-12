@@ -1,4 +1,4 @@
-(defproject duct/lein-template "0.5.6"
+(defproject duct/lein-template "0.5.7"
   :description "A template for a component-based web application."
   :url "https://github.com/weavejester/duct"
   :scm {:dir ".."}

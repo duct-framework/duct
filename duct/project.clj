@@ -1,4 +1,4 @@
-(defproject duct "0.5.6"
+(defproject duct "0.5.7"
   :description "Support library for the Duct template."
   :url "https://github.com/weavejester/duct"
   :scm {:dir ".."}
