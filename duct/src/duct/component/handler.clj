@@ -21,7 +21,7 @@
        (map #(middleware-fn component %))
        (apply comp identity)))
 
-(defrecord Handler [defaults middleware]
+(defrecord Handler [middleware]
   component/Lifecycle
   (start [component]
     (if-not (:handler component)
