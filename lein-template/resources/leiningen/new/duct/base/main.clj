@@ -20,7 +20,5 @@
 (defn -main [& args]
   (let [system (new-system config)]
     (println "Starting HTTP server on port" (-> system :http :port))
-    (add-shutdown-hook ::stop-system #(do
-                                        (println "Stopping HTTP server")
-                                        (component/stop system)))
+    (add-shutdown-hook ::stop-system #(component/stop system))
     (component/start system)))
