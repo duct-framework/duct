@@ -4,7 +4,7 @@
   :scm {:dir ".."}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.7.0"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/tools.macro "0.1.5"]
                  [com.stuartsierra/component "0.3.0"]
                  [compojure "1.4.0"]
