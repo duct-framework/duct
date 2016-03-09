@@ -11,7 +11,7 @@
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
                  [ring "1.4.0"]
-                 [ring/ring-defaults "0.1.5"]
+                 [ring/ring-defaults "0.2.0"]
                  [ring-jetty-component "0.3.0"]{{#site?}}
                  [ring-webjars "0.1.1"]
                  [org.slf4j/slf4j-nop "1.7.14"]
