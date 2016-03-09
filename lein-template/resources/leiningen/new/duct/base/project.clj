@@ -4,7 +4,7 @@
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]{{#cljs?}}
                  [org.clojure/clojurescript "1.7.228"]{{/cljs?}}
-                 [com.stuartsierra/component "0.3.0"]
+                 [com.stuartsierra/component "0.3.1"]
                  [compojure "1.5.0"]
                  [duct "0.5.8"]
                  [environ "1.0.2"]{{#heroku?}}{{#jdbc?}}

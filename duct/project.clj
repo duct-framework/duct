@@ -6,7 +6,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/tools.macro "0.1.5"]
-                 [com.stuartsierra/component "0.3.0"]
+                 [com.stuartsierra/component "0.3.1"]
                  [compojure "1.5.0"]
                  [ring/ring-core "1.4.0"]]
   :profiles
