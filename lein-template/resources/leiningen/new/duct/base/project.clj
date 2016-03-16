@@ -52,7 +52,7 @@
    :project/dev   {:dependencies [[reloaded.repl "0.2.1"]
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [org.clojure/tools.nrepl "0.2.12"]
-                                  [eftest "0.1.0"]
+                                  [eftest "0.1.1"]
                                   [kerodon "0.7.0"]{{#cljs?}}
                                   [com.cemerick/piggieback "0.2.1"]
                                   [duct/figwheel-component "0.3.2"]
