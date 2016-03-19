@@ -4,7 +4,6 @@
   :scm {:dir ".."}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :eval-in-leiningen true
-  :dependencies [[lein-gen "0.2.2"]]
-  :profiles {:dev {:plugins [[lein-gen "0.2.2"]]
-                   :duct {:ns-prefix example}}})
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [leiningen-core "2.6.1"]
+                 [stencil "0.5.0"]])
