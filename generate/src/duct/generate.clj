@@ -52,8 +52,8 @@
   []
   (let [project (project/read-raw "project.clj")]
     (doto {:database-url (dev-database-url project)}
-      (create-file "leiningen/generate/locals/local.clj" "dev/local.clj")
-      (create-file "leiningen/generate/locals/profiles.clj" "profiles.clj"))
+      (create-file "duct/generate/templates/locals/local.clj" "dev/local.clj")
+      (create-file "duct/generate/templates/locals/profiles.clj" "profiles.clj"))
     nil))
 
 (defn endpoint
@@ -64,8 +64,8 @@
         namespace (str *ns-prefix* ".endpoint." name)
         path      (name-to-path namespace)]
     (doto {:name name, :namespace namespace, :path path}
-      (create-file "leiningen/generate/endpoint/source.clj" "src/{{path}}.clj")
-      (create-file "leiningen/generate/endpoint/test.clj" "test/{{path}}_test.clj")
+      (create-file "duct/generate/templates/endpoint/source.clj" "src/{{path}}.clj")
+      (create-file "duct/generate/templates/endpoint/test.clj" "test/{{path}}_test.clj")
       (create-dir "resources/{{path}}"))
     nil))
 
@@ -78,6 +78,6 @@
         path      (name-to-path namespace)
         record    (camel-case name)]
     (doto {:name name, :namespace namespace, :path path, :record record}
-      (create-file "leiningen/generate/component/source.clj" "src/{{path}}.clj")
-      (create-file "leiningen/generate/component/test.clj" "test/{{path}}_test.clj"))
+      (create-file "duct/generate/templates/component/source.clj" "src/{{path}}.clj")
+      (create-file "duct/generate/templates/component/test.clj" "test/{{path}}_test.clj"))
     nil))
