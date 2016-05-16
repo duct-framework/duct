@@ -5,6 +5,7 @@
             [clojure.tools.namespace.repl :refer [refresh]]
             [clojure.java.io :as io]
             [com.stuartsierra.component :as component]
+            [duct.generate :as gen]
             [eftest.runner :as eftest]
             [meta-merge.core :refer [meta-merge]]
             [reloaded.repl :refer [system init start stop go reset]]
@@ -13,6 +14,11 @@
             [duct.component.figwheel :as figwheel]<</cljs?>>
             [<<namespace>>.config :as config]
             [<<namespace>>.system :as system]))
+
+(alter-var-root #'gen/*ns-prefix* (constantly "<<namespace>>"))
+
+(defn setup-project! []
+  (gen/locals))
 
 (def dev-config
   {:app {:middleware [wrap-stacktrace]}<<#cljs?>>

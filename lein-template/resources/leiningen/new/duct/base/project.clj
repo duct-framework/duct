@@ -20,11 +20,8 @@
                  [org.postgresql/postgresql "9.4.1207"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.8.11.2"]{{/sqlite?}}{{#ragtime?}}
                  [duct/ragtime-component "0.1.3"]{{/ragtime?}}]
-  :plugins [[lein-environ "1.0.2"]
-            [lein-gen "0.2.2"]{{#cljs?}}
+  :plugins [[lein-environ "1.0.2"]{{#cljs?}}
             [lein-cljsbuild "1.1.2"]{{/cljs?}}]
-  :generators [[duct/generators "0.5.10"]]
-  :duct {:ns-prefix {{namespace}}}
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"{{#cljs?}}
@@ -36,8 +33,7 @@
            :source-paths ["src"]
            :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
                       :optimizations :advanced}}}}{{/cljs?}}
-  :aliases {"gen"   ["generate"]
-            "setup" ["do" ["generate" "locals"]]{{#heroku?}}
+  :aliases {"setup" ["run" "-m" "user/setup-project!"]{{#heroku?}}
             "deploy" ["do"
                       ["vcs" "assert-committed"]
                       ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
@@ -49,7 +45,8 @@
    :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
-   :project/dev   {:dependencies [[reloaded.repl "0.2.1"]
+   :project/dev   {:dependencies [[duct/generate "0.5.10"]
+                                  [reloaded.repl "0.2.1"]
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [org.clojure/tools.nrepl "0.2.12"]
                                   [eftest "0.1.1"]
