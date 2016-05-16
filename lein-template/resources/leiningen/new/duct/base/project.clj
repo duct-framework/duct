@@ -3,24 +3,24 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]{{#cljs?}}
-                 [org.clojure/clojurescript "1.7.228"]{{/cljs?}}
+                 [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.1"]
                  [compojure "1.5.0"]
                  [duct "0.5.10"]
-                 [environ "1.0.2"]{{#heroku?}}{{#jdbc?}}
+                 [environ "1.0.3"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
                  [ring "1.4.0"]
                  [ring/ring-defaults "0.2.0"]
                  [ring-jetty-component "0.3.1"]{{#site?}}
                  [ring-webjars "0.1.1"]
-                 [org.slf4j/slf4j-nop "1.7.14"]
+                 [org.slf4j/slf4j-nop "1.7.21"]
                  [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
-                 [org.postgresql/postgresql "9.4.1207"]{{/postgres?}}{{#sqlite?}}
+                 [org.postgresql/postgresql "9.4.1208"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.8.11.2"]{{/sqlite?}}{{#ragtime?}}
                  [duct/ragtime-component "0.1.3"]{{/ragtime?}}]
-  :plugins [[lein-environ "1.0.2"]{{#cljs?}}
+  :plugins [[lein-environ "1.0.3"]{{#cljs?}}
             [lein-cljsbuild "1.1.2"]{{/cljs?}}]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
