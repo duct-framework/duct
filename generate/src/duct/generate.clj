@@ -8,6 +8,11 @@
   "The common prefix all namespaces in the project share."
   nil)
 
+(defn set-ns-prefix
+  "Set the namespace prefix."
+  [prefix]
+  (alter-var-root #'*ns-prefix* (constantly (str prefix))))
+
 (defn- name-to-path [name]
   (-> name
       (str/replace "-" "_")

@@ -15,7 +15,7 @@
             [<<namespace>>.config :as config]
             [<<namespace>>.system :as system]))
 
-(alter-var-root #'gen/*ns-prefix* (constantly "<<namespace>>"))
+(gen/set-ns-prefix '<<namespace>>)
 
 (defn setup-project! []
   (gen/locals))
