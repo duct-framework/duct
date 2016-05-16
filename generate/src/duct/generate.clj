@@ -9,6 +9,11 @@
       (str/replace "-" "_")
       (str/replace "." java.io.File/separator)))
 
+(defn camel-case [hyphenated]
+  (->> (str/split hyphenated #"-")
+       (map str/capitalize)
+       (str/join)))
+
 (defn- make-parent-dirs [path]
   (when-let [parent (.getParentFile (io/file path))]
     (.mkdirs parent)))
@@ -56,4 +61,18 @@
       (create-file "leiningen/generate/endpoint/source.clj" "src/{{path}}.clj")
       (create-file "leiningen/generate/endpoint/test.clj" "test/{{path}}_test.clj")
       (create-dir "resources/{{path}}"))
+    nil))
+
+(defn component
+  "Generate a new Duct component"
+  [name]
+  (let [project   (project/read-raw "project.clj")
+        ns-prefix (-> project :duct :ns-prefix)
+        namespace (str ns-prefix ".component." name)
+        path      (name-to-path namespace)
+        record    (camel-case name)]
+    (assert ns-prefix ":ns-prefix not set in :duct map.")
+    (doto {:name name, :namespace namespace, :path path, :record record}
+      (create-file "leiningen/generate/component/source.clj" "src/{{path}}.clj")
+      (create-file "leiningen/generate/component/test.clj" "test/{{path}}_test.clj"))
     nil))
