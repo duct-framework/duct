@@ -4,6 +4,10 @@
             [clojure.java.io :as io]
             [clojure.string :as str]))
 
+(def ^:dynamic *ns-prefix*
+  "The common prefix all namespaces in the project share."
+  nil)
+
 (defn- name-to-path [name]
   (-> name
       (str/replace "-" "_")
@@ -55,11 +59,10 @@
 (defn endpoint
   "Generate a new Duct endpoint"
   [name]
+  (assert *ns-prefix* "duct.generate/*ns-prefix* not set")
   (let [project   (project/read-raw "project.clj")
-        ns-prefix (-> project :duct :ns-prefix)
-        namespace (str ns-prefix ".endpoint." name)
+        namespace (str *ns-prefix* ".endpoint." name)
         path      (name-to-path namespace)]
-    (assert ns-prefix ":ns-prefix not set in :duct map.")
     (doto {:name name, :namespace namespace, :path path}
       (create-file "leiningen/generate/endpoint/source.clj" "src/{{path}}.clj")
       (create-file "leiningen/generate/endpoint/test.clj" "test/{{path}}_test.clj")
@@ -69,12 +72,11 @@
 (defn component
   "Generate a new Duct component"
   [name]
+  (assert *ns-prefix* "duct.generate/*ns-prefix* not set")
   (let [project   (project/read-raw "project.clj")
-        ns-prefix (-> project :duct :ns-prefix)
-        namespace (str ns-prefix ".component." name)
+        namespace (str *ns-prefix* ".component." name)
         path      (name-to-path namespace)
         record    (camel-case name)]
-    (assert ns-prefix ":ns-prefix not set in :duct map.")
     (doto {:name name, :namespace namespace, :path path, :record record}
       (create-file "leiningen/generate/component/source.clj" "src/{{path}}.clj")
       (create-file "leiningen/generate/component/test.clj" "test/{{path}}_test.clj"))
