@@ -20,11 +20,14 @@
 
 (defn- create-file [data in-path out-path]
   (let [out-path (stencil/render-string out-path data)]
+    (println "Creating file" out-path)
     (make-parent-dirs out-path)
     (spit out-path (stencil/render-file in-path data))))
 
 (defn- create-dir [data path]
-  (.mkdirs (io/file (stencil/render-string path data))))
+  (let [path (stencil/render-string path data)]
+    (println "Creating directory" path)
+    (.mkdirs (io/file path))))
 
 (defn- dependency-in? [artifact project]
   (some #{artifact} (map first (:dependencies project))))
