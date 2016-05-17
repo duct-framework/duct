@@ -11,7 +11,6 @@
 
 (defn test []
   (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))
-
 {{#cljs?}}
 
 (defn cljs-repl []
