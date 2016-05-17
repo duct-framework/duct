@@ -31,10 +31,17 @@ To begin developing, start with a REPL.
 lein repl
 ```
 
+Then load the development environment.
+
+```clojure
+user=> (dev)
+:loaded
+```
+
 Run `go` to initiate and start the system.
 
 ```clojure
-user=> (go)
+dev=> (go)
 :started
 ```
 
@@ -45,7 +52,7 @@ modified files and reset the server.{{#cljs?}} Changes to CSS or ClojureScript
 files will be hot-loaded into the browser.{{/cljs?}}
 
 ```clojure
-user=> (reset)
+dev=> (reset)
 :reloading (...)
 :resumed
 ```
@@ -55,7 +62,7 @@ If you want to access a ClojureScript REPL, make sure that the site is loaded
 in a browser and run:
 
 ```clojure
-user=> (cljs-repl)
+dev=> (cljs-repl)
 Waiting for browser connection... Connected.
 To quit, type: :cljs/quit
 nil
@@ -69,7 +76,7 @@ Testing is fastest through the REPL, as you avoid environment startup
 time.
 
 ```clojure
-user=> (test)
+dev=> (test)
 ...
 ```
 
@@ -89,7 +96,7 @@ order.
 To update the database to the latest migration, open the REPL and run:
 
 ```clojure
-user=> (migrate)
+dev=> (migrate)
 Applying 20150815144312-create-users
 Applying 20150815145033-create-posts
 ```
@@ -97,7 +104,7 @@ Applying 20150815145033-create-posts
 To rollback the last migration, run:
 
 ```clojure
-user=> (rollback)
+dev=> (rollback)
 Rolling back 20150815145033-create-posts
 ```
 
