@@ -33,7 +33,7 @@
            :source-paths ["src"]
            :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
                       :optimizations :advanced}}}}{{/cljs?}}
-  :aliases {"setup" ["run" "-m" "user/setup-project!"]{{#heroku?}}
+  :aliases {"setup" ["run" "-m" "dev.tasks/setup"]{{#heroku?}}
             "deploy" ["do"
                       ["vcs" "assert-committed"]
                       ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
