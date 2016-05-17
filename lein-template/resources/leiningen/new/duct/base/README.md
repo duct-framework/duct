@@ -116,12 +116,26 @@ migrations can be applied.
 {{/ragtime?}}
 ### Generators
 
-This project has several [generators][] to help you create files.
+This project has several generator functions to help you create files.
 
-* `lein gen endpoint <name>` to create a new endpoint
-* `lein gen component <name>` to create a new component
+To create a new endpoint:
 
-[generators]: https://github.com/weavejester/lein-generate
+```clojure
+dev=> (gen/endpoint "bar")
+Creating file src/foo/endpoint/bar.clj
+Creating file test/foo/endpoint/bar_test.clj
+Creating directory resources/foo/endpoint/bar
+nil
+```
+
+To create a new component:
+
+```clojure
+dev=> (gen/component "baz")
+Creating file src/foo/component/baz.clj
+Creating file test/foo/component/baz_test.clj
+nil
+```
 
 ## Deploying
 
