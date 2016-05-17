@@ -33,13 +33,15 @@
            :source-paths ["src"]
            :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
                       :optimizations :advanced}}}}{{/cljs?}}
-  :aliases {"setup" ["run" "-m" "dev.tasks/setup"]{{#heroku?}}
-            "deploy" ["do"
-                      ["vcs" "assert-committed"]
-                      ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
+  :aliases {"run-task" ["with-profile" "+task" "run" "-m"]
+            "setup"    ["run-task" "dev.tasks/setup"]{{#heroku?}}
+            "deploy"   ["do"
+                        ["vcs" "assert-committed"]
+                        ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]{{#cljs?}}
+   :task {:prep-tasks ^:replace [["javac"] ["compile"]]}
    :repl {:resource-paths ^:replace ["resources" "target/figwheel"]
           :prep-tasks     ^:replace [["javac"] ["compile"]]}{{/cljs?}}
    :uberjar {:aot :all}
