@@ -38,11 +38,6 @@
   (into (system/new-system config)
         {<<#cljs?>>:figwheel (figwheel/server (:figwheel config))<</cljs?>>}))
 
-<<#cljs?>>
-(defn cljs-repl []
-  (figwheel/cljs-repl (:figwheel system)))
-
-<</cljs?>>
 (when (io/resource "local.clj")
   (load "local"))
 

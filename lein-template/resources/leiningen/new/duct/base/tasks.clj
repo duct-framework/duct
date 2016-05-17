@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [test])
   (:require [duct.generate :as gen]{{#ragtime?}}
             [duct.component.ragtime :as ragtime]{{/ragtime?}}
-            [eftest.runner :as eftest]
+            [eftest.runner :as eftest]{{#cljs?}}
+            [duct.component.figwheel :as figwheel]{{/cljs?}}
             [reloaded.repl :refer [system]]))
 
 (defn setup []
@@ -11,7 +12,13 @@
 (defn test []
   (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))
 
+{{#cljs?}}
+
+(defn cljs-repl []
+  (figwheel/cljs-repl (:figwheel system)))
+{{/cljs?}}
 {{#ragtime?}}
+
 (defn migrate []
   (-> system :ragtime ragtime/reload ragtime/migrate))
 
