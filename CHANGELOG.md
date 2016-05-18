@@ -1,4 +1,4 @@
-## 0.6.0 (TBD)
+## 0.6.0 (2016-05-18)
 
 * Moved setup from `user` namespace into `dev` namespace
 * Added `user/dev` function, similar to Stuart Sierra's reloaded template
