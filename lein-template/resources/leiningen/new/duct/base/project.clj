@@ -19,7 +19,7 @@
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4.1208"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.8.11.2"]{{/sqlite?}}{{#ragtime?}}
-                 [duct/ragtime-component "0.1.3"]{{/ragtime?}}]
+                 [duct/ragtime-component "0.1.4"]{{/ragtime?}}]
   :plugins [[lein-environ "1.0.3"]{{#cljs?}}
             [lein-cljsbuild "1.1.2"]{{/cljs?}}]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
