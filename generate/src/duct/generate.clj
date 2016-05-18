@@ -58,7 +58,8 @@
   (let [project (project/read-raw "project.clj")]
     (doto {:database-url (dev-database-url project)}
       (create-file "duct/generate/templates/locals/local.clj" "dev/local.clj")
-      (create-file "duct/generate/templates/locals/profiles.clj" "profiles.clj"))
+      (create-file "duct/generate/templates/locals/profiles.clj" "profiles.clj")
+      (create-file "duct/generate/templates/locals/dir-locals.el" ".dir-locals.el"))
     nil))
 
 (defn endpoint

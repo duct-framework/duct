@@ -7,6 +7,7 @@ pom.xml.asc
 *.class
 /.lein-*
 /.nrepl-port
+/.dir-locals.el
 /profiles.clj
 dev/local.clj{{#sqlite?}}
 db/dev.sqlite{{/sqlite?}}
