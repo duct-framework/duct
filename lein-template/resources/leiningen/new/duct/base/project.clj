@@ -33,7 +33,7 @@
            :source-paths ["src"]
            :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
                       :optimizations :advanced}}}}{{/cljs?}}
-  :aliases {"run-task" ["with-profile" "+task" "run" "-m"]
+  :aliases {"run-task" ["with-profile" "+repl" "run" "-m"]
             "setup"    ["run-task" "dev.tasks/setup"]{{#heroku?}}
             "deploy"   ["do"
                         ["vcs" "assert-committed"]
@@ -41,7 +41,6 @@
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]{{#cljs?}}
-   :task {:prep-tasks ^:replace [["javac"] ["compile"]]}
    :repl {:resource-paths ^:replace ["resources" "target/figwheel"]
           :prep-tasks     ^:replace [["javac"] ["compile"]]}{{/cljs?}}
    :uberjar {:aot :all}
