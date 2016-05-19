@@ -53,7 +53,7 @@
     nil))
 
 (defn locals
-  "Generate profiles.clj and dev/local.clj"
+  "Generate local files: profiles.clj, dev/local.clj and .dir-locals.el."
   []
   (let [project (project/read-raw "project.clj")]
     (doto {:database-url (dev-database-url project)}
@@ -63,7 +63,7 @@
     nil))
 
 (defn endpoint
-  "Generate a new Duct endpoint"
+  "Generate a new Duct endpoint with the supplied name."
   [name]
   (assert *ns-prefix* "duct.generate/*ns-prefix* not set")
   (let [project   (project/read-raw "project.clj")
@@ -76,7 +76,7 @@
     nil))
 
 (defn component
-  "Generate a new Duct component"
+  "Generate a new Duct component with the supplied name."
   [name]
   (assert *ns-prefix* "duct.generate/*ns-prefix* not set")
   (let [project   (project/read-raw "project.clj")
