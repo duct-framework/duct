@@ -1,6 +1,8 @@
 (ns duct.generate
   (:require [leiningen.core.project :as project]
             [stencil.core :as stencil]
+            [clj-time.core :as t]
+            [clj-time.format :as tf]
             [clojure.java.io :as io]
             [clojure.string :as str]))
 
@@ -27,11 +29,14 @@
   (when-let [parent (.getParentFile (io/file path))]
     (.mkdirs parent)))
 
-(defn- create-file [data in-path out-path]
+(defn- create-raw-file [data raw-string out-path]
   (let [out-path (stencil/render-string out-path data)]
     (println "Creating file" out-path)
     (make-parent-dirs out-path)
-    (spit out-path (stencil/render-file in-path data))))
+    (spit out-path raw-string)))
+
+(defn- create-file [data in-path out-path]
+  (create-raw-file data (stencil/render-file in-path data) out-path))
 
 (defn- create-dir [data path]
   (let [path (stencil/render-string path data)]
@@ -86,4 +91,17 @@
     (doto {:name name, :namespace namespace, :path path, :record record}
       (create-file "duct/generate/templates/component/source.clj" "src/{{path}}.clj")
       (create-file "duct/generate/templates/component/test.clj" "test/{{path}}_test.clj"))
+    nil))
+
+(def ^:private timestamp-formatter
+  (tf/formatter "yyyyMMddHHmmss"))
+
+(defn sql-migration
+  "Generate a Ragtime SQL migration with the supplied name."
+  [name]
+  (let [path      (name-to-path *ns-prefix*)
+        timestamp (tf/unparse timestamp-formatter (t/now))]
+    (doto {:name name, :timestamp timestamp, :path path}
+      (create-raw-file "" "resources/{{path}}/migrations/{{timestamp}}-{{name}}.up.sql")
+      (create-raw-file "" "resources/{{path}}/migrations/{{timestamp}}-{{name}}.down.sql"))
     nil))
