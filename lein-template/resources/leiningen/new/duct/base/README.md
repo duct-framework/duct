@@ -136,6 +136,17 @@ Creating file src/foo/component/baz.clj
 Creating file test/foo/component/baz_test.clj
 nil
 ```
+{{#ragtime?}}
+
+To create a new SQL migration:
+
+```clojure
+dev=> (gen/sql-migration "create-users")
+Creating file resources/foo/migrations/20160519143643-create-users.up.sql
+Creating file resources/foo/migrations/20160519143643-create-users.down.sql
+nil
+```
+{{/ragtime?}}
 
 ## Deploying
 
