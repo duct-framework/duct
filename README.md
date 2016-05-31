@@ -103,7 +103,7 @@ Duct projects are structured as below. Files marked with a * are kept
 out of version control.
 
 ```handlebars
-.
+{{project}}
 ├── README.md
 ├── dev
 │   ├── dev
@@ -123,6 +123,7 @@ out of version control.
 ├── src
 │   └── {{project}}
 │       ├── component
+│       │   └── {{component}}.clj
 │       ├── config.clj
 │       ├── endpoint
 │       │   └── {{endpoint}}.clj
@@ -130,6 +131,8 @@ out of version control.
 │       └── system.clj
 └── test
     └── {{project}}
+        ├── component
+        │   └── {{component}}_test.clj
         └── endpoint
             └── {{endpoint}}_test.clj
 ```
