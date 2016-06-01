@@ -36,7 +36,9 @@
    ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
    "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"
-   "test/{{dirs}}"])
+   "test/{{dirs}}"
+   "test/{{dirs}}/component"
+   "test/{{dirs}}/endpoint"])
 
 (defmethod profile-data :example [_ _]
   {:example? true})
