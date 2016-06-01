@@ -67,12 +67,14 @@
       (create-file "duct/generate/templates/locals/dir-locals.el" ".dir-locals.el"))
     nil))
 
+(defn- assert-ns-prefix []
+  (assert *ns-prefix* "duct.generate/*ns-prefix* not set"))
+
 (defn endpoint
   "Generate a new Duct endpoint with the supplied name."
   [name]
-  (assert *ns-prefix* "duct.generate/*ns-prefix* not set")
-  (let [project   (project/read-raw "project.clj")
-        namespace (str *ns-prefix* ".endpoint." name)
+  (assert-ns-prefix)
+  (let [namespace (str *ns-prefix* ".endpoint." name)
         path      (name-to-path namespace)]
     (doto {:name name, :namespace namespace, :path path}
       (create-file "duct/generate/templates/endpoint/source.clj" "src/{{path}}.clj")
@@ -83,9 +85,8 @@
 (defn component
   "Generate a new Duct component with the supplied name."
   [name]
-  (assert *ns-prefix* "duct.generate/*ns-prefix* not set")
-  (let [project   (project/read-raw "project.clj")
-        namespace (str *ns-prefix* ".component." name)
+  (assert-ns-prefix)
+  (let [namespace (str *ns-prefix* ".component." name)
         path      (name-to-path namespace)
         record    (camel-case name)]
     (doto {:name name, :namespace namespace, :path path, :record record}
