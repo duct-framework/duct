@@ -3,6 +3,7 @@
             [clojure.test :refer :all]
             [kerodon.core :refer :all]
             [kerodon.test :refer :all]
+            [shrubbery.core :as shrub]
             [{{namespace}}.endpoint.example :as example]))
 
 (def handler
