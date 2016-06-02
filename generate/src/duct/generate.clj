@@ -94,6 +94,30 @@
       (create-file "duct/generate/templates/component/test.clj" "test/{{path}}_test.clj"))
     nil))
 
+(defn- class-name [x]
+  (if (class? x)
+    (.getName ^Class x)
+    (str x)))
+
+(defn- split-component [x]
+    (rest (re-matches #"(.+)[./]([^./]+)" (class-name x))))
+
+(defn boundary
+  "Generate a new Duct boundary with the supplied name and component."
+  [name component-sym]
+  (assert-ns-prefix)
+  (let [namespace           (str *ns-prefix* ".boundary." name)
+        [comp-ns comp-name] (split-component component-sym)]
+    (doto {:name         name
+           :namespace    namespace
+           :path         (name-to-path namespace)
+           :protocol     (camel-case name)
+           :component-ns comp-ns
+           :component    comp-name}
+      (create-file "duct/generate/templates/boundary/source.clj" "src/{{path}}.clj")
+      (create-file "duct/generate/templates/boundary/test.clj" "test/{{path}}_test.clj"))
+    nil))
+
 (def ^:private timestamp-formatter
   (tf/formatter "yyyyMMddHHmmss"))
 

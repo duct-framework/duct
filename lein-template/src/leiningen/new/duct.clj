@@ -34,9 +34,10 @@
    ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
    ["src/{{dirs}}/config.clj"   (render "base/config.clj" data)]
    ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
+   "src/{{dirs}}/boundary"
    "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"
-   "test/{{dirs}}"
+   "test/{{dirs}}/boundary"
    "test/{{dirs}}/component"
    "test/{{dirs}}/endpoint"])
 
