@@ -136,6 +136,15 @@ Creating file src/foo/component/baz.clj
 Creating file test/foo/component/baz_test.clj
 nil
 ```
+
+To create a new boundary:
+
+```clojure
+dev=> (gen/boundary "quz" foo.component.baz.Baz)
+Creating file src/foo/boundary/quz.clj
+Creating file test/foo/boundary/quz_test.clj
+nil
+```
 {{#ragtime?}}
 
 To create a new SQL migration:
