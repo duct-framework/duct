@@ -76,7 +76,7 @@
   (assert-ns-prefix)
   (let [namespace (str *ns-prefix* ".endpoint." name)
         path      (name-to-path namespace)]
-    (doto {:name name, :namespace namespace, :path path}
+    (doto {:name (str name) :namespace namespace, :path path}
       (create-file "duct/generate/templates/endpoint/source.clj" "src/{{path}}.clj")
       (create-file "duct/generate/templates/endpoint/test.clj" "test/{{path}}_test.clj")
       (create-dir "resources/{{path}}"))
@@ -88,8 +88,8 @@
   (assert-ns-prefix)
   (let [namespace (str *ns-prefix* ".component." name)
         path      (name-to-path namespace)
-        record    (camel-case name)]
-    (doto {:name name, :namespace namespace, :path path, :record record}
+        record    (camel-case (str name))]
+    (doto {:name (str name) :namespace namespace, :path path, :record record}
       (create-file "duct/generate/templates/component/source.clj" "src/{{path}}.clj")
       (create-file "duct/generate/templates/component/test.clj" "test/{{path}}_test.clj"))
     nil))
@@ -108,10 +108,10 @@
   (assert-ns-prefix)
   (let [namespace           (str *ns-prefix* ".boundary." name)
         [comp-ns comp-name] (split-component component-sym)]
-    (doto {:name         name
+    (doto {:name         (str name)
            :namespace    namespace
            :path         (name-to-path namespace)
-           :protocol     (camel-case name)
+           :protocol     (camel-case (str name))
            :component-ns comp-ns
            :component    comp-name}
       (create-file "duct/generate/templates/boundary/source.clj" "src/{{path}}.clj")
