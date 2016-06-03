@@ -38,8 +38,8 @@
   (into (system/new-system config)
         {<<#cljs?>>:figwheel (figwheel/server (:figwheel config))<</cljs?>>}))
 
-(when (io/resource "local.clj")
-  (load "local"))
+(when (io/resource "dev/local.clj")
+  (load "dev/local"))
 
 (gen/set-ns-prefix '<<namespace>>)
 

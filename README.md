@@ -112,9 +112,9 @@ out of version control.
 ├── README.md
 ├── dev
 │   ├── dev
-│   │   └── tasks.clj
+│   │   ├── tasks.clj
+│   │   └── local.clj *
 │   ├── dev.clj
-│   ├── local.clj *
 │   └── user.clj
 ├── profiles.clj *
 ├── project.clj
