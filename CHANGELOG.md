@@ -1,3 +1,11 @@
+## 0.7.0 (2016-06-03)
+
+* Added `duct.generate/boundary` for generating boundary protocols
+* Moved `locals.clj` to `dev/locals.clj` in locals generator
+* Added [cljs-devtools][] to `+cljs` profile
+
+[cljs-devtools]: https://github.com/binaryage/cljs-devtools
+
 ## 0.6.1 (2016-05-19)
 
 * Added `duct.generate/sql-migration` for generating Ragtime SQL migrations

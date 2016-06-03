@@ -6,7 +6,7 @@
                  [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.1"]
                  [compojure "1.5.0"]
-                 [duct "0.6.1"]
+                 [duct "0.7.0"]
                  [environ "1.0.3"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
@@ -46,7 +46,7 @@
    :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
-   :project/dev   {:dependencies [[duct/generate "0.6.1"]
+   :project/dev   {:dependencies [[duct/generate "0.7.0"]
                                   [reloaded.repl "0.2.2"]
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [org.clojure/tools.nrepl "0.2.12"]
