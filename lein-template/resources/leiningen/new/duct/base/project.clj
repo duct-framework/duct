@@ -53,6 +53,7 @@
                                   [eftest "0.1.1"]
                                   [com.gearswithingears/shrubbery "0.3.1"]
                                   [kerodon "0.7.0"]{{#cljs?}}
+                                  [binaryage/devtools "0.6.1"]
                                   [com.cemerick/piggieback "0.2.1"]
                                   [duct/figwheel-component "0.3.2"]
                                   [figwheel "0.5.0-6"]{{/cljs?}}]
