@@ -78,6 +78,11 @@ Endpoints should resemble microservices, grouping routes by purpose.
 An endpoint might handle user authentication, or handle comments on a
 post. Strive to keep your endpoints small and focused.
 
+Endpoints should communicate with components via **boundary**
+protocols. This draws a line between external services modeled by
+components, and the internal functionality modeled by endpoints.
+Protocols can be mocked, allowing efficient internal testing.
+
 [heroku]:    https://www.heroku.com/
 [docker]:    https://www.docker.com/
 [component]: https://github.com/stuartsierra/component
@@ -122,6 +127,8 @@ out of version control.
 │       └── public
 ├── src
 │   └── {{project}}
+│       ├── boundary
+│       │   └── {{boundary}}.clj
 │       ├── component
 │       │   └── {{component}}.clj
 │       ├── config.clj
@@ -131,6 +138,8 @@ out of version control.
 │       └── system.clj
 └── test
     └── {{project}}
+        ├── boundary
+        │   └── {{boundary}}_test.clj
         ├── component
         │   └── {{component}}_test.clj
         └── endpoint
