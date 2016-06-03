@@ -70,7 +70,7 @@
    :static? true})
 
 (defmethod profile-files :cljs [_ data]
-  [["dev/cljs/user.cljs" (render "base/user.cljs" data)]])
+  [["dev/cljs/user.cljs" (render "cljs/user.cljs" data)]])
 
 (defmethod profile-data :heroku [_ name]
   {:heroku? true
