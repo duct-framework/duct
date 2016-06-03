@@ -65,7 +65,7 @@ sit behind a proxy or load-balancer, and works well in environments
 like [Heroku][] and [Docker][].
 
 Internally, Duct projects are structured with the [Component][]
-library. Components handle the lifecycle of the web server, and
+library. **Components** handle the lifecycle of the web server, and
 connections to other services and databases. It's highly recommended
 you avoid any global state, and even dynamic bindings are discouraged.
 
