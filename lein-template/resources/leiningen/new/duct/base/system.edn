@@ -1,0 +1,13 @@
+{{=<< >>=}}
+{:components
+ {:app  duct.component.handler/handler-component
+  :http ring.component.jetty/jetty-server<<#jdbc?>>
+  :db   duct.component.hikaricp/hikaricp<</jdbc?>><<#ragtime?>>
+  :ragtime duct.component.ragtime/ragtime<</ragtime?>>}
+ :endpoints
+ {<<#example?>>:example <<namespace>>.endpoint.example/example-endpoint<</example?>>}
+ :dependencies
+ {:http [:app]
+  :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
+  :ragtime [:db]<</ragtime?>><<#example?>>
+  :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}}

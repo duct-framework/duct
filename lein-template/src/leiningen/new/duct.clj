@@ -31,6 +31,7 @@
    ["dev/user.clj"              (render "base/user.clj" data)]
    ["dev/dev.clj"               (render "base/dev.clj" data)]
    ["dev/dev/tasks.clj"         (render "base/tasks.clj" data)]
+   ["resources/{{dirs}}/system.edn" (render "base/system.edn" data)]
    ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
    ["src/{{dirs}}/config.clj"   (render "base/config.clj" data)]
    ["src/{{dirs}}/system.clj"   (render "base/system.clj" data)]
