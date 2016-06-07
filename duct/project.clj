@@ -9,6 +9,7 @@
                  [com.stuartsierra/component "0.3.1"]
                  [compojure "1.5.0"]
                  [environ "1.0.3"]
+                 [meta-merge "0.1.1"]
                  [ring/ring-core "1.4.0"]]
   :profiles
   {:dev {:dependencies [[ring/ring-mock "0.3.0"]]}})

@@ -1,24 +1,40 @@
 (ns duct.util.config
+  (:refer-clojure :exclude [resolve])
   (:require [clojure.edn :as edn]
             [clojure.walk :as walk]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            [meta-merge.core :refer [meta-merge]]))
 
-(defrecord Ref [keys])
+(defprotocol Resolvable
+  (-resolve [x config]))
+
+(defrecord Ref [keys]
+  Resolvable
+  (-resolve [_ config]
+    (get-in config keys)))
+
+(defrecord Merge [values]
+  Resolvable
+  (-resolve [_ _]
+    (apply meta-merge values)))
 
 (defmulti reader
   (fn [options tag value] tag))
 
-(defmethod reader 'ref [_ _ value]
-  (->Ref value))
-
 (defmethod reader 'import [{:keys [imports]} _ value]
   (get-in imports value))
 
-(defn- resolve-refs-once [config]
-  (walk/postwalk #(if (instance? Ref %) (get-in config (:keys %)) %) config))
+(defmethod reader 'ref [_ _ value]
+  (->Ref value))
 
-(defn- resolve-refs [config]
-  (let [config' (resolve-refs-once config)]
+(defmethod reader 'merge [_ _ value]
+  (->Merge value))
+
+(defn- resolve-once [config]
+  (walk/postwalk #(if (satisfies? Resolvable %) (-resolve % config) %) config))
+
+(defn- resolve-recursively [config]
+  (let [config' (resolve-once config)]
     (if (= config config') config (recur config'))))
 
 (def default-options
@@ -31,4 +47,4 @@
    (let [options (merge default-options options)]
      (->> (slurp source)
           (edn/read-string {:default (partial reader options)})
-          (resolve-refs)))))
+          (resolve-recursively)))))
