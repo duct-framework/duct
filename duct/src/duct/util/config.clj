@@ -18,6 +18,11 @@
   (-resolve [_ _]
     (apply meta-merge values)))
 
+(defrecord Or [values]
+  Resolvable
+  (-resolve [_ _]
+    (some identity values)))
+
 (defmulti reader
   (fn [options tag value] tag))
 
@@ -29,6 +34,9 @@
 
 (defmethod reader 'merge [_ _ value]
   (->Merge value))
+
+(defmethod reader 'or [_ _ value]
+  (->Or value))
 
 (defn- resolve-once [config]
   (walk/postwalk #(if (satisfies? Resolvable %) (-resolve % config) %) config))
