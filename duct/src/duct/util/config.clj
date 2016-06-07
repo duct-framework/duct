@@ -1,5 +1,5 @@
 (ns duct.util.config
-  (:refer-clojure :exclude [resolve])
+  (:refer-clojure :exclude [read resolve])
   (:require [clojure.edn :as edn]
             [clojure.walk :as walk]
             [environ.core :refer [env]]
@@ -45,9 +45,9 @@
 (def default-options
   {:imports {:env env}})
 
-(defn read-config
+(defn read
   ([source]
-   (read-config source {}))
+   (read source {}))
   ([source options]
    (let [options (merge default-options options)]
      (->> (slurp source)
