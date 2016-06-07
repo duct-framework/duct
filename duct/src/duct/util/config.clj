@@ -1,23 +1,31 @@
 (ns duct.util.config
+  (:refer-clojure :exclude [resolve])
   (:require [clojure.edn :as edn]
             [clojure.walk :as walk]
             [environ.core :refer [env]]
             [meta-merge.core :refer [meta-merge]]))
 
 (defprotocol Resolvable
-  (-resolve [x config]))
+  (resolve [x config]))
 
 (defrecord Ref [keys]
   Resolvable
-  (-resolve [_ config] (get-in config keys)))
+  (resolve [_ config] (get-in config keys)))
 
 (defrecord Merge [values]
   Resolvable
-  (-resolve [_ _] (apply meta-merge values)))
+  (resolve [_ _] (apply meta-merge values)))
 
 (defrecord Or [values]
   Resolvable
-  (-resolve [_ _] (some identity values)))
+  (resolve [_ _] (some identity values)))
+
+(defn- resolve-once [config]
+  (walk/postwalk #(if (satisfies? Resolvable %) (resolve % config) %) config))
+
+(defn- resolve-recursively [config]
+  (let [config' (resolve-once config)]
+    (if (= config config') config (recur config'))))
 
 (defmulti reader
   (fn [options tag value] tag))
@@ -33,13 +41,6 @@
 
 (defmethod reader 'or [_ _ value]
   (->Or value))
-
-(defn- resolve-once [config]
-  (walk/postwalk #(if (satisfies? Resolvable %) (-resolve % config) %) config))
-
-(defn- resolve-recursively [config]
-  (let [config' (resolve-once config)]
-    (if (= config config') config (recur config'))))
 
 (def default-options
   {:imports {:env env}})
