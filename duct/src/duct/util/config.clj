@@ -1,5 +1,4 @@
 (ns duct.util.config
-  (:refer-clojure :exclude [resolve])
   (:require [clojure.edn :as edn]
             [clojure.walk :as walk]
             [environ.core :refer [env]]
@@ -10,18 +9,15 @@
 
 (defrecord Ref [keys]
   Resolvable
-  (-resolve [_ config]
-    (get-in config keys)))
+  (-resolve [_ config] (get-in config keys)))
 
 (defrecord Merge [values]
   Resolvable
-  (-resolve [_ _]
-    (apply meta-merge values)))
+  (-resolve [_ _] (apply meta-merge values)))
 
 (defrecord Or [values]
   Resolvable
-  (-resolve [_ _]
-    (some identity values)))
+  (-resolve [_ _] (some identity values)))
 
 (defmulti reader
   (fn [options tag value] tag))
