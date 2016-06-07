@@ -1,7 +1,6 @@
 {{=<< >>=}}
 (ns <<namespace>>.system
   (:require [clojure.java.io :as io]
-            [clojure.edn :as edn]
             [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
             [duct.component.handler :refer [handler-component]]<<#jdbc?>>
@@ -9,6 +8,7 @@
             [duct.component.ragtime :refer [ragtime]]<</ragtime?>>
             [duct.middleware.not-found :refer [wrap-not-found]]<<#site?>>
             [duct.middleware.route-aliases :refer [wrap-route-aliases]]<</site?>>
+            [duct.util.config :as config]
             [duct.util.system :as system]
             [meta-merge.core :refer [meta-merge]]
             [ring.component.jetty :refer [jetty-server]]
@@ -25,6 +25,6 @@
          :aliases    {"/" "/index.html"}<</site?>>}<<#ragtime?>>
    :ragtime {:resource-path "<<dirs>>/migrations"}<</ragtime?>>})
 
-(let [constructor (system/system-factory (edn/read-string (slurp (io/resource "<<namespace>>/system.edn"))))]
+(let [constructor (system/system-factory (config/read-config (io/resource "<<namespace>>/system.edn")))]
   (defn new-system [config]
     (constructor (meta-merge base-config config))))
