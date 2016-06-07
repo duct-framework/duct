@@ -5,6 +5,18 @@
             [environ.core :refer [env]]
             [meta-merge.core :refer [meta-merge]]))
 
+(defmulti coerce
+  (fn [value hint] [(type value) hint]))
+
+(defmethod coerce [String 'int] [value _]
+  (Long/parseLong value))
+
+(defmethod coerce [String 'double] [value _]
+  (Double/parseDouble value))
+
+(defn- coerce-all [config]
+  (walk/postwalk #(if-let [hint (-> % meta :tag)] (coerce % hint) %) config))
+
 (defprotocol Resolvable
   (resolve [x config]))
 
@@ -20,11 +32,19 @@
   Resolvable
   (resolve [_ _] (some identity values)))
 
-(defn- resolve-once [config]
-  (walk/postwalk #(if (satisfies? Resolvable %) (resolve % config) %) config))
+(defn- coerce-and-resolve [x config]
+  (if (satisfies? Resolvable x)
+    (let [value (resolve x config)]
+      (if-let [hint (-> x meta :tag)]
+        (coerce value hint)
+        value))
+    x))
+
+(defn- resolve-all [config]
+  (walk/postwalk #(coerce-and-resolve % config) config))
 
 (defn- resolve-recursively [config]
-  (let [config' (resolve-once config)]
+  (let [config' (resolve-all config)]
     (if (= config config') config (recur config'))))
 
 (defmulti reader
@@ -52,4 +72,5 @@
    (let [options (merge default-options options)]
      (->> (slurp source)
           (edn/read-string {:default (partial reader options)})
-          (resolve-recursively)))))
+          (resolve-recursively)
+          (coerce-all)))))
