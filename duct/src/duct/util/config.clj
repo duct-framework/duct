@@ -14,6 +14,9 @@
 (defmethod coerce [String 'double] [value _]
   (Double/parseDouble value))
 
+(defmethod coerce [nil :default] [value hint]
+  nil)
+
 (defn- coerce-all [config]
   (walk/postwalk #(if-let [hint (-> % meta :tag)] (coerce % hint) %) config))
 
