@@ -1,6 +1,7 @@
 (ns duct.util.config
   (:refer-clojure :exclude [read resolve])
   (:require [clojure.edn :as edn]
+            [clojure.java.io :as io]
             [clojure.walk :as walk]
             [environ.core :refer [env]]
             [meta-merge.core :refer [meta-merge]]))
@@ -72,6 +73,9 @@
 
 (defmethod reader 'join [_ _ value]
   (->Join value))
+
+(defmethod reader 'resource [_ _ value]
+  (io/resource value))
 
 (def default-options
   {:imports {:env env}})
