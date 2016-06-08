@@ -17,9 +17,6 @@
 (defmethod coerce [nil :default] [value hint]
   nil)
 
-(defn- coerce-all [config]
-  (walk/postwalk #(if-let [hint (-> % meta :tag)] (coerce % hint) %) config))
-
 (defprotocol Resolvable
   (resolve [x config]))
 
@@ -79,5 +76,4 @@
    (let [options (merge default-options options)]
      (->> (slurp source)
           (edn/read-string {:default (partial reader options)})
-          (resolve-recursively)
-          (coerce-all)))))
+          (resolve-recursively)))))
