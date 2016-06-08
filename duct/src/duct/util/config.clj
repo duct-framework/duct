@@ -23,6 +23,10 @@
 (defprotocol Resolvable
   (resolve [x config]))
 
+(defrecord Identity [value]
+  Resolvable
+  (resolve [_ _] value))
+
 (defrecord Ref [keys]
   Resolvable
   (resolve [_ config] (get-in config keys)))
@@ -54,7 +58,7 @@
   (fn [options tag value] tag))
 
 (defmethod reader 'import [{:keys [imports]} _ value]
-  (get-in imports value))
+  (->Identity (get-in imports value)))
 
 (defmethod reader 'ref [_ _ value]
   (->Ref value))
