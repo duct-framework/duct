@@ -62,6 +62,9 @@
 (defmethod reader 'import [{:keys [imports]} _ value]
   (->Identity (get-in imports value)))
 
+(defmethod reader 'profile [{:keys [profile]} _ value]
+  (->Identity (get value profile)))
+
 (defmethod reader 'ref [_ _ value]
   (->Ref value))
 
