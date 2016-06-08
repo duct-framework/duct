@@ -36,6 +36,10 @@
   Resolvable
   (resolve [_ _] (some identity values)))
 
+(defrecord Join [values]
+  Resolvable
+  (resolve [_ config] (apply str values)))
+
 (defn- coerce-and-resolve [x config]
   (if (satisfies? Resolvable x)
     (let [value (resolve x config)]
@@ -65,6 +69,9 @@
 
 (defmethod reader 'or [_ _ value]
   (->Or value))
+
+(defmethod reader 'join [_ _ value]
+  (->Join value))
 
 (def default-options
   {:imports {:env env}})
