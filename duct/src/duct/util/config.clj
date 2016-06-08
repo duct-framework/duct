@@ -41,19 +41,19 @@
   (resolve [_ config] (apply str values)))
 
 (defn- coerce-and-resolve [x config]
-  (if (satisfies? Resolvable x)
-    (let [value (resolve x config)]
-      (if-let [hint (-> x meta :tag)]
-        (coerce value hint)
-        value))
-    x))
+  (let [value (resolve x config)]
+    (if-let [hint (-> x meta :tag)]
+      (coerce value hint)
+      value)))
 
 (defn- resolve-all [config]
-  (walk/postwalk #(coerce-and-resolve % config) config))
-
-(defn- resolve-recursively [config]
-  (let [config' (resolve-all config)]
-    (if (= config config') config (recur config'))))
+  (letfn [(resolve-recursively [m]
+            (walk/postwalk
+             #(if (satisfies? Resolvable %)
+                (resolve-recursively (coerce-and-resolve % config))
+                %)
+             m))]
+    (resolve-recursively config)))
 
 (defmulti reader
   (fn [options tag value] tag))
