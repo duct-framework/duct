@@ -1,0 +1,27 @@
+{{=<< >>=}}
+{:app
+ {:middleware
+  [[duct.middleware.not-found/wrap-not-found #ref [:error-pages :not-found]]
+   [ring.middleware.webjars/wrap-webjars]
+   [ring.middleware.defaults/wrap-defaults #ref [:ring-defaults]]
+   [duct.middleware.route-aliases/wrap-route-aliases #ref [:route-aliases]]]}
+ :http          {:port #or [^int #import [:env :port] 3000]}
+ :error-pages   {:not-found #resource "<<dirs>>/errors/404.html"}
+ :route-aliases {"/" "/index.html"}
+ :ring-defaults
+ {:params    {:urlencoded true
+              :multipart  true
+              :nested     true
+              :keywordize true}
+  :cookies   true
+  :session   {:flash true
+              :cookie-attrs {:http-only true}}
+  :security  {:anti-forgery   true
+              :xss-protection {:enable? true, :mode :block}
+              :frame-options  :sameorigin
+              :content-type-options :nosniff}
+  :static    {:resources "<<dirs>>/public"}
+  :responses {:not-modified-responses true
+              :absolute-redirects     true
+              :content-types          true
+              :default-charset        "utf-8"}}}

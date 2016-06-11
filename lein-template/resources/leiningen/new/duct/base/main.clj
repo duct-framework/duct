@@ -1,24 +1,13 @@
 (ns {{namespace}}.main
   (:gen-class)
-  (:require {{#site?}}[clojure.java.io :as io]
-            {{/site?}}[com.stuartsierra.component :as component]
-            [duct.middleware.errors :refer [wrap-hide-errors]]
+  (:require [com.stuartsierra.component :as component]
             [duct.util.runtime :refer [add-shutdown-hook]]
-            [meta-merge.core :refer [meta-merge]]
-            [{{namespace}}.config :as config]
-            [{{namespace}}.system :refer [new-system]]))
-
-(def prod-config
-  {:app {:middleware     [[wrap-hide-errors :internal-error]]
-         :internal-error {{^site?}}"Internal Server Error"{{/site?}}{{#site?}}(io/resource "errors/500.html"){{/site?}}}})
-
-(def config
-  (meta-merge config/defaults
-              config/environ
-              prod-config))
+            [duct.util.system :refer [build-system]]))
 
 (defn -main [& args]
-  (let [system (new-system config)]
+  (let [system (build-system "{{dirs}}/system.edn"
+                             "{{dirs}}/config.edn"
+                             {:profile :prod})]
     (println "Starting HTTP server on port" (-> system :http :port))
     (add-shutdown-hook ::stop-system #(component/stop system))
     (component/start system)))

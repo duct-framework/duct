@@ -1,6 +1,7 @@
 (ns duct.component.handler
   (:require [com.stuartsierra.component :as component]
-            [compojure.core :as compojure]))
+            [compojure.core :as compojure]
+            [duct.util.namespace :as ns]))
 
 (defn- find-endpoint-keys [component]
   (sort (map key (filter (comp :routes val) component))))
@@ -9,16 +10,16 @@
   (map #(:routes (get component %))
        (:endpoints component (find-endpoint-keys component))))
 
-(defn- middleware-fn [component middleware]
-  (if (vector? middleware)
-    (let [[f & keys] middleware
-          arguments  (map #(get component %) keys)]
-      #(apply f % arguments))
-    middleware))
+(defn- middleware-fn [middleware]
+  (if-not (vector? middleware)
+    (recur [middleware])
+    (let [[f & args] middleware
+          func       (cond-> f (symbol? f) ns/load-var)]
+      #(apply func % args))))
 
 (defn- compose-middleware [{:keys [middleware] :as component}]
   (->> (reverse middleware)
-       (map #(middleware-fn component %))
+       (map middleware-fn)
        (apply comp identity)))
 
 (defrecord Handler [middleware]

@@ -90,4 +90,4 @@
    (let [options (merge default-options options)]
      (->> (slurp source)
           (edn/read-string {:default (partial reader options)})
-          (resolve-recursively)))))
+          (resolve-all)))))

@@ -1,4 +1,3 @@
-{{=<< >>=}}
 (ns dev
   (:refer-clojure :exclude [test])
   (:require [clojure.repl :refer :all]
@@ -7,40 +6,18 @@
             [clojure.java.io :as io]
             [com.stuartsierra.component :as component]
             [duct.generate :as gen]
-            [meta-merge.core :refer [meta-merge]]
+            [duct.util.system :refer [build-system]]
             [reloaded.repl :refer [system init start stop go reset]]
-            [ring.middleware.stacktrace :refer [wrap-stacktrace]]<<#cljs?>>
-            [duct.component.figwheel :as figwheel]<</cljs?>>
-            [dev.tasks :refer :all]
-            [<<namespace>>.config :as config]
-            [<<namespace>>.system :as system]))
-
-(def dev-config
-  {:app {:middleware [wrap-stacktrace]}<<#cljs?>>
-   :figwheel
-   {:css-dirs ["resources/<<dirs>>/public/css"]
-    :builds   [{:source-paths ["src" "dev"]
-                :build-options
-                {:optimizations :none
-                 :main "cljs.user"
-                 :asset-path "/js"
-                 :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
-                 :output-dir "target/figwheel/<<dirs>>/public/js"
-                 :source-map true
-                 :source-map-path "/js"}}]}<</cljs?>>})
-
-(def config
-  (meta-merge config/defaults
-              config/environ
-              dev-config))
+            [dev.tasks :refer :all]))
 
 (defn new-system []
-  (into (system/new-system config)
-        {<<#cljs?>>:figwheel (figwheel/server (:figwheel config))<</cljs?>>}))
+  (build-system "{{dirs}}/system.edn"
+                "{{dirs}}/config.edn"
+                {:profile :dev}))
 
 (when (io/resource "dev/local.clj")
   (load "dev/local"))
 
-(gen/set-ns-prefix '<<namespace>>)
+(gen/set-ns-prefix '{{namespace}})
 
 (reloaded.repl/set-init! new-system)

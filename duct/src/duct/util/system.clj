@@ -1,6 +1,8 @@
 (ns duct.util.system
-  (:require [com.stuartsierra.component :as component]
+  (:require [clojure.java.io :as io]
+            [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
+            [duct.util.config :as config]
             [duct.util.namespace :as ns]))
 
 (defn- add-components [system components config]
@@ -21,3 +23,7 @@
         (into (-> config
                   (dissoc-all (keys components))
                   (dissoc-all (keys endpoints)))))))
+
+(defn build-system [definition config options]
+  (let [new-system (system-factory (config/read (io/resource definition) options))]
+    (new-system (config/read (io/resource config) options))))
