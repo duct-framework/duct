@@ -1,16 +1,13 @@
 (ns duct.util.system
   (:require [com.stuartsierra.component :as component]
-            [duct.component.endpoint :refer [endpoint-component]]))
-
-(defn- load-var [sym]
-  (require (symbol (namespace sym)))
-  (find-var sym))
+            [duct.component.endpoint :refer [endpoint-component]]
+            [duct.util.namespace :as ns]))
 
 (defn- add-components [system components config]
-  (reduce-kv (fn [m k v] (assoc m k ((load-var v) (config k)))) system components))
+  (reduce-kv (fn [m k v] (assoc m k ((ns/load-var v) (config k)))) system components))
 
 (defn- add-endpoints [system endpoints]
-  (reduce-kv (fn [m k v] (assoc m k (endpoint-component (load-var v)))) system endpoints))
+  (reduce-kv (fn [m k v] (assoc m k (endpoint-component (ns/load-var v)))) system endpoints))
 
 (defn- dissoc-all [m ks]
   (apply dissoc m ks))
