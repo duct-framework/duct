@@ -4,7 +4,22 @@
             [clojure.java.io :as io]
             [clojure.walk :as walk]
             [environ.core :refer [env]]
+            [medley.core :as m]
             [meta-merge.core :refer [meta-merge]]))
+
+(defn- undefined? [x]
+  (= x ::undefined))
+
+(defn- remove-undefined [config]
+  (walk/prewalk
+   #(cond
+      (set? %)       (disj % ::undefined)
+      (vector? %)    (filterv (complement undefined?) %)
+      (seq? %)       (remove undefined? %)
+      (map? %)       (->> % (m/remove-keys undefined?) (m/remove-vals undefined?))
+      (undefined? %) nil
+      :else          %)
+   config))
 
 (defmulti coerce
   (fn [value hint] [(type value) hint]))
@@ -27,11 +42,11 @@
 
 (defrecord Ref [keys]
   Resolvable
-  (resolve [_ config] (get-in config keys)))
+  (resolve [_ config] (get-in config keys ::undefined)))
 
 (defrecord Merge [values]
   Resolvable
-  (resolve [_ _] (apply meta-merge values)))
+  (resolve [_ _] (apply meta-merge (remove-undefined values))))
 
 (defrecord Or [values]
   Resolvable
@@ -60,10 +75,10 @@
   (fn [options tag value] tag))
 
 (defmethod reader 'import [{:keys [imports]} _ value]
-  (->Identity (get-in imports value)))
+  (->Identity (get-in imports value ::undefined)))
 
 (defmethod reader 'profile [{:keys [profile]} _ value]
-  (->Identity (get value profile)))
+  (->Identity (get value profile ::undefined)))
 
 (defmethod reader 'ref [_ _ value]
   (->Ref value))
@@ -90,4 +105,5 @@
    (let [options (merge default-options options)]
      (->> (slurp source)
           (edn/read-string {:default (partial reader options)})
-          (resolve-all)))))
+          (resolve-all)
+          (remove-undefined)))))
