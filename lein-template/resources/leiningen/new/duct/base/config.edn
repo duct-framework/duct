@@ -9,7 +9,19 @@
              :prod [duct.middleware.errors/wrap-hide-errors
                     #ref [:ring :errors :internal-error]]}]}
  :http
- {:port #or [^int #import [:env :port] 3000]}
+ {:port #or [^int #import [:env :port] 3000]}<<#cljs?>>
+ :figwheel
+ #profile {:dev {:css-dirs ["resources/<<dirs>>/public/css"]
+                 :builds
+                 [{:source-paths ["src" "dev"]
+                   :build-options
+                   {:optimizations :none
+                    :main "cljs.user"
+                    :asset-path "/js"
+                    :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
+                    :output-dir "target/figwheel/<<dirs>>/public/js"
+                    :source-map true
+                    :source-map-path "/js"}}]}}<</cljs?>>
  :ring
  {:errors    {:not-found      #resource "<<dirs>>/errors/404.html"
               :internal-error #resource "<<dirs>>/errors/500.html"}

@@ -3,7 +3,8 @@
  {:app  duct.component.handler/handler-component
   :http ring.component.jetty/jetty-server<<#jdbc?>>
   :db   duct.component.hikaricp/hikaricp<</jdbc?>><<#ragtime?>>
-  :ragtime duct.component.ragtime/ragtime<</ragtime?>>}
+  :ragtime duct.component.ragtime/ragtime<</ragtime?>><<#cljs?>>
+  :figwheel #profile {:dev duct.component.figwheel/server}<</cljs?>>}
  :endpoints
  {<<#example?>>:example <<namespace>>.endpoint.example/example-endpoint<</example?>>}
  :dependencies
