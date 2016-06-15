@@ -33,7 +33,7 @@
                  :content-types          true
                  :default-charset        "utf-8"}}}}}
  :http
- {:port #or [^int #import [:env :port] 3000]}<<#cljs?>>
+ {:port #profile {:dev 3000, :prod ^int #import [:env :port]}}<<#cljs?>>
  :figwheel
  #profile {:dev {:css-dirs ["resources/<<dirs>>/public/css"]
                  :builds
