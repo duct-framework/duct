@@ -10,16 +10,17 @@
   (map #(:routes (get component %))
        (:endpoints component (find-endpoint-keys component))))
 
-(defn- middleware-fn [middleware]
-  (if-not (vector? middleware)
-    (recur [middleware])
-    (let [[f & args] middleware
-          func       (cond-> f (symbol? f) ns/load-var)]
-      #(apply func % args))))
+(defn- middleware-fn [f args]
+  (let [f    (if (symbol? f) (ns/load-var f) f)
+        args (if (or (nil? args) (seq? args)) args (list args))]
+    #(apply f % args)))
 
-(defn- compose-middleware [{:keys [middleware] :as component}]
-  (->> (reverse middleware)
-       (map middleware-fn)
+(defn- middleware-map [{:keys [functions arguments]}]
+  (reduce-kv (fn [m k v] (assoc m k (middleware-fn v (arguments k)))) {} functions))
+
+(defn- compose-middleware [{:keys [applied] :as middleware}]
+  (->> (reverse applied)
+       (map (middleware-map middleware))
        (apply comp identity)))
 
 (defrecord Handler [middleware]
@@ -27,7 +28,7 @@
   (start [component]
     (if-not (:handler component)
       (let [routes  (find-routes component)
-            wrap-mw (compose-middleware component)
+            wrap-mw (compose-middleware (:middleware component))
             handler (wrap-mw (apply compojure/routes routes))]
         (assoc component :handler handler))
       component))
