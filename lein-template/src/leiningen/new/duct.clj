@@ -32,7 +32,6 @@
    ["dev/dev.clj"               (render "base/dev.clj" data)]
    ["dev/dev/tasks.clj"         (render "base/tasks.clj" data)]
    ["resources/{{dirs}}/system.edn" (render "base/system.edn" data)]
-   ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
    ["src/{{dirs}}/main.clj"     (render "base/main.clj" data)]
    "src/{{dirs}}/boundary"
    "src/{{dirs}}/component"

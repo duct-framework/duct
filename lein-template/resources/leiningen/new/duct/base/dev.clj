@@ -6,14 +6,12 @@
             [clojure.java.io :as io]
             [com.stuartsierra.component :as component]
             [duct.generate :as gen]
-            [duct.util.system :refer [build-system]]
+            [duct.util.system :refer [load-system]]
             [reloaded.repl :refer [system init start stop go reset]]
             [dev.tasks :refer :all]))
 
 (defn new-system []
-  (build-system "{{dirs}}/system.edn"
-                "{{dirs}}/config.edn"
-                {:profile :dev}))
+  (load-system "{{dirs}}/system.edn" {:profile :dev}))
 
 (when (io/resource "dev/local.clj")
   (load "dev/local"))

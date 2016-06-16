@@ -14,16 +14,14 @@
 (defn- dissoc-all [m ks]
   (apply dissoc m ks))
 
-(defn system-factory [{:keys [components endpoints dependencies]}]
-  (fn [config]
-    (-> (component/system-map)
-        (add-components components config)
-        (add-endpoints endpoints)
-        (component/system-using dependencies)
-        (into (-> config
-                  (dissoc-all (keys components))
-                  (dissoc-all (keys endpoints)))))))
+(defn build-system [{:keys [components endpoints dependencies config]}]
+  (-> (component/system-map)
+      (add-components components config)
+      (add-endpoints endpoints)
+      (component/system-using dependencies)
+      (into (-> config
+                (dissoc-all (keys components))
+                (dissoc-all (keys endpoints))))))
 
-(defn build-system [definition config options]
-  (let [new-system (system-factory (config/read (io/resource definition) options))]
-    (new-system (config/read (io/resource config) options))))
+(defn load-system [source options]
+  (build-system (config/read (io/resource source) options)))

@@ -11,4 +11,52 @@
  {:http [:app]
   :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
   :ragtime [:db]<</ragtime?>><<#example?>>
-  :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}}
+  :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}
+ :config
+ {:app
+  {:middleware
+   {:functions
+    {:not-found     duct.middleware.not-found/wrap-not-found
+     :route-aliases duct.middleware.route-aliases/wrap-route-aliases
+     :hide-errors   duct.middleware.errors/wrap-hide-errors
+     :webjars       ring.middleware.webjars/wrap-webjars
+     :ring-defaults ring.middleware.defaults/wrap-defaults
+     :stacktrace    ring.middleware.stacktrace/wrap-stacktrace}
+    :applied
+    [:not-found :webjars :ring-defaults :route-aliases
+     #profile {:dev :stacktrace, :prod :hide-errors}]
+    :arguments
+    {:not-found     #resource "<<dirs>>/errors/404.html"
+     :hide-errors   #resource "<<dirs>>/errors/500.html"
+     :route-aliases {"/" "/index.html"}
+     :ring-defaults
+     {:params    {:urlencoded true
+                  :multipart  true
+                  :nested     true
+                  :keywordize true}
+      :cookies   true
+      :session   {:flash true
+                  :cookie-attrs {:http-only true}}
+      :security  {:anti-forgery   true
+                  :xss-protection {:enable? true, :mode :block}
+                  :frame-options  :sameorigin
+                  :content-type-options :nosniff}
+      :static    {:resources "<<dirs>>/public"}
+      :responses {:not-modified-responses true
+                  :absolute-redirects     true
+                  :content-types          true
+                  :default-charset        "utf-8"}}}}}
+  :http
+  {:port #profile {:dev 3000, :prod ^int #import [:env :port]}}<<#cljs?>>
+  :figwheel
+  #profile {:dev {:css-dirs ["resources/<<dirs>>/public/css"]
+                  :builds
+                  [{:source-paths ["src" "dev"]
+                    :build-options
+                    {:optimizations :none
+                     :main "cljs.user"
+                     :asset-path "/js"
+                     :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
+                     :output-dir "target/figwheel/<<dirs>>/public/js"
+                     :source-map true
+                     :source-map-path "/js"}}]}}<</cljs?>>}}
