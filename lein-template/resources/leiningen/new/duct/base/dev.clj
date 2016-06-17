@@ -11,7 +11,7 @@
             [dev.tasks :refer :all]))
 
 (defn new-system []
-  (load-system ["{{dirs}}/system.edn" "dev/system.edn"]))
+  (load-system ["{{dirs}}/system.edn" "dev.edn"]))
 
 (when (io/resource "local.clj")
   (load "local"))
