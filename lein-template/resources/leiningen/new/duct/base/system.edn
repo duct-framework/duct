@@ -44,4 +44,4 @@
                   :content-types          true
                   :default-charset        "utf-8"}}}}}
   :http
-  {:port ^int #import [:env :port]}}}
+  {:port http-port}}}
