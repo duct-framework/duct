@@ -3,8 +3,7 @@
  {:app  duct.component.handler/handler-component
   :http ring.component.jetty/jetty-server<<#jdbc?>>
   :db   duct.component.hikaricp/hikaricp<</jdbc?>><<#ragtime?>>
-  :ragtime duct.component.ragtime/ragtime<</ragtime?>><<#cljs?>>
-  :figwheel #profile {:dev duct.component.figwheel/server}<</cljs?>>}
+  :ragtime duct.component.ragtime/ragtime<</ragtime?>>}
  :endpoints
  {<<#example?>>:example <<namespace>>.endpoint.example/example-endpoint<</example?>>}
  :dependencies
@@ -20,11 +19,9 @@
      :route-aliases duct.middleware.route-aliases/wrap-route-aliases
      :hide-errors   duct.middleware.errors/wrap-hide-errors
      :webjars       ring.middleware.webjars/wrap-webjars
-     :ring-defaults ring.middleware.defaults/wrap-defaults
-     :stacktrace    ring.middleware.stacktrace/wrap-stacktrace}
+     :ring-defaults ring.middleware.defaults/wrap-defaults}
     :applied
-    [:not-found :webjars :ring-defaults :route-aliases
-     #profile {:dev :stacktrace, :prod :hide-errors}]
+    [:not-found :webjars :ring-defaults :route-aliases :hide-errors]
     :arguments
     {:not-found     #resource "<<dirs>>/errors/404.html"
      :hide-errors   #resource "<<dirs>>/errors/500.html"
@@ -47,16 +44,4 @@
                   :content-types          true
                   :default-charset        "utf-8"}}}}}
   :http
-  {:port #profile {:dev 3000, :prod ^int #import [:env :port]}}<<#cljs?>>
-  :figwheel
-  #profile {:dev {:css-dirs ["resources/<<dirs>>/public/css"]
-                  :builds
-                  [{:source-paths ["src" "dev"]
-                    :build-options
-                    {:optimizations :none
-                     :main "cljs.user"
-                     :asset-path "/js"
-                     :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
-                     :output-dir "target/figwheel/<<dirs>>/public/js"
-                     :source-map true
-                     :source-map-path "/js"}}]}}<</cljs?>>}}
+  {:port ^int #import [:env :port]}}}

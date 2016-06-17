@@ -3,7 +3,8 @@
             [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
             [duct.util.config :as config]
-            [duct.util.namespace :as ns]))
+            [duct.util.namespace :as ns]
+            [meta-merge.core :refer [meta-merge]]))
 
 (defn- add-components [system components config]
   (reduce-kv (fn [m k v] (assoc m k ((ns/load-var v) (config k)))) system components))
@@ -23,5 +24,11 @@
                 (dissoc-all (keys components))
                 (dissoc-all (keys endpoints))))))
 
-(defn load-system [source options]
-  (build-system (config/read (io/resource source) options)))
+(defn load-system
+  ([sources]
+   (load-system sources {}))
+  ([sources options]
+   (->> sources
+        (map #(config/read (io/resource %) options))
+        (apply meta-merge)
+        (build-system))))

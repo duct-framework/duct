@@ -1,0 +1,22 @@
+{{=<< >>=}}
+{<<#cljs?>>:components
+ {:figwheel duct.component.figwheel/server}
+ <</cljs?>>:config
+ {:app
+  {:middleware
+   {:functions {:stacktrace ring.middleware.stacktrace/wrap-stacktrace}
+    :applied   ^:replace [:not-found :webjars :ring-defaults :route-aliases :stacktrace]}}
+  :http
+  {:port 3000}<<#cljs?>>
+  :figwheel
+  {:css-dirs ["resources/<<dirs>>/public/css"]
+   :builds
+   [{:source-paths ["src" "dev"]
+     :build-options
+     {:optimizations :none
+      :main "cljs.user"
+      :asset-path "/js"
+      :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
+      :output-dir "target/figwheel/<<dirs>>/public/js"
+      :source-map true
+      :source-map-path "/js"}}]}<</cljs?>>}}

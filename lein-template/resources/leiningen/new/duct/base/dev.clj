@@ -11,10 +11,10 @@
             [dev.tasks :refer :all]))
 
 (defn new-system []
-  (load-system "{{dirs}}/system.edn" {:profile :dev}))
+  (load-system ["{{dirs}}/system.edn" "dev/system.edn"]))
 
-(when (io/resource "dev/local.clj")
-  (load "dev/local"))
+(when (io/resource "local.clj")
+  (load "local"))
 
 (gen/set-ns-prefix '{{namespace}})
 
