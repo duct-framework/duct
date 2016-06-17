@@ -41,6 +41,6 @@
    (load-system sources {}))
   ([sources bindings]
    (->> sources
-        (map #(read-config (io/resource %) bindings))
+        (map #(read-config % bindings))
         (apply meta-merge)
         (build-system))))
