@@ -1,6 +1,5 @@
 (ns duct.generate
-  (:require [leiningen.core.project :as project]
-            [stencil.core :as stencil]
+  (:require [stencil.core :as stencil]
             [clj-time.core :as t]
             [clj-time.format :as tf]
             [clojure.java.io :as io]
@@ -43,30 +42,15 @@
     (println "Creating directory" path)
     (.mkdirs (io/file path))))
 
-(defn- dependency-in? [artifact project]
-  (some #{artifact} (map first (:dependencies project))))
-
-(defn- postgres-url [project]
-  (if (dependency-in? 'hanami/hanami project)
-    "postgres://localhost/postgres"
-    "jdbc:postgresql://localhost/postgres"))
-
-(defn- dev-database-url [project]
-  (condp dependency-in? project
-    'org.postgresql/postgresql (postgres-url project)
-    'org.xerial/sqlite-jdbc    "jdbc:sqlite:db/dev.sqlite"
-    nil))
-
 (defn locals
   "Generate local files: profiles.clj, dev/local.clj and .dir-locals.el."
   []
-  (let [project (project/read-raw "project.clj")]
-    (doto {:database-url (dev-database-url project)}
-      (create-file "duct/generate/templates/locals/local.clj" "dev/src/local.clj")
-      (create-file "duct/generate/templates/locals/local.edn" "dev/resources/local.edn")
-      (create-file "duct/generate/templates/locals/profiles.clj" "profiles.clj")
-      (create-file "duct/generate/templates/locals/dir-locals.el" ".dir-locals.el"))
-    nil))
+  (doto {}
+    (create-file "duct/generate/templates/locals/local.clj" "dev/src/local.clj")
+    (create-file "duct/generate/templates/locals/local.edn" "dev/resources/local.edn")
+    (create-file "duct/generate/templates/locals/profiles.clj" "profiles.clj")
+    (create-file "duct/generate/templates/locals/dir-locals.el" ".dir-locals.el"))
+  nil)
 
 (defn- assert-ns-prefix []
   (assert *ns-prefix* "duct.generate/*ns-prefix* not set"))

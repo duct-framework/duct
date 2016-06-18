@@ -44,4 +44,6 @@
                   :content-types          true
                   :default-charset        "utf-8"}}}}}
   :http
-  {:port http-port}}}
+  {:port http-port}<<#jdbc?>>
+  :db
+  {:uri db-uri}<</jdbc?>>}}

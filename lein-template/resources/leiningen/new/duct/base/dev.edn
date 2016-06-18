@@ -7,7 +7,9 @@
    {:functions {:stacktrace ring.middleware.stacktrace/wrap-stacktrace}
     :applied   ^:replace [:not-found <<#site?>>:webjars <</site?>>:ring-defaults <<#site?>>:route-aliases <</site?>>:stacktrace]}}
   :http
-  {:port 3000}<<#cljs?>>
+  {:port 3000}<<#jdbc?>>
+  :db
+  {:uri "<<dev-database>>"}<</jdbc?>><<#cljs?>>
   :figwheel
   {:css-dirs ["resources/<<dirs>>/public/css"]
    :builds

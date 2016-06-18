@@ -81,13 +81,15 @@
 
 (defmethod profile-data :postgres [_ name]
   {:jdbc? true
-   :postgres? true})
+   :postgres? true
+   :dev-database "jdbc:postgresql://localhost/postgres"})
 
 (defmethod profile-files :postgres [_ name] [])
 
 (defmethod profile-data :sqlite [_ _]
   {:jdbc? true
-   :sqlite? true})
+   :sqlite? true
+   :dev-database "jdbc:sqlite:db/dev.sqlite"})
 
 (defmethod profile-files :sqlite [_ _] ["db"])
 
