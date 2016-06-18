@@ -9,5 +9,6 @@ pom.xml.asc
 /.nrepl-port
 /.dir-locals.el
 /profiles.clj
-dev/local.clj{{#sqlite?}}
-db/dev.sqlite{{/sqlite?}}
+/dev/resources/local.edn
+/dev/src/local.clj{{#sqlite?}}
+/db/dev.sqlite{{/sqlite?}}

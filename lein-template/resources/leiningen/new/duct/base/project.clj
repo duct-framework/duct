@@ -57,7 +57,8 @@
                                   [com.cemerick/piggieback "0.2.1"]
                                   [duct/figwheel-component "0.3.2"]
                                   [figwheel "0.5.0-6"]{{/cljs?}}]
-                   :source-paths ["dev"]
+                   :source-paths   ["dev/src"]
+                   :resource-paths ["dev/resources"]
                    :repl-options {:init-ns user{{#cljs?}}
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}
                    :env {:port "3000"}}

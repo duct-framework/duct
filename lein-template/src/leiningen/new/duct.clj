@@ -28,10 +28,10 @@
   [["project.clj"                   (render "base/project.clj" data)]
    ["README.md"                     (render "base/README.md" data)]
    [".gitignore"                    (render "base/gitignore" data)]
-   ["dev/user.clj"                  (render "base/user.clj" data)]
-   ["dev/dev.clj"                   (render "base/dev.clj" data)]
-   ["dev/dev.edn"                   (render "base/dev.edn" data)]
-   ["dev/dev/tasks.clj"             (render "base/tasks.clj" data)]
+   ["dev/src/user.clj"              (render "base/user.clj" data)]
+   ["dev/src/dev.clj"               (render "base/dev.clj" data)]
+   ["dev/src/dev/tasks.clj"         (render "base/tasks.clj" data)]
+   ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/system.edn" (render "base/system.edn" data)]
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
    "src/{{dirs}}/boundary"
@@ -70,7 +70,7 @@
    :static? true})
 
 (defmethod profile-files :cljs [_ data]
-  [["dev/cljs/user.cljs" (render "cljs/user.cljs" data)]])
+  [["dev/src/cljs/user.cljs" (render "cljs/user.cljs" data)]])
 
 (defmethod profile-data :heroku [_ name]
   {:heroku? true
