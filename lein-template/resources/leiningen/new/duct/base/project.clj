@@ -41,7 +41,7 @@
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]{{#cljs?}}
-   :repl {:resource-paths ^:replace ["resources" "target/figwheel"]
+   :repl {:resource-paths ^:replace ["resources" "dev/resources" "target/figwheel"]
           :prep-tasks     ^:replace [["javac"] ["compile"]]}{{/cljs?}}
    :uberjar {:aot :all}
    :profiles/dev  {}
