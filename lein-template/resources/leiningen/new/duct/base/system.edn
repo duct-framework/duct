@@ -15,22 +15,22 @@
  {:app
   {:middleware
    {:functions
-    {:not-found     duct.middleware.not-found/wrap-not-found
+    {:hide-errors   duct.middleware.errors/wrap-hide-errors
+     :not-found     duct.middleware.not-found/wrap-not-found
+     :ring-defaults ring.middleware.defaults/wrap-defaults<<#site?>>
      :route-aliases duct.middleware.route-aliases/wrap-route-aliases
-     :hide-errors   duct.middleware.errors/wrap-hide-errors
-     :webjars       ring.middleware.webjars/wrap-webjars
-     :ring-defaults ring.middleware.defaults/wrap-defaults}
+     :webjars       ring.middleware.webjars/wrap-webjars<</site?>>}
     :applied
-    [:not-found :webjars :ring-defaults :route-aliases :hide-errors]
+    [:not-found <<#site?>>:webjars <</site?>>:ring-defaults <<#site?>>:route-aliases <</site?>>:hide-errors]
     :arguments
-    {:not-found     #resource "<<dirs>>/errors/404.html"
-     :hide-errors   #resource "<<dirs>>/errors/500.html"
-     :route-aliases {"/" "/index.html"}
+    {:not-found   <<^site?>>"Resource Not Found"<</site?>><<#site?>>  #resource "<<dirs>>/errors/404.html"<</site?>>
+     :hide-errors <<^site?>>"Internal Server Error"<</site?>><<#site?>>  #resource "<<dirs>>/errors/500.html"
+     :route-aliases {"/" "/index.html"}<</site?>>
      :ring-defaults
      {:params    {:urlencoded true
+                  :keywordize true<<#site?>>
                   :multipart  true
-                  :nested     true
-                  :keywordize true}
+                  :nested     true<</site?>>}<<#site?>>
       :cookies   true
       :session   {:flash true
                   :cookie-attrs {:http-only true}}
@@ -38,7 +38,7 @@
                   :xss-protection {:enable? true, :mode :block}
                   :frame-options  :sameorigin
                   :content-type-options :nosniff}
-      :static    {:resources "<<dirs>>/public"}
+      :static    {:resources "<<dirs>>/public"}<</site?>>
       :responses {:not-modified-responses true
                   :absolute-redirects     true
                   :content-types          true
