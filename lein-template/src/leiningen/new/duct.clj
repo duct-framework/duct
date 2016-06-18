@@ -30,7 +30,6 @@
    [".gitignore"                    (render "base/gitignore" data)]
    ["dev/src/user.clj"              (render "base/user.clj" data)]
    ["dev/src/dev.clj"               (render "base/dev.clj" data)]
-   ["dev/src/dev/tasks.clj"         (render "base/tasks.clj" data)]
    ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/system.edn" (render "base/system.edn" data)]
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
