@@ -4,14 +4,15 @@
               [duct.util.runtime :refer [add-shutdown-hook]]
               [duct.util.system :refer [load-system]]
               [environ.core :refer [env]]
-              [clojure.java.io :as io]))
+              [clojure.java.io :as io]{{#jdbc?}}{{#heroku?}}
+              [hanami.core :as hanami]{{/heroku?}}{{/jdbc?}}))
 
-(def env-bindings
+(defn env-bindings []
   {'http-port (Integer/parseInt (:port env "3000")){{#jdbc?}}
-   'db-uri    (:database-url env){{/jdbc?}}})
+   'db-uri    {{^heroku?}}(:database-url env){{/heroku?}}{{#heroku?}}(hanami/jdbc-uri (:database-url env)){{/heroku?}}{{/jdbc?}}})
 
 (defn -main [& args]
-  (let [system (load-system [(io/resource "{{dirs}}/system.edn")] env-bindings)]
+  (let [system (load-system [(io/resource "{{dirs}}/system.edn")] (env-bindings))]
     (println "Starting HTTP server on port" (-> system :http :port))
     (add-shutdown-hook ::stop-system #(component/stop system))
     (component/start system)))
