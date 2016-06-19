@@ -23,4 +23,4 @@
    (rollback 1))
   ([x]
    (require '[duct.component.ragtime :as ragtime])
-   (eval '(-> system :ragtime ragtime/reload (ragtime/rollback x)))))
+   (eval `(-> system :ragtime ragtime/reload (ragtime/rollback ~x)))))

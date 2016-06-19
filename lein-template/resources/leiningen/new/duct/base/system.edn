@@ -46,4 +46,6 @@
   :http
   {:port http-port}<<#jdbc?>>
   :db
-  {:uri db-uri}<</jdbc?>>}}
+  {:uri db-uri}<</jdbc?>><<#ragtime?>>
+  :ragtime
+  {:resource-path "<<dirs>>/migrations"}}<</ragtime?>>}
