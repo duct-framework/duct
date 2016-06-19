@@ -7,10 +7,10 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/tools.macro "0.1.5"]
                  [com.stuartsierra/component "0.3.1"]
-                 [compojure "1.5.0"]
+                 [compojure "1.5.1"]
                  [environ "1.0.3"]
                  [medley "0.8.2"]
                  [meta-merge "0.1.1"]
-                 [ring/ring-core "1.4.0"]]
+                 [ring/ring-core "1.5.0"]]
   :profiles
   {:dev {:dependencies [[ring/ring-mock "0.3.0"]]}})

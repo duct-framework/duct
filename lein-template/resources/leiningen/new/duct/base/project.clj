@@ -5,13 +5,13 @@
   :dependencies [[org.clojure/clojure "1.8.0"]{{#cljs?}}
                  [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.1"]
-                 [compojure "1.5.0"]
+                 [compojure "1.5.1"]
                  [duct "0.7.0"]
                  [environ "1.0.3"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
                  [meta-merge "0.1.1"]
-                 [ring "1.4.0"]
-                 [ring/ring-defaults "0.2.0"]
+                 [ring "1.5.0"]
+                 [ring/ring-defaults "0.2.1"]
                  [ring-jetty-component "0.3.1"]{{#site?}}
                  [ring-webjars "0.1.1"]
                  [org.slf4j/slf4j-nop "1.7.21"]
