@@ -48,4 +48,4 @@
   :db
   {:uri db-uri}<</jdbc?>><<#ragtime?>>
   :ragtime
-  {:resource-path "<<dirs>>/migrations"}}<</ragtime?>>}
+  {:resource-path "<<dirs>>/migrations"}<</ragtime?>>}}
