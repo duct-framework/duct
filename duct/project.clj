@@ -10,7 +10,7 @@
                  [compojure "1.5.1"]
                  [environ "1.0.3"]
                  [medley "0.8.2"]
-                 [meta-merge "0.1.1"]
+                 [meta-merge "1.0.0"]
                  [ring/ring-core "1.5.0"]]
   :profiles
   {:dev {:dependencies [[ring/ring-mock "0.3.0"]]}})
