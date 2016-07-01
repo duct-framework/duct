@@ -69,6 +69,11 @@ library. **Components** handle the lifecycle of the web server, and
 connections to other services and databases. It's highly recommended
 you avoid any global state, and even dynamic bindings are discouraged.
 
+Components are grouped into a **system**. In Duct, the system is
+created from one or more system definition files, written in [edn][].
+These files define the components in the system, the dependencies
+between components, and how they are configured.
+
 The routes of the application are divided into **endpoints**. These
 are functions that take a component map, and return a [Ring][] handler
 function. Duct therefore relies on closures and lexical scoping to
@@ -86,6 +91,7 @@ Protocols can be mocked, allowing efficient internal testing.
 [heroku]:    https://www.heroku.com/
 [docker]:    https://www.docker.com/
 [component]: https://github.com/stuartsierra/component
+[edn]:       https://github.com/edn-format/edn
 [ring]:      https://github.com/ring-clojure/ring
 
 
