@@ -111,11 +111,13 @@ out of version control.
 {{project}}
 ├── README.md
 ├── dev
-│   ├── dev
-│   │   ├── tasks.clj
-│   │   └── local.clj *
-│   ├── dev.clj
-│   └── user.clj
+│   ├── resources
+│   │   ├── dev.edn
+│   │   └── local.edn *
+│   └── src
+│       ├── dev.clj
+│       ├── local.clj *
+│       └── user.clj
 ├── profiles.clj *
 ├── project.clj
 ├── resources
@@ -124,18 +126,17 @@ out of version control.
 │       │   └── {{endpoint}}
 │       ├── errors
 │       ├── migrations
-│       └── public
+│       ├── public
+│       └── system.edn
 ├── src
 │   └── {{project}}
 │       ├── boundary
 │       │   └── {{boundary}}.clj
 │       ├── component
 │       │   └── {{component}}.clj
-│       ├── config.clj
 │       ├── endpoint
 │       │   └── {{endpoint}}.clj
-│       ├── main.clj
-│       └── system.clj
+│       └── main.clj
 └── test
     └── {{project}}
         ├── boundary
