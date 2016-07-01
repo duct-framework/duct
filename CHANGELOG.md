@@ -1,3 +1,11 @@
+## 0.8.0 (2016-07-01)
+
+* Replaced manual system construction with `duct.util.system/load-system`
+* Added `dev/src` and `dev/resources` directories to template
+* Moved `dev/user.clj` and `dev/dev.clj` to `dev/src`
+* Moved `dev/dev/locals.clj` to `dev/src/locals.clj`
+* Removed `dev/dev/tasks.clj` in favor of `duct.util.repl` namespace
+
 ## 0.7.0 (2016-06-03)
 
 * Added `duct.generate/boundary` for generating boundary protocols

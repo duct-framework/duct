@@ -1,4 +1,4 @@
-(defproject duct/generate "0.7.0"
+(defproject duct/generate "0.8.0"
   :description "Duct generators for lein-generate"
   :url "https://github.com/weavejester/duct"
   :scm {:dir ".."}
