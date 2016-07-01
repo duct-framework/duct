@@ -9,7 +9,6 @@
                  [duct "0.7.0"]
                  [environ "1.0.3"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
-                 [meta-merge "1.0.0"]
                  [ring "1.5.0"]
                  [ring/ring-defaults "0.2.1"]
                  [ring-jetty-component "0.3.1"]{{#site?}}
