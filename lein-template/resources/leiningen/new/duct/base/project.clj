@@ -33,11 +33,10 @@
            :source-paths ["src"]
            :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
                       :optimizations :advanced}}}}{{/cljs?}}
-  :aliases {"run-task" ["with-profile" "+repl" "run" "-m"]
-            "setup"    ["run-task" "dev.tasks/setup"]{{#heroku?}}
-            "deploy"   ["do"
-                        ["vcs" "assert-committed"]
-                        ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
+  :aliases {"setup"  ["run" "-m" "duct.util.repl/setup"]{{#heroku?}}
+            "deploy" ["do"
+                      ["vcs" "assert-committed"]
+                      ["vcs" "push" "heroku" "master"]]{{/heroku?}}}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]{{#cljs?}}
