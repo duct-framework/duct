@@ -99,7 +99,6 @@ Protocols can be mocked, allowing efficient internal testing.
 
 * [Getting Started](https://github.com/weavejester/duct/wiki/Getting-Started)
 * [Configuration](https://github.com/weavejester/duct/wiki/Configuration)
-* [Components](https://github.com/weavejester/duct/wiki/Components)
 * [Compatible Libraries](https://github.com/weavejester/duct/wiki/Compatible-Libraries)
 
 
