@@ -10,7 +10,7 @@
 (defn -main [& args]
   (let [bindings {'http-port (Integer/parseInt (:port env "3000")){{#jdbc?}}
                   'db-uri    {{^heroku?}}(:database-url env){{/heroku?}}{{#heroku?}}(hanami/jdbc-uri (:database-url env)){{/heroku?}}{{/jdbc?}}}
-        system   (load-system [(io/resource "{{dirs}}/system.edn")] bindings)]
-    (println "Starting HTTP server on port" (-> system :http :port))
+        system   (->> (load-system [(io/resource "{{dirs}}/system.edn")] bindings)
+                      (component/start))]
     (add-shutdown-hook ::stop-system #(component/stop system))
-    (component/start system)))
+    (println "Started HTTP server on port" (-> system :http :port))))
