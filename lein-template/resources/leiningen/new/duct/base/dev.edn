@@ -1,10 +1,10 @@
 {{=<< >>=}}
 {<<#cljs?>>:components
- {:figwheel duct.component.figwheel/server}
+ {:figwheel #var duct.component.figwheel/server}
  <</cljs?>>:config
  {:app
   {:middleware
-   {:functions {:stacktrace ring.middleware.stacktrace/wrap-stacktrace}
+   {:functions {:stacktrace #var ring.middleware.stacktrace/wrap-stacktrace}
     :applied   ^:replace [:not-found <<#site?>>:webjars <</site?>>:ring-defaults <<#site?>>:route-aliases <</site?>>:stacktrace]}}
   :http
   {:port 3000}<<#jdbc?>>

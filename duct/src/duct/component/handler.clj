@@ -11,7 +11,7 @@
        (:endpoints component (find-endpoint-keys component))))
 
 (defn- middleware-fn [f args]
-  (let [f    (if (symbol? f) (ns/load-var f) f)
+  (let [f    (ns/resolve-var f)
         args (if (or (nil? args) (seq? args)) args (list args))]
     #(apply f % args)))
 

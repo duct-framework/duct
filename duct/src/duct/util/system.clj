@@ -22,10 +22,12 @@
        (walk/postwalk #(bindings % %))))
 
 (defn- add-components [system components config]
-  (reduce-kv (fn [m k v] (assoc m k ((ns/load-var v) (config k)))) system components))
+  (reduce-kv (fn [m k v] (assoc m k ((ns/resolve-var v) (config k)))) system components))
 
 (defn- add-endpoints [system endpoints]
-  (reduce-kv (fn [m k v] (assoc m k (endpoint-component (ns/load-var v)))) system endpoints))
+  (reduce-kv (fn [m k v] (assoc m k (endpoint-component (ns/resolve-var v))))
+             system
+             endpoints))
 
 (defn- dissoc-all [m ks]
   (apply dissoc m ks))
