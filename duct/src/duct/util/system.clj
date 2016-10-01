@@ -13,6 +13,9 @@
 (defmethod reader 'resource [_ value]
   (io/resource value))
 
+(defmethod reader 'var [_ value]
+  (ns/load-var value))
+
 (defn read-config [source bindings]
   (->> (slurp source)
        (edn/read-string {:default reader})
