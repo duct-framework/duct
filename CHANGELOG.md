@@ -1,3 +1,8 @@
+## 0.8.1 (2016-10-01)
+
+* Added var tag to configuration and deprecated use of raw symbols
+* Fixed bug with shutdown hook not stopping running system
+
 ## 0.8.0 (2016-07-01)
 
 * Replaced manual system construction with `duct.util.system/load-system`
