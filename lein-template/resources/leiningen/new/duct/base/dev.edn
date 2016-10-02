@@ -13,7 +13,8 @@
   :figwheel
   {:css-dirs ["resources/<<dirs>>/public/css"]
    :builds
-   [{:source-paths ["src" "dev"]
+   [{:id "dev"
+     :source-paths ["src" "dev"]
      :build-options
      {:optimizations :none
       :main "cljs.user"

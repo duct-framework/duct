@@ -53,8 +53,8 @@
                                   [kerodon "0.8.0"]{{#cljs?}}
                                   [binaryage/devtools "0.8.2"]
                                   [com.cemerick/piggieback "0.2.1"]
-                                  [duct/figwheel-component "0.3.2"]
-                                  [figwheel "0.5.0-6"]{{/cljs?}}]
+                                  [duct/figwheel-component "0.3.3"]
+                                  [figwheel "0.5.8"]{{/cljs?}}]
                    :source-paths   ["dev/src"]
                    :resource-paths ["dev/resources"]
                    :repl-options {:init-ns user{{#cljs?}}
