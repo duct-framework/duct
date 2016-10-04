@@ -28,10 +28,12 @@
   :prep-tasks [["javac"] ["cljsbuild" "once"] ["compile"]]
   :cljsbuild
   {:builds
-   {:main {:jar true
-           :source-paths ["src"]
-           :compiler {:output-to "target/cljsbuild/{{dirs}}/public/js/main.js"
-                      :optimizations :advanced}}}}{{/cljs?}}
+   [{:id "main"
+     :jar true
+     :source-paths ["src"]
+     :compiler
+     {:output-to     "target/cljsbuild/{{dirs}}/public/js/main.js"
+      :optimizations :advanced}}]}{{/cljs?}}
   :aliases {"setup"  ["run" "-m" "duct.util.repl/setup"]{{#heroku?}}
             "deploy" ["do"
                       ["vcs" "assert-committed"]
