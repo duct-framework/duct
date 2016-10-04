@@ -1,3 +1,7 @@
+## 0.8.2 (2016-10-03)
+
+* Updated dependencies
+
 ## 0.8.1 (2016-10-01)
 
 * Added var tag to configuration and deprecated use of raw symbols
