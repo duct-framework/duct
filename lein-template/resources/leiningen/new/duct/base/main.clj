@@ -1,10 +1,11 @@
 (ns {{namespace}}.main
     (:gen-class)
     (:require [com.stuartsierra.component :as component]
+              [clojure.java.io :as io]
               [duct.util.runtime :refer [add-shutdown-hook]]
               [duct.util.system :refer [load-system]]
               [environ.core :refer [env]]
-              [clojure.java.io :as io]{{#jdbc?}}{{#heroku?}}
+              [taoensso.timbre :as log]{{#jdbc?}}{{#heroku?}}
               [hanami.core :as hanami]{{/heroku?}}{{/jdbc?}}))
 
 (defn -main [& args]
@@ -13,4 +14,4 @@
         system   (->> (load-system [(io/resource "{{dirs}}/system.edn")] bindings)
                       (component/start))]
     (add-shutdown-hook ::stop-system #(component/stop system))
-    (println "Started HTTP server on port" (-> system :http :port))))
+    (log/info "Started HTTP server on port" (-> system :http :port))))

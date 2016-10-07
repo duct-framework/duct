@@ -5,6 +5,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]{{#cljs?}}
                  [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
                  [com.stuartsierra/component "0.3.1"]
+                 [com.taoensso/timbre "4.7.4"]
                  [compojure "1.5.1"]
                  [duct "0.8.2"]
                  [environ "1.1.0"]{{#heroku?}}{{#jdbc?}}
