@@ -25,14 +25,15 @@
      :defaults    "api-defaults"}))
 
 (defmethod profile-files :base [_ data]
-  [["project.clj"                   (render "base/project.clj" data)]
-   ["README.md"                     (render "base/README.md" data)]
-   [".gitignore"                    (render "base/gitignore" data)]
-   ["dev/src/user.clj"              (render "base/user.clj" data)]
-   ["dev/src/dev.clj"               (render "base/dev.clj" data)]
-   ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
-   ["resources/{{dirs}}/system.edn" (render "base/system.edn" data)]
-   ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
+  [["project.clj"                    (render "base/project.clj" data)]
+   ["README.md"                      (render "base/README.md" data)]
+   [".gitignore"                     (render "base/gitignore" data)]
+   ["dev/src/user.clj"               (render "base/user.clj" data)]
+   ["dev/src/dev.clj"                (render "base/dev.clj" data)]
+   ["dev/resources/dev.edn"          (render "base/dev.edn" data)]
+   ["resources/{{dirs}}/system.edn"  (render "base/system.edn" data)]
+   ["resources/{{dirs}}/logging.edn" (render "base/logging.edn" data)]
+   ["src/{{dirs}}/main.clj"          (render "base/main.clj" data)]
    "src/{{dirs}}/boundary"
    "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"

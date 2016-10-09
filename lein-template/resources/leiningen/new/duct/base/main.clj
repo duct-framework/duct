@@ -2,11 +2,14 @@
     (:gen-class)
     (:require [com.stuartsierra.component :as component]
               [clojure.java.io :as io]
+              [duct.util.logging :as logging]
               [duct.util.runtime :refer [add-shutdown-hook]]
               [duct.util.system :refer [load-system]]
               [environ.core :refer [env]]
               [taoensso.timbre :as log]{{#jdbc?}}{{#heroku?}}
               [hanami.core :as hanami]{{/heroku?}}{{/jdbc?}}))
+
+(logging/load-config! [(io/resource "{{dirs}}/logging.edn")])
 
 (defn -main [& args]
   (let [bindings {'http-port (Integer/parseInt (:port env "3000")){{#jdbc?}}

@@ -1,25 +1,8 @@
 (ns duct.util.system
-  (:require [clojure.edn :as edn]
-            [clojure.java.io :as io]
-            [clojure.walk :as walk]
-            [com.stuartsierra.component :as component]
+  (:require [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
-            [duct.util.namespace :as ns]
-            [meta-merge.core :refer [meta-merge]]))
-
-(defmulti reader
-  (fn [tag value] tag))
-
-(defmethod reader 'resource [_ value]
-  (io/resource value))
-
-(defmethod reader 'var [_ value]
-  (ns/load-var value))
-
-(defn read-config [source bindings]
-  (->> (slurp source)
-       (edn/read-string {:default reader})
-       (walk/postwalk #(bindings % %))))
+            [duct.util.config :as config]
+            [duct.util.namespace :as ns]))
 
 (defn- add-components [system components config]
   (reduce-kv (fn [m k v] (assoc m k ((ns/resolve-var v) (config k)))) system components))
@@ -45,7 +28,4 @@
   ([sources]
    (load-system sources {}))
   ([sources bindings]
-   (->> sources
-        (map #(read-config % bindings))
-        (apply meta-merge)
-        (build-system))))
+   (build-system (config/read-and-merge-configs sources bindings))))
