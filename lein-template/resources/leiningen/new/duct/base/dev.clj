@@ -6,16 +6,20 @@
             [clojure.java.io :as io]
             [com.stuartsierra.component :as component]
             [duct.generate :as gen]
+            [duct.util.config :as config]
             [duct.util.repl :refer [setup test cljs-repl migrate rollback]]
-            [duct.util.system :refer [load-system]]
+            [duct.util.system :as system]
             [reloaded.repl :refer [system init start stop go reset]]))
 
-(defn new-system []
-  (load-system (keep io/resource ["{{dirs}}/system.edn" "dev.edn" "local.edn"])))
+(defn build-system []
+  (->> ["{{dirs}}/system.edn" "dev.edn" "local.edn"]
+       (keep io/resource)
+       (apply config/read)
+       (system/build)))
 
 (when (io/resource "local.clj")
   (load "local"))
 
 (gen/set-ns-prefix '{{namespace}})
 
-(reloaded.repl/set-init! new-system)
+(reloaded.repl/set-init! build-system)

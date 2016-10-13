@@ -1,4 +1,5 @@
 (ns duct.util.config
+  (:refer-clojure :exclude [read])
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
             [clojure.walk :as walk]
@@ -14,12 +15,11 @@
 (defmethod reader 'var [_ value]
   (ns/load-var value))
 
-(defn read-config [source bindings]
-  (->> (slurp source)
-       (edn/read-string {:default reader})
-       (walk/postwalk #(bindings % %))))
+(defn read
+  ([source]
+   (edn/read-string {:default reader} (slurp source)))
+  ([source & sources]
+   (apply meta-merge (read source) (map read sources))))
 
-(defn read-and-merge-configs [sources bindings]
-  (->> sources
-       (map #(read-config % bindings))
-       (apply meta-merge)))
+(defn bind [config bindings]
+  (walk/postwalk #(bindings % %) config))

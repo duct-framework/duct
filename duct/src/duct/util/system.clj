@@ -1,7 +1,6 @@
 (ns duct.util.system
   (:require [com.stuartsierra.component :as component]
             [duct.component.endpoint :refer [endpoint-component]]
-            [duct.util.config :as config]
             [duct.util.namespace :as ns]))
 
 (defn- add-components [system components config]
@@ -15,7 +14,7 @@
 (defn- dissoc-all [m ks]
   (apply dissoc m ks))
 
-(defn build-system [{:keys [components endpoints dependencies config]}]
+(defn build [{:keys [components endpoints dependencies config]}]
   (-> (component/system-map)
       (add-components components config)
       (add-endpoints endpoints)
@@ -23,9 +22,3 @@
       (into (-> config
                 (dissoc-all (keys components))
                 (dissoc-all (keys endpoints))))))
-
-(defn load-system
-  ([sources]
-   (load-system sources {}))
-  ([sources bindings]
-   (build-system (config/read-and-merge-configs sources bindings))))

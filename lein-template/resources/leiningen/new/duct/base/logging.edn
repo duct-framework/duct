@@ -1,5 +1,0 @@
-{:level :info
- :appenders
- {:println
-  {:function  #var taoensso.timbre/println-appender
-   :arguments {:stream :auto}}}}
