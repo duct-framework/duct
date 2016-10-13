@@ -12,7 +12,7 @@
             [reloaded.repl :refer [system init start stop go reset]]))
 
 (defn build-system []
-  (->> ["{{dirs}}/system.edn" "dev.edn" "local.edn"]
+  (->> ["{{dirs}}/config.edn" "dev.edn" "local.edn"]
        (keep io/resource)
        (apply config/read)
        (system/build)))

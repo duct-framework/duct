@@ -11,7 +11,7 @@
               [hanami.core :as hanami]{{/heroku?}}{{/jdbc?}}))
 
 (defn- read-config []
-  (-> (config/read (io/resource "{{dirs}}/system.edn"))
+  (-> (config/read (io/resource "{{dirs}}/config.edn"))
       (config/bind {'http-port (Integer/parseInt (:port env "3000")){{#jdbc?}}
                     'db-uri    {{^heroku?}}(:database-url env){{/heroku?}}{{#heroku?}}(hanami/jdbc-uri (:database-url env)){{/heroku?}}{{/jdbc?}}})))
 
