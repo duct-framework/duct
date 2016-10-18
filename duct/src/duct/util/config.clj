@@ -4,6 +4,7 @@
             [clojure.java.io :as io]
             [clojure.walk :as walk]
             [duct.util.namespace :as ns]
+            [medley.core :as m]
             [meta-merge.core :refer [meta-merge]]))
 
 (defmulti reader
@@ -15,11 +16,21 @@
 (defmethod reader 'var [_ value]
   (ns/load-var value))
 
-(defn read
-  ([source]
-   (edn/read-string {:default reader} (slurp source)))
-  ([source & sources]
-   (apply meta-merge (read source) (map read sources))))
+(defn- replace-namespaced-keywords [config]
+  (m/map-vals
+   (fn [val]
+     (walk/postwalk
+      #(if (and (keyword? %) (namespace %)) (config % %) %)
+      val))
+   config))
+
+(defn read* [source]
+  (edn/read-string {:default reader} (slurp source)))
+
+(defn read [& sources]
+  (->> (map read* sources)
+       (apply meta-merge)
+       (replace-namespaced-keywords)))
 
 (defn bind [config bindings]
   (walk/postwalk #(bindings % %) config))
