@@ -34,3 +34,6 @@
 
 (defn bind [config bindings]
   (walk/postwalk #(bindings % %) config))
+
+(defn apply-fn [fn-config]
+  (apply (:fn fn-config) (:args fn-config)))

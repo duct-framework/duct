@@ -3,15 +3,10 @@
             [medley.core :as m]
             [taoensso.timbre :as timbre]))
 
-(defn- duct->timbre-appender [{:keys [function arguments]}]
-  (if (or (nil? arguments) (seq? arguments))
-    (apply function arguments)
-    (function arguments)))
-
 (defn- duct->timbre-config [config]
   (-> config
       (select-keys [:level :ns-whitelist :ns-blacklist :appenders])
-      (update :appenders #(m/map-vals duct->timbre-appender %))))
+      (update :appenders #(m/map-vals config/apply-fn %))))
 
 (defn set-config! [{:keys [application/logging]}]
   (timbre/set-config! (duct->timbre-config logging)))
