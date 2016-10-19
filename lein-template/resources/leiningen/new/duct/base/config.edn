@@ -1,5 +1,5 @@
 {{=<< >>=}}
-{:logging
+{:application/logging
  {:level :info
   :appenders {:println :appender/println}}
  :appender/println

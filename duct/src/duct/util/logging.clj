@@ -13,5 +13,5 @@
       (select-keys [:level :ns-whitelist :ns-blacklist :appenders])
       (update :appenders #(m/map-vals duct->timbre-appender %))))
 
-(defn set-config! [{:keys [logging]}]
+(defn set-config! [{:keys [application/logging]}]
   (timbre/set-config! (duct->timbre-config logging)))
