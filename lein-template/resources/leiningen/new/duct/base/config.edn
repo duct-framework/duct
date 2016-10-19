@@ -2,22 +2,24 @@
 {:application/logging
  {:level :info
   :appenders {:println :appender/println}}
+
  :appender/println
  {:function  #var taoensso.timbre/println-appender
   :arguments {:stream :auto}}
- :components
+
+ :system/components
  {:app  #var duct.component.handler/handler-component
   :http #var ring.component.jetty/jetty-server<<#jdbc?>>
   :db   #var duct.component.hikaricp/hikaricp<</jdbc?>><<#ragtime?>>
   :ragtime #var duct.component.ragtime/ragtime<</ragtime?>>}
- :endpoints
+ :system/endpoints
  {<<#example?>>:example #var <<namespace>>.endpoint.example/example-endpoint<</example?>>}
- :dependencies
+ :system/dependencies
  {:http [:app]
   :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
   :ragtime [:db]<</ragtime?>><<#example?>>
   :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}
- :config
+ :system/config
  {:app
   {:middleware
    {:functions

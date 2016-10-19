@@ -14,7 +14,10 @@
 (defn- dissoc-all [m ks]
   (apply dissoc m ks))
 
-(defn build [{:keys [components endpoints dependencies config]}]
+(defn build [{:keys [system/components
+                     system/endpoints
+                     system/dependencies
+                     system/config]}]
   (-> (component/system-map)
       (add-components components config)
       (add-endpoints endpoints)

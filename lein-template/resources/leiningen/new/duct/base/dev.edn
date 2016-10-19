@@ -1,7 +1,7 @@
 {{=<< >>=}}
-{<<#cljs?>>:components
+{<<#cljs?>>:system/components
  {:figwheel #var duct.component.figwheel/server}
- <</cljs?>>:config
+ <</cljs?>>:system/config
  {:app
   {:middleware
    {:functions {:stacktrace #var ring.middleware.stacktrace/wrap-stacktrace}
