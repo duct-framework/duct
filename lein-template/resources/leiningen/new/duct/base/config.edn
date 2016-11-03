@@ -8,10 +8,10 @@
   :args [{:stream :auto}]}
 
  :system/components
- {:app  #var duct.component.handler/handler-component
-  :http #var ring.component.jetty/jetty-server<<#jdbc?>>
-  :db   #var duct.component.hikaricp/hikaricp<</jdbc?>><<#ragtime?>>
-  :ragtime #var duct.component.ragtime/ragtime<</ragtime?>>}
+ {:app  :component/handler
+  :http :component/jetty<<#jdbc?>>
+  :db   :component/hikaricp<</jdbc?>><<#ragtime?>>
+  :ragtime :component/ragtime<</ragtime?>>}
  :system/endpoints
  {<<#example?>>:example #var <<namespace>>.endpoint.example/example-endpoint<</example?>>}
  :system/dependencies
@@ -19,8 +19,22 @@
   :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
   :ragtime [:db]<</ragtime?>><<#example?>>
   :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}
- :system/config
- {:app
+
+ :component/jetty
+ {:constructor #var ring.component.jetty/jetty-server
+  :options     {:port http-port}}<<#jdbc?>>
+
+ :component/hikaricp
+ {:constructor #var duct.component.hikaricp/hikaricp
+  :options     {:uri db-uri}}<</jdbc?>><<#ragtime?>>
+
+ :component/ragtime
+ {:constructor #var duct.component.ragtime/ragtime
+  :options     {:resource-path "<<dirs>>/migrations"}}<</ragtime?>>
+
+ :component/handler
+ {:constructor #var duct.component.handler/handler-component
+  :options
   {:middleware
    {:functions
     {:hide-errors   #var duct.middleware.errors/wrap-hide-errors
@@ -50,10 +64,4 @@
       :responses {:not-modified-responses true
                   :absolute-redirects     true
                   :content-types          true
-                  :default-charset        "utf-8"}}}}}
-  :http
-  {:port http-port}<<#jdbc?>>
-  :db
-  {:uri db-uri}<</jdbc?>><<#ragtime?>>
-  :ragtime
-  {:resource-path "<<dirs>>/migrations"}<</ragtime?>>}}
+                  :default-charset        "utf-8"}}}}}}}
