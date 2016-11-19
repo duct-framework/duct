@@ -17,12 +17,13 @@
   (ns/load-var value))
 
 (defn- replace-namespaced-keywords [config]
-  (m/map-vals
-   (fn [val]
-     (walk/postwalk
-      #(if (and (keyword? %) (namespace %)) (config % %) %)
-      val))
-   config))
+  (letfn [(walk-and-replace [subconfig]
+            (walk/postwalk
+             #(if (and (keyword? %) (namespace %))
+                (walk-and-replace (config % %))
+                %)
+             subconfig))]
+    (m/map-vals walk-and-replace config)))
 
 (defn read* [source]
   (edn/read-string {:default reader} (slurp source)))

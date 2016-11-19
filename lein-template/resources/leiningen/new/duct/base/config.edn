@@ -36,32 +36,42 @@
  {:constructor #var duct.component.handler/handler-component
   :options
   {:middleware
-   {:functions
-    {:hide-errors   #var duct.middleware.errors/wrap-hide-errors
-     :not-found     #var duct.middleware.not-found/wrap-not-found
-     :ring-defaults #var ring.middleware.defaults/wrap-defaults<<#site?>>
-     :route-aliases #var duct.middleware.route-aliases/wrap-route-aliases
-     :webjars       #var ring.middleware.webjars/wrap-webjars<</site?>>}
-    :applied
-    [:not-found <<#site?>>:webjars <</site?>>:ring-defaults <<#site?>>:route-aliases <</site?>>:hide-errors]
-    :arguments
-    {:not-found   <<^site?>>"Resource Not Found"<</site?>><<#site?>>  #resource "<<dirs>>/errors/404.html"<</site?>>
-     :hide-errors <<^site?>>"Internal Server Error"<</site?>><<#site?>>  #resource "<<dirs>>/errors/500.html"
-     :route-aliases {"/" "/index.html"}<</site?>>
-     :ring-defaults
-     {:params    {:urlencoded true
-                  :keywordize true<<#site?>>
-                  :multipart  true
-                  :nested     true<</site?>>}<<#site?>>
-      :cookies   true
-      :session   {:flash true
-                  :cookie-attrs {:http-only true}}
-      :security  {:anti-forgery   true
-                  :xss-protection {:enable? true, :mode :block}
-                  :frame-options  :sameorigin
-                  :content-type-options :nosniff}
-      :static    {:resources "<<dirs>>/public"}<</site?>>
-      :responses {:not-modified-responses true
-                  :absolute-redirects     true
-                  :content-types          true
-                  :default-charset        "utf-8"}}}}}}}
+   [:middleware/not-found<<#site?>>
+    :middleware/webjars<</site?>>
+    :middleware/ring-defaults<<#site?>>
+    :middleware/route-aliases<</site?>>
+    :middleware/hide-errors]}}
+
+ :middleware/hide-errors
+ {:fn   #var duct.middleware.errors/wrap-hide-errors
+  :args [<<^site?>>"Internal Server Error"<</site?>><<#site?>>#resource "<<dirs>>/errors/500.html"<</site?>>]}
+
+ :middleware/not-found
+ {:fn   #var duct.middleware.not-found/wrap-not-found
+  :args [<<^site?>>"Resource Not Found"<</site?>><<#site?>>#resource "<<dirs>>/errors/404.html"<</site?>>]}<<#site?>>
+
+ :middleware/route-aliases
+ {:fn   #var duct.middleware.route-aliases/wrap-route-aliases
+  :args [{"/" "/index.html"}]}
+
+ :middleware/webjars
+ {:fn #var ring.middleware.webjars/wrap-webjars}<</site?>>
+
+ :middleware/ring-defaults
+ {:fn   #var ring.middleware.defaults/wrap-defaults
+  :args [{:params    {:urlencoded true
+                      :keywordize true<<#site?>>
+                      :multipart  true
+                      :nested     true<</site?>>}<<#site?>>
+          :cookies   true
+          :session   {:flash true
+                      :cookie-attrs {:http-only true}}
+          :security  {:anti-forgery   true
+                      :xss-protection {:enable? true, :mode :block}
+                      :frame-options  :sameorigin
+                      :content-type-options :nosniff}
+          :static    {:resources "<<dirs>>/public"}<</site?>>
+          :responses {:not-modified-responses true
+                      :absolute-redirects     true
+                      :content-types          true
+                      :default-charset        "utf-8"}}]}}
