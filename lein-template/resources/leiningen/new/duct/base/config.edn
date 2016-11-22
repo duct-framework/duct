@@ -12,8 +12,10 @@
   :http :component/jetty<<#jdbc?>>
   :db   :component/hikaricp<</jdbc?>><<#ragtime?>>
   :ragtime :component/ragtime<</ragtime?>>}
+
  :system/endpoints
  {<<#example?>>:example #var <<namespace>>.endpoint.example/example-endpoint<</example?>>}
+
  :system/dependencies
  {:http [:app]
   :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
