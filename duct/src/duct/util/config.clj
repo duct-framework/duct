@@ -19,8 +19,10 @@
 (defn- replace-namespaced-keywords [config]
   (letfn [(walk-and-replace [subconfig]
             (walk/postwalk
-             #(if (and (keyword? %) (namespace %))
-                (walk-and-replace (config % %))
+             #(if (and (keyword? %)
+                       (namespace %)
+                       (contains? config %))
+                (walk-and-replace (config %))
                 %)
              subconfig))]
     (m/map-vals walk-and-replace config)))
