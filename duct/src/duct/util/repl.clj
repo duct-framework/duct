@@ -1,6 +1,6 @@
 (ns duct.util.repl
   (:refer-clojure :exclude [test])
-  (:require [reloaded.repl :refer [system]]))
+  (:require [integrant.repl :refer [system]]))
 
 (defn setup []
   (require '[duct.generate :as gen])

@@ -9,6 +9,7 @@
                  [com.stuartsierra/component "0.3.1"]
                  [compojure "1.5.1"]
                  [environ "1.1.0"]
+                 [integrant "0.1.5"]
                  [medley "0.8.3"]
                  [meta-merge "1.0.0"]
                  [ring/ring-core "1.5.0"]]
