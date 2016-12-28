@@ -4,15 +4,15 @@
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]{{#cljs?}}
                  [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
-                 [com.stuartsierra/component "0.3.1"]
                  [com.taoensso/timbre "4.7.4"]
                  [compojure "1.5.1"]
                  [duct "0.8.2"]
+                 [duct/jetty-server "0.1.0-SNAPSHOT"]
                  [environ "1.1.0"]{{#heroku?}}{{#jdbc?}}
                  [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
+                 [integrant "0.1.5"]
                  [ring "1.5.0"]
-                 [ring/ring-defaults "0.2.1"]
-                 [ring-jetty-component "0.3.1"]{{#site?}}
+                 [ring/ring-defaults "0.2.1"]{{#site?}}
                  [ring-webjars "0.1.1"]
                  [org.slf4j/slf4j-nop "1.7.21"]
                  [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
@@ -48,7 +48,7 @@
    :profiles/dev  {}
    :profiles/test {}
    :project/dev   {:dependencies [[duct/generate "0.8.2"]
-                                  [reloaded.repl "0.2.3"]
+                                  [integrant/repl "0.1.0"]
                                   [org.clojure/tools.namespace "0.2.11"]
                                   [org.clojure/tools.nrepl "0.2.12"]
                                   [eftest "0.1.1"]

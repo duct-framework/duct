@@ -1,79 +1,56 @@
 {{=<< >>=}}
-{:application/logging
+{:duct.logging/timbre
  {:level :info
-  :appenders {:println :appender/println}}
+  :appenders {:println #ref :duct.logging.timbre/println}}
 
- :appender/println
- {:fn   #var taoensso.timbre/println-appender
-  :args [{:stream :auto}]}
+ :duct.logging.timbre/println
+ {:stream :auto}
 
- :system/components
- {:app  :component/handler
-  :http :component/jetty<<#jdbc?>>
-  :db   :component/hikaricp<</jdbc?>><<#ragtime?>>
-  :ragtime :component/ragtime<</ragtime?>>}
+ :duct.server/jetty
+ {:handler #ref :duct.core/handler
+  :port    http-port}<<#jdbc?>>
 
- :system/endpoints
- {<<#example?>>:example #var <<namespace>>.endpoint.example/example-endpoint<</example?>>}
+ :duct.database/hikaricp
+ {:uri db-uri}<</jdbc?>><<#ragtime?>>
 
- :system/dependencies
- {:http [:app]
-  :app  [<<#example?>>:example<</example?>>]<<#ragtime?>>
-  :ragtime [:db]<</ragtime?>><<#example?>>
-  :example [<<#jdbc?>>:db<</jdbc?>>]<</example?>>}
+ :duct.migrating/ragtime
+ {:resource-path "<<dirs>>/migrations"}<</ragtime?>>
 
- :component/jetty
- {:constructor #var ring.component.jetty/jetty-server
-  :options     {:port http-port}}<<#jdbc?>>
+ :duct.core/handler
+ {:endpoints  [<<#example?>>#ref <<namespace>>.endpoint/example<</example?>>]
+  :middleware [#ref :duct.middleware/not-found<<#site?>>
+               #ref :duct.middleware/webjars<</site?>>
+               #ref :duct.middleware/defaults<<#site?>>
+               #ref :duct.middleware/route-aliases<</site?>>
+               #ref :duct.middleware/hide-errors]}<<#example?>>
 
- :component/hikaricp
- {:constructor #var duct.component.hikaricp/hikaricp
-  :options     {:uri db-uri}}<</jdbc?>><<#ragtime?>>
+ <<namespace>>.endpoint/example {<<#jdbc?>>:db #ref :duct.database/hikaricp<</jdbc?>>}<</example?>>
 
- :component/ragtime
- {:constructor #var duct.component.ragtime/ragtime
-  :options     {:resource-path "<<dirs>>/migrations"}}<</ragtime?>>
+ :duct.middleware/hide-errors
+ {:response <<^site?>>"Internal Server Error"<</site?>><<#site?>>#resource "<<dirs>>/errors/500.html"<</site?>>}
 
- :component/handler
- {:constructor #var duct.component.handler/handler-component
-  :options
-  {:middleware
-   [:middleware/not-found<<#site?>>
-    :middleware/webjars<</site?>>
-    :middleware/ring-defaults<<#site?>>
-    :middleware/route-aliases<</site?>>
-    :middleware/hide-errors]}}
+ :duct.middleware/not-found
+ {:response <<^site?>>"Resource Not Found"<</site?>><<#site?>>#resource "<<dirs>>/errors/404.html"<</site?>>}<<#site?>>
 
- :middleware/hide-errors
- {:fn   #var duct.middleware.errors/wrap-hide-errors
-  :args [<<^site?>>"Internal Server Error"<</site?>><<#site?>>#resource "<<dirs>>/errors/500.html"<</site?>>]}
+ :duct.middleware/route-aliases
+ {"/" "/index.html"}
 
- :middleware/not-found
- {:fn   #var duct.middleware.not-found/wrap-not-found
-  :args [<<^site?>>"Resource Not Found"<</site?>><<#site?>>#resource "<<dirs>>/errors/404.html"<</site?>>]}<<#site?>>
+ :duct.middleware/webjars {}<</site?>>
 
- :middleware/route-aliases
- {:fn   #var duct.middleware.route-aliases/wrap-route-aliases
-  :args [{"/" "/index.html"}]}
-
- :middleware/webjars
- {:fn #var ring.middleware.webjars/wrap-webjars}<</site?>>
-
- :middleware/ring-defaults
- {:fn   #var ring.middleware.defaults/wrap-defaults
-  :args [{:params    {:urlencoded true
-                      :keywordize true<<#site?>>
-                      :multipart  true
-                      :nested     true<</site?>>}<<#site?>>
-          :cookies   true
-          :session   {:flash true
-                      :cookie-attrs {:http-only true}}
-          :security  {:anti-forgery   true
-                      :xss-protection {:enable? true, :mode :block}
-                      :frame-options  :sameorigin
-                      :content-type-options :nosniff}
-          :static    {:resources "<<dirs>>/public"}<</site?>>
-          :responses {:not-modified-responses true
-                      :absolute-redirects     true
-                      :content-types          true
-                      :default-charset        "utf-8"}}]}}
+ :duct.middleware/defaults
+ {:params    {:urlencoded true
+              :keywordize true<<#site?>>
+              :multipart  true
+              :nested     true<</site?>>}<<#site?>>
+  :cookies   true
+  :session   {:flash true
+              :cookie-attrs {:http-only true}}
+  :security  {:anti-forgery   true
+              :xss-protection {:enable? true, :mode :block}
+              :frame-options  :sameorigin
+              :content-type-options :nosniff}
+  :static    {:resources "<<dirs>>/public"}<</site?>>
+  :responses {:not-modified-responses true
+              :absolute-redirects     true
+              :content-types          true
+              :default-charset        "utf-8"}}}
