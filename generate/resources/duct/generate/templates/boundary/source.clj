@@ -6,6 +6,6 @@
   )
 
 (extend-protocol {{protocol}}
-  {{component-ns}}.{{component}}
+  {{component}}
   ;; boundary implementation
   )
