@@ -14,9 +14,12 @@
   [prefix]
   (alter-var-root #'*ns-prefix* (constantly (str prefix))))
 
+(defn- name-to-classname [name]
+  (str/replace name "-" "_"))
+
 (defn- name-to-path [name]
   (-> name
-      (str/replace "-" "_")
+      (name-to-classname)
       (str/replace "." java.io.File/separator)))
 
 (defn camel-case [hyphenated]
@@ -92,7 +95,8 @@
   [name component-sym]
   (assert-ns-prefix)
   (let [namespace           (str *ns-prefix* ".boundary." name)
-        [comp-ns comp-name] (split-component component-sym)]
+        [comp-ns comp-class] (split-component component-sym)
+        comp-name (name-to-classname (str comp-ns "." comp-class))]
     (doto {:name         (str name)
            :namespace    namespace
            :path         (name-to-path namespace)
