@@ -23,4 +23,5 @@
 (defn -main [& args]
   (doto (read-config)
     (logging/set-config!)
-    (run-system)))
+    (run-system))
+  (.. Thread currentThread join))
