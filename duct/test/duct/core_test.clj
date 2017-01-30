@@ -1,6 +1,6 @@
-(ns duct.util.runtime-test
+(ns duct.core-test
   (:require [clojure.test :refer :all]
-            [duct.util.runtime :refer [add-shutdown-hook remove-shutdown-hook]]))
+            [duct.core :refer :all]))
 
 (deftest test-add-shutdown-hook
   (let [f #(identity true)
