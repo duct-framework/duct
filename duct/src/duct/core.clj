@@ -1,6 +1,8 @@
 (ns duct.core
   (:require [compojure.core :as compojure]
-            [integrant.core :as ig]))
+            [clojure.java.io :as io]
+            [integrant.core :as ig]
+            [meta-merge.core :refer [meta-merge]]))
 
 (def ^:private hooks (atom {}))
 
@@ -16,6 +18,15 @@
 
 (defn remove-shutdown-hook [k]
   (swap! hooks dissoc k))
+
+(def ^:private readers
+  {'resource io/resource})
+
+(defn read-config
+  ([source]
+   (ig/read-string {:readers readers} (slurp source)))
+  ([source & sources]
+   (apply meta-merge (read-config source) (map read-config sources))))
 
 (defmethod ig/init-key ::handler [_ {:keys [endpoints middleware]}]
   ((apply comp (reverse middleware))
