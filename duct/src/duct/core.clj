@@ -28,6 +28,21 @@
   ([source & sources]
    (apply meta-merge (read-config source) (map read-config sources))))
 
+(defn- apply-modules [config]
+  (if (contains? config ::modules)
+    (let [config' (ig/init config [::modules])]
+      ((::modules config') config'))
+    config))
+
+(defn prep [config]
+  (-> config
+      (doto ig/load-namespaces)
+      (apply-modules)
+      (doto ig/load-namespaces)))
+
+(defmethod ig/init-key ::modules [_ modules]
+  (apply comp (reverse modules)))
+
 (defmethod ig/init-key ::handler [_ {:keys [endpoints middleware]}]
   ((apply comp (reverse middleware))
    (apply compojure/routes endpoints)))
