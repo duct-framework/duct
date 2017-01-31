@@ -1,7 +1,7 @@
-(ns duct.middleware.route-aliases-test
+(ns duct.middleware-test
   (:require [clojure.test :refer :all]
             [compojure.core :as compojure]
-            [duct.middleware.route-aliases :refer [wrap-route-aliases]]
+            [duct.middleware :refer :all]
             [ring.mock.request :as mock]))
 
 (deftest test-wrap-route-aliases
