@@ -1,6 +1,5 @@
 (ns duct.core
-  (:require [compojure.core :as compojure]
-            [clojure.java.io :as io]
+  (:require [clojure.java.io :as io]
             [integrant.core :as ig]
             [meta-merge.core :refer [meta-merge]]))
 
@@ -42,7 +41,3 @@
 
 (defmethod ig/init-key ::modules [_ modules]
   (apply comp (reverse modules)))
-
-(defmethod ig/init-key ::handler [_ {:keys [endpoints middleware]}]
-  ((apply comp (reverse middleware))
-   (apply compojure/routes endpoints)))
