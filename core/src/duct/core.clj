@@ -29,8 +29,8 @@
 
 (defn- apply-modules [config]
   (if (contains? config ::modules)
-    (let [config' (ig/init config [::modules])]
-      ((::modules config') config'))
+    (let [modules (::modules (ig/init config [::modules]))]
+      (modules config))
     config))
 
 (defn prep [config]
