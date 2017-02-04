@@ -1,27 +1,2 @@
 {{=<< >>=}}
-{:duct.server/jetty {:port 3000}<<#jdbc?>>
-
- :duct.database/hikaricp {:url "<<dev-database>>"}<</jdbc?>>
-
- :duct.core/handler
- {:middleware ^:replace [#ref :duct.middleware/not-found<<#site?>>
-                         #ref :duct.middleware/webjars<</site?>>
-                         #ref :duct.middleware/defaults<<#site?>>
-                         #ref :duct.middleware/route-aliases<</site?>>
-                         #ref :duct.middleware/stacktrace]}
-
- :duct.middleware/stacktrace {}<<#cljs?>>
-
- :duct.server/figwheel
- {:css-dirs ["resources/<<dirs>>/public/css"]
-  :builds
-  [{:id "dev"
-    :source-paths ["src" "dev"]
-    :build-options
-    {:optimizations :none
-     :main "cljs.user"
-     :asset-path "/js"
-     :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
-     :output-dir "target/figwheel/<<dirs>>/public/js"
-     :source-map true
-     :source-map-path "/js"}}]}<</cljs?>>}
+{}

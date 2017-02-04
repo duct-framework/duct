@@ -1,56 +1,6 @@
 {{=<< >>=}}
-{:duct.logging/timbre
- {:level :info
-  :appenders {:println #ref :duct.logging.timbre/println}}
+{:duct.core/modules
+ [#ref :duct.module.web/api]
 
- :duct.logging.timbre/println
- {:stream :auto}
-
- :duct.server/jetty
- {:handler #ref :duct.core/handler
-  :port    http-port}<<#jdbc?>>
-
- :duct.database/hikaricp
- {:uri db-uri}<</jdbc?>><<#ragtime?>>
-
- :duct.migrating/ragtime
- {:resource-path "<<dirs>>/migrations"}<</ragtime?>>
-
- :duct.core/handler
- {:endpoints  [<<#example?>>#ref <<namespace>>.endpoint/example<</example?>>]
-  :middleware [#ref :duct.middleware/not-found<<#site?>>
-               #ref :duct.middleware/webjars<</site?>>
-               #ref :duct.middleware/defaults<<#site?>>
-               #ref :duct.middleware/route-aliases<</site?>>
-               #ref :duct.middleware/hide-errors]}<<#example?>>
-
- <<namespace>>.endpoint/example {<<#jdbc?>>:db #ref :duct.database/hikaricp<</jdbc?>>}<</example?>>
-
- :duct.middleware/hide-errors
- {:response <<^site?>>"Internal Server Error"<</site?>><<#site?>>#resource "<<dirs>>/errors/500.html"<</site?>>}
-
- :duct.middleware/not-found
- {:response <<^site?>>"Resource Not Found"<</site?>><<#site?>>#resource "<<dirs>>/errors/404.html"<</site?>>}<<#site?>>
-
- :duct.middleware/route-aliases
- {"/" "/index.html"}
-
- :duct.middleware/webjars {}<</site?>>
-
- :duct.middleware/defaults
- {:params    {:urlencoded true
-              :keywordize true<<#site?>>
-              :multipart  true
-              :nested     true<</site?>>}<<#site?>>
-  :cookies   true
-  :session   {:flash true
-              :cookie-attrs {:http-only true}}
-  :security  {:anti-forgery   true
-              :xss-protection {:enable? true, :mode :block}
-              :frame-options  :sameorigin
-              :content-type-options :nosniff}
-  :static    {:resources "<<dirs>>/public"}<</site?>>
-  :responses {:not-modified-responses true
-              :absolute-redirects     true
-              :content-types          true
-              :default-charset        "utf-8"}}}
+ :duct.module.web/api
+ {:port 3000}}
