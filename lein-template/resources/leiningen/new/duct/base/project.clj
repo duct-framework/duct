@@ -7,8 +7,7 @@
                  [com.taoensso/timbre "4.7.4"]
                  [duct/core "0.9.0-SNAPSHOT"]
                  [duct/module.web "0.1.0-SNAPSHOT"]
-                 [environ "1.1.0"]{{#heroku?}}{{#jdbc?}}
-                 [hanami "0.1.0"]{{/jdbc?}}{{/heroku?}}
+                 [environ "1.1.0"]
                  [integrant "0.2.0"]{{#site?}}
                  [ring-webjars "0.1.1"]
                  [org.slf4j/slf4j-nop "1.7.21"]
