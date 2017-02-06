@@ -18,6 +18,12 @@
 (defn remove-shutdown-hook [k]
   (swap! hooks dissoc k))
 
+(defn not-in? [m ks]
+  (let [o (Object.)] (identical? (get-in m ks o) o)))
+
+(defn assoc-in-default [m ks default]
+  (cond-> m (not-in? m ks) (assoc-in ks default)))
+
 (def ^:private readers
   {'resource io/resource})
 
