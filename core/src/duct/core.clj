@@ -47,3 +47,6 @@
 
 (defmethod ig/init-key ::modules [_ modules]
   (apply comp (reverse modules)))
+
+(defmethod ig/init-key ::environment [_ env]
+  env)
