@@ -45,6 +45,11 @@
       (apply-modules)
       (doto ig/load-namespaces)))
 
+(defn exec [config]
+  (let [system (-> config prep ig/init)]
+    (add-shutdown-hook ::exec #(ig/halt! system))
+    (.. Thread currentThread join)))
+
 (defmethod ig/init-key ::modules [_ modules]
   (apply comp (reverse modules)))
 
