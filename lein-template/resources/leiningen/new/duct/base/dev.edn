@@ -1,2 +1,2 @@
 {{=<< >>=}}
-{}
+{:duct.core/environment :development}

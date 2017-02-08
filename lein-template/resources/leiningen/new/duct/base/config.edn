@@ -1,5 +1,7 @@
 {{=<< >>=}}
-{:duct.core/modules
+{:duct.core/environment :production
+
+ :duct.core/modules
  [#ref :duct.module.web/api]
 
  :duct.module.web/api
