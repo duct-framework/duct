@@ -22,6 +22,7 @@
      :namespace   main-ns
      :dirs        (name-to-path main-ns)
      :year        (year)
+     :web-module  :duct.module.web/api
      :defaults    "api-defaults"}))
 
 (defmethod profile-files :base [_ data]
@@ -52,9 +53,10 @@
        (resource "example/example.html")]])))
 
 (defmethod profile-data :site [_ _]
-  {:site?    true
-   :static?  true
-   :defaults "site-defaults"})
+  {:site?      true
+   :static?    true
+   :web-module :duct.module.web/site
+   :defaults   "site-defaults"})
 
 (defmethod profile-files :site [_ data]
   [["resources/{{dirs}}/public/favicon.ico"  (resource "site/favicon.ico")]

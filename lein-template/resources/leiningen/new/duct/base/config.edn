@@ -2,7 +2,7 @@
 {:duct.core/environment :production
 
  :duct.core/modules
- [#ref :duct.module.web/api]
+ [#ref <<web-module>>]
 
- :duct.module.web/api
- {:port 3000}}
+ <<web-module>>
+ {:server-port 3000}}
