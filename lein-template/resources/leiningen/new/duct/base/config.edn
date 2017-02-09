@@ -5,4 +5,5 @@
  [#ref <<web-module>>]
 
  <<web-module>>
- {:server-port 3000}}
+ {:server-port 3000<<#site?>>
+  :static-resources "<<dirs>>/public"<</site?>>}}
