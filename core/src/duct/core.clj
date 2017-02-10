@@ -22,7 +22,7 @@
 (defn remove-shutdown-hook
   "Remove a shutdown hook identified by the specified key."
   [key]
-  (swap! hooks dissoc k))
+  (swap! hooks dissoc key))
 
 (defn not-in?
   "Return true if the map, m, does not contain a nested value identified by a
