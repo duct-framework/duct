@@ -12,6 +12,5 @@
 
 (extend-protocol Logger
   nil
-  (log [_ _ _])
-  (log [_ _ _ _])
+  (log ([_ _ _]) ([_ _ _ _]))
   (log-ex [_ _ _]))
