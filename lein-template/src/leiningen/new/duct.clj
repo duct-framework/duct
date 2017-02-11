@@ -22,8 +22,7 @@
      :namespace   main-ns
      :dirs        (name-to-path main-ns)
      :year        (year)
-     :web-module  :duct.module.web/api
-     :defaults    "api-defaults"}))
+     :web-module  :duct.module.web/api}))
 
 (defmethod profile-files :base [_ data]
   [["project.clj"                   (render "base/project.clj" data)]
@@ -35,10 +34,8 @@
    ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
    "src/{{dirs}}/boundary"
-   "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"
    "test/{{dirs}}/boundary"
-   "test/{{dirs}}/component"
    "test/{{dirs}}/endpoint"])
 
 (defmethod profile-data :example [_ _]
@@ -54,21 +51,12 @@
 
 (defmethod profile-data :site [_ _]
   {:site?      true
-   :static?    true
-   :web-module :duct.module.web/site
-   :defaults   "site-defaults"})
+   :web-module :duct.module.web/site})
 
-(defmethod profile-files :site [_ data]
-  [["resources/{{dirs}}/public/favicon.ico"  (resource "site/favicon.ico")]
-   ["resources/{{dirs}}/public/robots.txt"   (resource "site/robots.txt")]
-   ["resources/{{dirs}}/public/css/site.css" (resource "site/site.css")]
-   ["resources/{{dirs}}/errors/404.html"     (resource "site/404.html")]
-   ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]
-   ["resources/{{dirs}}/public/index.html"   (render "site/index.html" data)]])
+(defmethod profile-files :site [_ data] [])
 
 (defmethod profile-data :cljs [_ _]
-  {:cljs? true
-   :static? true})
+  {:cljs? true})
 
 (defmethod profile-files :cljs [_ data]
   [["dev/src/cljs/user.cljs" (render "cljs/user.cljs" data)]])
