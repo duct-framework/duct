@@ -4,21 +4,15 @@
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]{{#cljs?}}
                  [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
-                 [com.taoensso/timbre "4.7.4"]
                  [duct/core "0.9.0-SNAPSHOT"]
                  [duct/module.logging "0.1.0-SNAPSHOT"]
                  [duct/module.web "0.1.0-SNAPSHOT"]
-                 [environ "1.1.0"]
-                 [integrant "0.2.1"]{{#site?}}
-                 [ring-webjars "0.1.1"]
-                 [org.slf4j/slf4j-nop "1.7.21"]
-                 [org.webjars/normalize.css "3.0.2"]{{/site?}}{{#jdbc?}}
+                 [integrant "0.2.1"]{{#jdbc?}}
                  [duct/hikaricp-component "0.1.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4.1211"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.14.2.1"]{{/sqlite?}}{{#ragtime?}}
                  [duct/ragtime-component "0.1.4"]{{/ragtime?}}]
-  :plugins [[lein-environ "1.0.3"]{{#cljs?}}
-            [lein-cljsbuild "1.1.2"]{{/cljs?}}]
+  :plugins [{{#cljs?}}[lein-cljsbuild "1.1.2"]{{/cljs?}}]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"{{#cljs?}}
@@ -57,6 +51,5 @@
                    :source-paths   ["dev/src"]
                    :resource-paths ["dev/resources"]
                    :repl-options {:init-ns user{{#cljs?}}
-                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}
-                   :env {:port "3000"}}
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}}
    :project/test  {}})
