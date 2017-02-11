@@ -2,7 +2,11 @@
 {:duct.core/environment :production
 
  :duct.core/modules
- [#ref <<web-module>>]
+ [#ref :duct.module/logging
+  #ref <<web-module>>]
+
+ :duct.module/logging
+ {}
 
  <<web-module>>
  {:server-port 3000<<#site?>>

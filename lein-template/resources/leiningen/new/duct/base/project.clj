@@ -6,6 +6,7 @@
                  [org.clojure/clojurescript "1.8.51"]{{/cljs?}}
                  [com.taoensso/timbre "4.7.4"]
                  [duct/core "0.9.0-SNAPSHOT"]
+                 [duct/module.logging "0.1.0-SNAPSHOT"]
                  [duct/module.web "0.1.0-SNAPSHOT"]
                  [environ "1.1.0"]
                  [integrant "0.2.1"]{{#site?}}
