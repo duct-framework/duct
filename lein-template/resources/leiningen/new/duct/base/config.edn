@@ -10,8 +10,7 @@
  {}
 
  <<web-module>>
- {:server-port 3000<<#site?>>
-  :static-resources "<<dirs>>/public"<</site?>>}
+ {:server-port 3000}
 
  :duct.core.web/handler
  {:endpoints [<<#example?>>#ref :<<namespace>>.endpoint/example<</example?>>]}<<#example?>>
