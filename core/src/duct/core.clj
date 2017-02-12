@@ -74,8 +74,9 @@
 (defmethod ig/init-key ::modules [_ modules]
   (apply comp (reverse modules)))
 
-(defmethod ig/init-key ::environment [_ env]
-  env)
+(defmethod ig/init-key ::environment [_ env] env)
+
+(defmethod ig/init-key ::project-ns [_ ns] ns)
 
 (defn- log-form [logger level event data form]
   `(p/-log ~logger ~level ~(str *ns*) ~*file* ~(:line (meta form)) ~event ~data))

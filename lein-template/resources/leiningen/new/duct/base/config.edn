@@ -1,5 +1,6 @@
 {{=<< >>=}}
-{:duct.core/environment :production
+{:duct.core/project-ns  <<namespace>>
+ :duct.core/environment :production
 
  :duct.core/modules
  [#ref :duct.module/logging
