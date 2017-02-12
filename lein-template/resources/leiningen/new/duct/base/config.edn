@@ -6,11 +6,8 @@
  [#ref :duct.module/logging
   #ref <<web-module>>]
 
- :duct.module/logging
- {}
-
- <<web-module>>
- {:server-port 3000}
+ :duct.module/logging {}
+ <<web-module>> {}
 
  :duct.core.web/handler
  {:endpoints [<<#example?>>#ref :<<namespace>>.endpoint/example<</example?>>]}<<#example?>>
