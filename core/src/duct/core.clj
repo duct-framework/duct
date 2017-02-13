@@ -2,6 +2,7 @@
   "Core functions required by a Duct application."
   (:require [clojure.java.io :as io]
             [duct.core.protocols :as p]
+            [duct.core.env :as env]
             [integrant.core :as ig]
             [meta-merge.core :refer [meta-merge]]))
 
@@ -38,11 +39,17 @@
   (cond-> m (not-in? m ks) (assoc-in ks default)))
 
 (def ^:private readers
-  {'resource io/resource})
+  {'resource io/resource
+   'env      env/env})
 
 (defn read-config
-  "Read a configuration from one or more slurpable sources. Multiple sources
-  are meta-merged together."
+  "Read an edn configuration from one or more slurpable sources. Multiple
+  sources are meta-merged together. Three additional data readers are
+  supported:
+
+    #ref      - an Integrant reference to another key
+    #resource - a resource path string, see clojure.java.io/resource
+    #env      - an environment variable, see duct.core.env/env"
   ([source]
    (ig/read-string {:readers readers} (slurp source)))
   ([source & sources]
