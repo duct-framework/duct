@@ -1,6 +1,6 @@
-(ns duct.repl)
+(ns duct.repl
+  (:refer-clojure :exclude [test])
+  (:require [eftest.runner :as eftest]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn test []
+  (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))
