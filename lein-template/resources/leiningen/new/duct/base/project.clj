@@ -15,7 +15,7 @@
    :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
-   :project/dev   {:dependencies   [[integrant/repl "0.1.0"]]
+   :project/dev   {:dependencies   [[duct/repl "0.9.0-SNAPSHOT"]]
                    :source-paths   ["dev/src"]
                    :resource-paths ["dev/resources"]
                    :repl-options   {:init-ns user}}
