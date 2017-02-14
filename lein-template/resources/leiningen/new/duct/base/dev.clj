@@ -5,8 +5,7 @@
             [clojure.java.io :as io]
             [duct.core :as duct]
             [integrant.core :as ig]
-            [integrant.repl :refer [config system prep init halt go reset]]
-            [taoensso.timbre :as log]))
+            [integrant.repl :refer [clear config halt go init prep reset system]]))
 
 (defn read-config []
   (duct/read-config
