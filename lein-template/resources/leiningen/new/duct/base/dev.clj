@@ -15,4 +15,7 @@
    (io/resource "dev.edn")
    (io/resource "local.edn")))
 
+(when (io/resource "local.clj")
+  (load "local"))
+
 (integrant.repl/set-prep! (comp duct/prep read-config))

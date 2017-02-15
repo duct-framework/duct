@@ -9,7 +9,8 @@
 
 (defn setup []
   (copy-resource "duct/repl/profiles.clj" "profiles.clj")
-  (copy-resource "duct/repl/local.edn" "dev/resources/local.edn"))
+  (copy-resource "duct/repl/local.edn" "dev/resources/local.edn")
+  (copy-resource "duct/repl/local.clj" "dev/src/local.clj"))
 
 (defn test []
   (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))
