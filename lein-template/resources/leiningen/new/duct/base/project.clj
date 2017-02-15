@@ -9,6 +9,7 @@
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"
+  :aliases {"setup"  ["run" "-m" "duct.repl/setup"]}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
