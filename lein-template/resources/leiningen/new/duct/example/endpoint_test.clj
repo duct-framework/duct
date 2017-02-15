@@ -1,9 +1,7 @@
 (ns {{namespace}}.endpoint.example-test
-  (:require [com.stuartsierra.component :as component]
-            [clojure.test :refer :all]
+  (:require [clojure.test :refer :all]
             [kerodon.core :refer :all]
             [kerodon.test :refer :all]
-            [shrubbery.core :as shrub]
             [{{namespace}}.endpoint.example :as example]))
 
 (def handler
