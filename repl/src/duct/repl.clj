@@ -8,7 +8,8 @@
   (println "Created" path))
 
 (defn setup []
-  (copy-resource "duct/repl/profiles.clj" "profiles.clj"))
+  (copy-resource "duct/repl/profiles.clj" "profiles.clj")
+  (copy-resource "duct/repl/local.edn" "dev/resources/local.edn"))
 
 (defn test []
   (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))

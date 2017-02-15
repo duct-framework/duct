@@ -51,7 +51,7 @@
     #resource - a resource path string, see clojure.java.io/resource
     #env      - an environment variable, see duct.core.env/env"
   ([source]
-   (ig/read-string {:readers readers} (slurp source)))
+   (some->> (slurp source) (ig/read-string {:readers readers})))
   ([source & sources]
    (apply meta-merge (read-config source) (map read-config sources))))
 
