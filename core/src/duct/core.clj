@@ -62,8 +62,8 @@
       (modules config))
     config))
 
-(defn- derived-keys [config key]
-  (map key (ig/find-derived config key)))
+(defn- derived-keys [config k]
+  (map key (ig/find-derived config k)))
 
 (defn- dissoc-derived [config key]
   (apply dissoc config (derived-keys config key)))
