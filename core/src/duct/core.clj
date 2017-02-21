@@ -1,5 +1,6 @@
 (ns duct.core
   "Core functions required by a Duct application."
+  (:refer-clojure :exclude [compile])
   (:require [clojure.java.io :as io]
             [duct.core.protocols :as p]
             [duct.core.env :as env]
@@ -61,6 +62,15 @@
       (modules config))
     config))
 
+(defn- derived-keys [config key]
+  (map key (ig/find-derived config key)))
+
+(defn- dissoc-derived [config key]
+  (apply dissoc config (derived-keys config key)))
+
+(defn- compilers [config]
+  (select-keys config (derived-keys config :duct/compiler)))
+
 (defn prep
   "Prep a configuration, ready to be initiated. Key namespaces are loaded,
   and modules are applied."
@@ -70,11 +80,17 @@
       (apply-modules)
       (doto ig/load-namespaces)))
 
-(defn exec
-  "Prep then initiate a configuration, and block indefinitely. This function
-  should be called from -main when a standalone application is required."
+(defn compile
+  "Prep then initiate all keys that derive from :duct/compiler."
   [config]
-  (let [system (-> config prep ig/init)]
+  (-> config prep compilers ig/init))
+
+(defn exec
+  "Prep then initiate a configuration, excluding keys that derive from
+  :duct/compiler, and then block indefinitely. This function should be called
+  from -main when a standalone application is required."
+  [config]
+  (let [system (-> config prep (dissoc-derived :duct/compiler) ig/init)]
     (add-shutdown-hook ::exec #(ig/halt! system))
     (.. Thread currentThread join)))
 

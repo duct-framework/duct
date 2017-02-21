@@ -9,7 +9,12 @@
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"
-  :aliases {"setup"  ["run" "-m" "duct.repl/setup"]}
+  :prep-tasks ["javac" "compile" "compile-config"]
+  :aliases
+  {"setup"          ["run" "-m" "duct.repl/setup"]
+   "compile-config" ["run" "-m"
+                     "duct.repl/compile-config"
+                     "resources/{{dirs}}/config.edn"]}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
