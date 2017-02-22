@@ -6,15 +6,12 @@
                  [duct/core "0.9.0-SNAPSHOT"]
                  [duct/module.logging "0.1.0-SNAPSHOT"]
                  [duct/module.web "0.1.0-SNAPSHOT"]]
+  :plugins [[duct/lein-plugin "0.9.0-SNAPSHOT"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"
-  :prep-tasks ["javac" "compile" "compile-config"]
-  :aliases
-  {"setup"          ["run" "-m" "duct.repl/setup"]
-   "compile-config" ["run" "-m"
-                     "duct.repl/compile-config"
-                     "resources/{{dirs}}/config.edn"]}
+  :prep-tasks ["javac" "compile" ["duct" "compile"]]
+  :duct {:configs ["resources/{{dirs}}/config.edn"]}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
