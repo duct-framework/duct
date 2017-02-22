@@ -14,10 +14,11 @@
   (copy-resource "leiningen/duct/local.clj" "dev/src/local.clj"))
 
 (defn compile [{{:keys [configs]} :duct :as project}]
-  (eval/eval-in-project
-   project
-   `(duct.core/compile (doto (duct.core/read-config ~@configs) prn))
-   `(require 'duct.core)))
+  (when (seq configs)
+    (eval/eval-in-project
+     project
+     `(duct.core/compile (duct.core/read-config ~@configs))
+     `(require 'duct.core))))
 
 (defn duct [project subtask & args]
   (case subtask
