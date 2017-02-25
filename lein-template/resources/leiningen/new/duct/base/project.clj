@@ -15,6 +15,7 @@
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]
+   :repl    {:prep-tasks ^:replace ["javac" "compile"]}
    :uberjar {:aot :all}
    :profiles/dev  {}
    :profiles/test {}
