@@ -12,7 +12,7 @@
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :target-path "target/%s/"
   :prep-tasks ["javac" "compile" ["duct" "compile"]]
-  :duct {:configs ["resources/{{dirs}}/config.edn"]}
+  :duct {:config-paths ["resources/{{dirs}}/config.edn"]}
   :profiles
   {:dev  [:project/dev  :profiles/dev]
    :test [:project/test :profiles/test]

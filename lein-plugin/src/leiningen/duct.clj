@@ -13,11 +13,11 @@
   (copy-resource "leiningen/duct/local.edn" "dev/resources/local.edn")
   (copy-resource "leiningen/duct/local.clj" "dev/src/local.clj"))
 
-(defn compile [{{:keys [configs]} :duct :as project}]
-  (when (seq configs)
+(defn compile [{{:keys [config-paths]} :duct :as project}]
+  (when (seq config-paths)
     (eval/eval-in-project
      project
-     `(duct.core/compile (duct.core/read-config ~@configs))
+     `(duct.core/compile (duct.core/read-config ~@config-paths))
      `(require 'duct.core))))
 
 (defn duct [project subtask & args]
