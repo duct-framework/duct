@@ -7,7 +7,7 @@
                  [duct/module.logging "0.1.0-SNAPSHOT"]
                  [duct/module.web "0.1.0-SNAPSHOT"]{{#cljs?}}
                  [duct/module.cljs "0.1.0-SNAPSHOT"]{{/cljs?}}]
-  :plugins [[duct/lein-plugin "0.9.0-SNAPSHOT"]]
+  :plugins [[duct/lein-duct "0.9.0-SNAPSHOT"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name   "{{uberjar-name}}"{{/uberjar-name}}
   :resource-paths ["resources" "target/resources"]
