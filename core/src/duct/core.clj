@@ -7,6 +7,12 @@
             [integrant.core :as ig]
             [meta-merge.core :refer [meta-merge]]))
 
+(def target-path
+  "A path to place generated files in. Typically used by compilers. Can be set
+  via the duct.target.path system property."
+  (or (System/getProperty "duct.target.path")
+      (.getAbsolutePath (io/file "target"))))
+
 (def ^:private hooks (atom {}))
 
 (defn- run-hooks []
