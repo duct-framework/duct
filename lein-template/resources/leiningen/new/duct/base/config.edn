@@ -3,10 +3,12 @@
  :duct.core/environment :production
 
  :duct.core/modules
- [#ref :duct.module/logging
+ [#ref :duct.module/logging<<#cljs?>>
+  #ref :duct.module/cljs<</cljs?>>
   #ref <<web-module>>]
 
- :duct.module/logging {}
+ :duct.module/logging {}<<#cljs?>>
+ :duct.module/cljs {}<</cljs?>>
  <<web-module>> {}
 
  :duct.core.web/handler
