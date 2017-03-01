@@ -33,6 +33,7 @@
    ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
+   "resources/{{dirs}}/public"
    "src/{{dirs}}/boundary"
    "src/{{dirs}}/endpoint"
    "test/{{dirs}}/boundary"
