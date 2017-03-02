@@ -7,9 +7,11 @@
   #ref :duct.module/cljs<</cljs?>>
   #ref <<web-module>>]
 
- :duct.module/logging {}<<#cljs?>>
- :duct.module/cljs {}<</cljs?>>
- <<web-module>> {}
+ :duct.module/logging {}
+ <<web-module>> {}<<#cljs?>>
+
+ :duct.module/cljs
+ {:main <<namespace>>.client}<</cljs?>>
 
  :duct.core.web/handler
  {:endpoints [<<#example?>>#ref :<<namespace>>.endpoint/example<</example?>>]}<<#example?>>
