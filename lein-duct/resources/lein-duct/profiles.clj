@@ -12,8 +12,5 @@
  :repl
  ^:repl {:prep-tasks ^:replace ["javac" "compile"]}
 
- :test
- {}
-
  :uberjar
  {:aot :all}}
