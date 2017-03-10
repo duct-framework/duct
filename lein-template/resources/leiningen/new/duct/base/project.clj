@@ -5,7 +5,10 @@
                  [duct/core "0.9.0-SNAPSHOT"]
                  [duct/module.logging "0.1.0-SNAPSHOT"]
                  [duct/module.web "0.1.0-SNAPSHOT"]{{#cljs?}}
-                 [duct/module.cljs "0.1.0-SNAPSHOT"]{{/cljs?}}]
+                 [duct/module.cljs "0.1.0-SNAPSHOT"]{{/cljs?}}{{#jdbc?}}
+                 [duct/module.sql "0.1.0-SNAPSHOT"]{{/jdbc?}}{{#postgres?}}
+                 [org.postgresql/postgresql "9.4.1212"]{{/postgres?}}{{#sqlite?}}
+                 [org.xerial/sqlite-jdbc "3.16.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.9.0-SNAPSHOT"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}

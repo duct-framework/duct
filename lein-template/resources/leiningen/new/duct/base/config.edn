@@ -3,11 +3,13 @@
  :duct.core/environment :production
 
  :duct.core/modules
- [#ref :duct.module/logging<<#cljs?>>
+ [#ref :duct.module/logging<<#jdbc?>>
+  #ref :duct.module/sql<</jdbc?>><<#cljs?>>
   #ref :duct.module/cljs<</cljs?>>
   #ref <<web-module>>]
 
- :duct.module/logging {}
+ :duct.module/logging {}<<#jdbc?>>
+ :duct.module/sql {}<</jdbc?>>
  <<web-module>> {}<<#cljs?>>
 
  :duct.module/cljs
@@ -17,4 +19,4 @@
  {:endpoints [<<#example?>>#ref :<<namespace>>.endpoint/example<</example?>>]}<<#example?>>
 
  :<<namespace>>.endpoint/example
- {}<</example?>>}
+ {<<#jdbc?>>:db #ref :duct.database/sql<</jdbc?>>}<</example?>>}
