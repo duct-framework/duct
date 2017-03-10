@@ -1,6 +1,9 @@
 {:default
+ [:base :plugin.lein-duct/base :system :user :provided :dev]
+
+ :base
  {:min-lein-version "2.0.0"
-  :resource-paths   ["%s/resources"]
+  :resource-paths   ^:replace ["resources" "%s/resources"]
   :target-path      "target/%s"
   :prep-tasks       [["duct" "compile"]]
   :repl-options     {:init-ns user}}
