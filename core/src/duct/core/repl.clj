@@ -1,4 +1,4 @@
-(ns duct.repl
+(ns duct.core.repl
   (:refer-clojure :exclude [test])
   (:require [eftest.runner :as eftest]))
 

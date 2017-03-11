@@ -6,4 +6,6 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [integrant "0.2.3"]
-                 [meta-merge "1.0.0"]])
+                 [meta-merge "1.0.0"]]
+  :profiles
+  {:repl {:dependencies [[eftest "0.1.2"]]}})
