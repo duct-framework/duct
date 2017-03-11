@@ -8,4 +8,4 @@
                  [integrant "0.2.3"]
                  [meta-merge "1.0.0"]]
   :profiles
-  {:repl {:dependencies [[eftest "0.1.2"]]}})
+  {:repl {:dependencies [[eftest "0.1.4"]]}})

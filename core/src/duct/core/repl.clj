@@ -3,4 +3,5 @@
   (:require [eftest.runner :as eftest]))
 
 (defn test []
-  (eftest/run-tests (eftest/find-tests "test") {:multithread? false}))
+  (eftest/run-tests (eftest/find-tests "test") {:multithread? false})
+  nil)
