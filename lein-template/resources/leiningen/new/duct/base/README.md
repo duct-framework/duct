@@ -9,7 +9,7 @@ FIXME: description
 When you first clone this repository, run:
 
 ```sh
-lein setup
+lein duct setup
 ```
 
 This will create files for local configuration, and prep your system
