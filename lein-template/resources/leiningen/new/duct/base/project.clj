@@ -14,7 +14,7 @@
   :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
   :duct {:config-paths ["resources/{{dirs}}/config.edn"]}
   :profiles
-  {:default [:leiningen/default :plugin.lein-duct/default]
+  {:default [:leiningen/default :plugin.lein-duct/default{{#cljs?}} :plugin.lein-duct/cljs{{/cljs?}}]
    :dev     [:plugin.lein-duct/dev :project/dev :profiles/dev]
    :uberjar [:plugin.lein-duct/uberjar]
    :profiles/dev {}

@@ -5,7 +5,8 @@
             [clojure.tools.namespace.repl :refer [refresh]]
             [clojure.java.io :as io]
             [duct.core :as duct]
-            [duct.core.repl :refer [test]]
+            [duct.core.repl :refer [test]]{{#cljs?}}
+            [duct.repl.figwheel :refer [cljs-repl]]{{/cljs?}}
             [integrant.core :as ig]
             [integrant.repl :refer [clear config halt go init prep reset system]]))
 

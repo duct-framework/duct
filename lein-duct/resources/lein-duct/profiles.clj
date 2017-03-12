@@ -16,4 +16,7 @@
  ^:repl {:prep-tasks ^:replace ["javac" "compile"]}
 
  :uberjar
- {:aot :all}}
+ {:aot :all}
+
+ :cljs
+ {:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
