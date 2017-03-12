@@ -2,15 +2,15 @@
  [:base :plugin.lein-duct/base :system :user :provided :dev]
 
  :base
- {:min-lein-version "2.0.0"
-  :resource-paths   ^:replace ["resources" "%s/resources"]
-  :target-path      "target/%s"
-  :prep-tasks       [["duct" "compile"]]
-  :repl-options     {:init-ns user}}
+ ^:leaky {:min-lein-version "2.0.0"
+          :resource-paths   ^:replace ["resources" "%s/resources"]
+          :target-path      "target/%s"
+          :prep-tasks       [["duct" "compile"]]}
 
  :dev
  {:source-paths   ["dev/src"]
-  :resource-paths ["dev/resources"]}
+  :resource-paths ["dev/resources"]
+  :repl-options   {:init-ns user}}
 
  :repl
  ^:repl {:prep-tasks ^:replace ["javac" "compile"]}
