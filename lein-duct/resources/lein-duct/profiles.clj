@@ -2,8 +2,7 @@
  [:base :plugin.lein-duct/base :system :user :provided :dev]
 
  :base
- ^:leaky {:min-lein-version "2.0.0"
-          :resource-paths   ^:replace ["resources" "%s/resources"]
+ ^:leaky {:resource-paths   ^:replace ["resources" "%s/resources"]
           :target-path      "target/%s"
           :prep-tasks       [["duct" "compile"]]}
 
