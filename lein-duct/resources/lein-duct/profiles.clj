@@ -2,9 +2,9 @@
  [:base :plugin.lein-duct/base :system :user :provided :dev]
 
  :base
- ^:leaky {:resource-paths   ^:replace ["resources" "%s/resources"]
-          :target-path      "target/%s"
-          :prep-tasks       [["duct" "compile"]]}
+ ^:leaky {:target-path    "target/%s"
+          :resource-paths ^:replace ["resources" "%s/resources"]
+          :prep-tasks     ["javac" "compile" ["duct" "compile"]]}
 
  :dev
  {:source-paths   ["dev/src"]
