@@ -2,9 +2,9 @@
  [:base :plugin.lein-duct/base :system :user :provided :dev]
 
  :base
- ^:leaky {:target-path    "target/%s"
-          :resource-paths ^:replace ["resources" "%s/resources"]
-          :prep-tasks     ["javac" "compile" ["duct" "compile"]]}
+ {:target-path    "target/%s"
+  :resource-paths ^:replace ["resources" "%s/resources"]
+  :prep-tasks     ["javac" "compile" ["duct" "compile"]]}
 
  :dev
  {:source-paths   ["dev/src"]
@@ -15,7 +15,10 @@
  ^:repl {:prep-tasks ^:replace ["javac" "compile"]}
 
  :uberjar
- {:aot :all}
+ {:target-path    "target/%s"
+  :resource-paths ["%s/resources"]
+  :prep-tasks     ["javac" "compile" ["duct" "compile"]]
+  :aot            :all}
 
  :cljs
  {:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
