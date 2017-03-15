@@ -83,13 +83,6 @@
 
 (defmethod profile-files :sqlite [_ _] ["db"])
 
-(defmethod profile-data :ragtime [_ _]
-  {:jdbc? true
-   :ragtime? true})
-
-(defmethod profile-files :ragtime [_ _]
-  ["resources/{{dirs}}/migrations"])
-
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
     (keyword (subs hint 1))))
@@ -102,7 +95,6 @@ Accepts the following profile hints:
   +example  - adds an example endpoint
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
-  +ragtime  - adds a Ragtime component to handle database migrations
   +site     - adds site middleware, a favicon, webjars and more
   +sqlite   - adds a SQLite dependency and database component"
   [name & hints]
