@@ -8,7 +8,8 @@
             [duct.core.repl :refer [test]]{{#cljs?}}
             [duct.repl.figwheel :refer [cljs-repl]]{{/cljs?}}
             [integrant.core :as ig]
-            [integrant.repl :refer [clear config halt go init prep reset system]]))
+            [integrant.repl :refer [clear halt go init prep reset]]
+            [integrant.repl.state :refer [config system]]))
 
 (defn read-config []
   (duct/read-config

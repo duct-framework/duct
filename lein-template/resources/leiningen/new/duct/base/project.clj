@@ -19,6 +19,6 @@
    :dev     [:plugin.lein-duct/dev :project/dev :profiles/dev]
    :uberjar [:plugin.lein-duct/uberjar]
    :profiles/dev {}
-   :project/dev  {:dependencies [[integrant/repl "0.1.1"]
+   :project/dev  {:dependencies [[integrant/repl "0.2.0"]
                                  [eftest "0.1.4"]
                                  [kerodon "0.8.0"]]}})
