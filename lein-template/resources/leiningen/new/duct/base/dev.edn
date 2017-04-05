@@ -1,37 +1,5 @@
 {{=<< >>=}}
-{:component/jetty
- {:options {:port 3000}}<<#jdbc?>>
+{:duct.core/environment :development<<#jdbc?>>
 
- :component/hikaricp
- {:config {:url "<<dev-database>>"}}<</jdbc?>>
-
- :component/handler
- {:options
-  {:middleware
-   ^:replace [:middleware/not-found<<#site?>>
-              :middleware/webjars<</site?>>
-              :middleware/ring-defaults<<#site?>>
-              :middleware/route-aliases<</site?>>
-              :middleware/stacktrace]}}
-
- :middleware/stacktrace
- {:fn #var ring.middleware.stacktrace/wrap-stacktrace}<<#cljs?>>
-
- :system/components
- {:figwheel :component/figwheel}
-
- :component/figwheel
- {:constructor #var duct.component.figwheel/server
-  :options
-  {:css-dirs ["resources/<<dirs>>/public/css"]
-   :builds
-   [{:id "dev"
-     :source-paths ["src" "dev"]
-     :build-options
-     {:optimizations :none
-      :main "cljs.user"
-      :asset-path "/js"
-      :output-to  "target/figwheel/<<dirs>>/public/js/main.js"
-      :output-dir "target/figwheel/<<dirs>>/public/js"
-      :source-map true
-      :source-map-path "/js"}}]}}<</cljs?>>}
+ :duct.module/sql
+ {:database-url "<<dev-database>>"}<</jdbc?>>}

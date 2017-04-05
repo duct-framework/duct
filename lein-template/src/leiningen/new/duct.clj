@@ -22,7 +22,7 @@
      :namespace   main-ns
      :dirs        (name-to-path main-ns)
      :year        (year)
-     :defaults    "api-defaults"}))
+     :web-module  :duct.module.web/api}))
 
 (defmethod profile-files :base [_ data]
   [["project.clj"                   (render "base/project.clj" data)]
@@ -33,11 +33,10 @@
    ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
+   "resources/{{dirs}}/public"
    "src/{{dirs}}/boundary"
-   "src/{{dirs}}/component"
    "src/{{dirs}}/endpoint"
    "test/{{dirs}}/boundary"
-   "test/{{dirs}}/component"
    "test/{{dirs}}/endpoint"])
 
 (defmethod profile-data :example [_ _]
@@ -52,28 +51,19 @@
        (resource "example/example.html")]])))
 
 (defmethod profile-data :site [_ _]
-  {:site?    true
-   :static?  true
-   :defaults "site-defaults"})
+  {:site?      true
+   :web-module :duct.module.web/site})
 
-(defmethod profile-files :site [_ data]
-  [["resources/{{dirs}}/public/favicon.ico"  (resource "site/favicon.ico")]
-   ["resources/{{dirs}}/public/robots.txt"   (resource "site/robots.txt")]
-   ["resources/{{dirs}}/public/css/site.css" (resource "site/site.css")]
-   ["resources/{{dirs}}/errors/404.html"     (resource "site/404.html")]
-   ["resources/{{dirs}}/errors/500.html"     (resource "site/500.html")]
-   ["resources/{{dirs}}/public/index.html"   (render "site/index.html" data)]])
+(defmethod profile-files :site [_ data] [])
 
 (defmethod profile-data :cljs [_ _]
-  {:cljs? true
-   :static? true})
+  {:cljs? true})
 
 (defmethod profile-files :cljs [_ data]
-  [["dev/src/cljs/user.cljs" (render "cljs/user.cljs" data)]])
+  [["src/{{dirs}}/client.cljs" (render "cljs/client.cljs" data)]])
 
 (defmethod profile-data :heroku [_ name]
   {:heroku? true
-   :lein-deploy? true
    :uberjar-name (str (project-name name) "-standalone.jar")})
 
 (defmethod profile-files :heroku [_ data]
@@ -93,13 +83,6 @@
 
 (defmethod profile-files :sqlite [_ _] ["db"])
 
-(defmethod profile-data :ragtime [_ _]
-  {:jdbc? true
-   :ragtime? true})
-
-(defmethod profile-files :ragtime [_ _]
-  ["resources/{{dirs}}/migrations"])
-
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
     (keyword (subs hint 1))))
@@ -112,7 +95,6 @@ Accepts the following profile hints:
   +example  - adds an example endpoint
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
-  +ragtime  - adds a Ragtime component to handle database migrations
   +site     - adds site middleware, a favicon, webjars and more
   +sqlite   - adds a SQLite dependency and database component"
   [name & hints]
@@ -123,4 +105,4 @@ Accepts the following profile hints:
         data  (reduce into {} (map #(profile-data % name) mods))
         files (reduce into [] (map #(profile-files % data) mods))]
     (apply ->files data files))
-  (main/info "Run 'lein setup' in the project directory to create local config files."))
+  (main/info "Run 'lein duct setup' in the project directory to create local config files."))
