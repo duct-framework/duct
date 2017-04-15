@@ -3,8 +3,8 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [duct/core "0.9.0-SNAPSHOT"]
-                 [duct/module.logging "0.1.0-SNAPSHOT"]
+                 [duct/core "0.1.1"]
+                 [duct/module.logging "0.1.0"]
                  [duct/module.web "0.1.0-SNAPSHOT"]{{#cljs?}}
                  [duct/module.cljs "0.1.0-SNAPSHOT"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.1.0-SNAPSHOT"]{{/jdbc?}}{{#postgres?}}
