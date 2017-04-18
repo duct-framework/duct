@@ -48,7 +48,7 @@
     ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]]
    (if (:site? data)
      [["resources/{{dirs}}/endpoint/example/example.html"
-       (resource "example/example.html")]])))
+       (render "example/example.html" data)]])))
 
 (defmethod profile-data :site [_ _]
   {:site?      true
