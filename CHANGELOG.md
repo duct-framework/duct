@@ -1,3 +1,11 @@
+## 0.9.0-alpha1 (2017-04-18)
+
+* Changed Duct to use Integrant rather than Component
+* Removed `duct/duct` project
+* Added a `duct/lein-duct` plugin project
+* Renamed the Leiningen template `duct-alpha` until release
+* Moved most of the template functionality to separate module libraries
+
 ## 0.8.2 (2016-10-03)
 
 * Updated dependencies
