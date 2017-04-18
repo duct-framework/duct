@@ -1,4 +1,4 @@
-(ns leiningen.new.duct
+(ns leiningen.new.duct-alpha
   (:require [clojure.java.io :as io]
             [leiningen.core.main :as main]
             [leiningen.new.templates :refer [renderer year project-name
@@ -87,8 +87,8 @@
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
     (keyword (subs hint 1))))
 
-(defn duct
-  "Create a new Duct web application.
+(defn duct-alpha
+  "Create a new Duct web application using the alpha template.
 
 Accepts the following profile hints:
   +cljs     - adds in ClojureScript compilation and hot-loading
