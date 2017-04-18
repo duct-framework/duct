@@ -1,3 +1,8 @@
+## 0.9.0-alpha2 (2017-04-18)
+
+* Removed profiles and middleware from lein-duct plugin
+* Updated Ring dependencies to 1.6.0-RC3
+
 ## 0.9.0-alpha1 (2017-04-18)
 
 * Changed Duct to use Integrant rather than Component
