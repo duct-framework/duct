@@ -8,19 +8,27 @@
   (io/copy (io/input-stream (io/resource resource)) (io/file path))
   (println "Created" path))
 
-(defn setup [_]
+(defn setup
+  "Add local project files."
+  [project]
   (copy-resource "leiningen/duct/profiles.clj" "profiles.clj")
   (copy-resource "leiningen/duct/local.edn" "dev/resources/local.edn")
   (copy-resource "leiningen/duct/local.clj" "dev/src/local.clj"))
 
-(defn compile [{{:keys [config-paths]} :duct :as project}]
-  (when (seq config-paths)
-    (eval/eval-in-project
-     project
-     `(duct.core/compile (duct.core/read-config ~@config-paths))
-     `(require 'duct.core))))
+(defn compile
+  "Run keys derived from :duct/compiler in the configuration."
+  [project]
+  (let [{{:keys [config-paths]} :duct} project]
+    (when (seq config-paths)
+      (eval/eval-in-project
+       project
+       `(duct.core/compile (duct.core/read-config ~@config-paths))
+       `(require 'duct.core)))))
 
-(defn duct [project subtask & args]
+(defn duct
+  "Tasks for managing a Duct project."
+  {:subtasks [#'setup #'compile]}
+  [project subtask & args]
   (case subtask
     "setup"   (apply setup project args)
     "compile" (apply compile project args)
