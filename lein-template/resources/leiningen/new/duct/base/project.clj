@@ -6,7 +6,7 @@
                  [duct/core "0.1.1"]
                  [duct/module.logging "0.1.1"]
                  [duct/module.web "0.1.1"]{{#cljs?}}
-                 [duct/module.cljs "0.1.0"]{{/cljs?}}{{#jdbc?}}
+                 [duct/module.cljs "0.1.1"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.1.1"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4.1212"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.16.1"]{{/sqlite?}}]
