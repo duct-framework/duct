@@ -11,14 +11,20 @@
                  [org.postgresql/postgresql "9.4.1212"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.16.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.9.0-alpha1"]]
-  :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
-  :uberjar-name "{{uberjar-name}}"{{/uberjar-name}}
-  :duct {:config-paths ["resources/{{dirs}}/config.edn"]}
+  :main ^:skip-aot {{namespace}}.main
+  :duct {:config-paths ["resources/{{dirs}}/config.edn"]}{{#uberjar-name}}
+  :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
+  :resource-paths ["resources" "target/resources"]
+  :prep-tasks     ["javac" "compile" ["duct" "compile"]]
   :profiles
-  {:default [:leiningen/default :plugin.lein-duct/default{{#cljs?}} :plugin.lein-duct/cljs{{/cljs?}}]
-   :dev     [:plugin.lein-duct/dev :project/dev :profiles/dev]
-   :uberjar [:plugin.lein-duct/uberjar]
+  {:dev     [:project/dev :profiles/dev]
+   :repl    {:prep-tasks   ^:replace ["javac" "compile"]
+             :repl-options {:init-ns user{{#cljs?}}
+                            :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]{{/cljs?}}}}
+   :uberjar {:aot :all}
    :profiles/dev {}
-   :project/dev  {:dependencies [[integrant/repl "0.2.0"]
-                                 [eftest "0.3.0"]
-                                 [kerodon "0.8.0"]]}})
+   :project/dev  {:source-paths   ["dev/src"]
+                  :resource-paths ["dev/resources"]
+                  :dependencies   [[integrant/repl "0.2.0"]
+                                   [eftest "0.3.0"]
+                                   [kerodon "0.8.0"]]}})
