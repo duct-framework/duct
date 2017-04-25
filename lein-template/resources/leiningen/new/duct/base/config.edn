@@ -2,21 +2,13 @@
 {:duct.core/project-ns  <<namespace>>
  :duct.core/environment :production
 
- :duct.core/modules
- [#ref :duct.module/logging<<#jdbc?>>
-  #ref :duct.module/sql<</jdbc?>><<#cljs?>>
-  #ref :duct.module/cljs<</cljs?>>
-  #ref <<web-module>>]
-
- :duct.module/logging {}<<#jdbc?>>
- :duct.module/sql {}<</jdbc?>>
- <<web-module>> {}<<#cljs?>>
-
- :duct.module/cljs
- {:main <<namespace>>.client}<</cljs?>>
+ :duct.module/logging {}
+ <<web-module>> {}<<#jdbc?>>
+ :duct.module/sql {}<</jdbc?>><<#cljs?>>
+ :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>
 
  :duct.core.web/handler
- {:endpoints [<<#example?>>#ref :<<namespace>>.endpoint/example<</example?>>]}<<#example?>>
+ {:endpoints [<<#example?>>#ig/ref :<<namespace>>.endpoint/example<</example?>>]}<<#example?>>
 
  :<<namespace>>.endpoint/example
- {<<#jdbc?>>:db #ref :duct.database/sql<</jdbc?>>}<</example?>>}
+ {<<#jdbc?>>:db #ig/ref :duct.database/sql<</jdbc?>>}<</example?>>}
