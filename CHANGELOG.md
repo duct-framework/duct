@@ -1,3 +1,9 @@
+## 0.9.0-alpha3 (2017-04-25)
+
+* Updated Integrant to 0.4.0 (this changes the `#ref` tag to `#ig/ref`)
+* Updated modules to be self-ordering
+* Removed now unnecessary `duct.core/modules` key
+
 ## 0.9.0-alpha2 (2017-04-18)
 
 * Removed profiles and middleware from lein-duct plugin
