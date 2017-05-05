@@ -5,7 +5,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [duct/core "0.2.1"]
                  [duct/module.logging "0.2.0"]
-                 [duct/module.web "0.2.0"]{{#cljs?}}
+                 [duct/module.web "0.2.1"]{{#cljs?}}
                  [duct/module.cljs "0.2.0"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.2.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4.1212"]{{/postgres?}}{{#sqlite?}}
