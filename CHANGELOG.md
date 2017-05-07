@@ -1,3 +1,9 @@
+## 0.9.0-alpha4 (2017-05-07)
+
+* Updated `duct/module.web` to 0.3.0 (adds routers)
+* Updated `duct/core` to 0.2.3 (adds `:duct.core/handler` and `#duct/import`)
+* Updated Clojure version in template to 1.9.0-alpha16
+
 ## 0.9.0-alpha3 (2017-04-25)
 
 * Updated Integrant to 0.4.0 (this changes the `#ref` tag to `#ig/ref`)
