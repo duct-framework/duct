@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
-                 [duct/core "0.2.3"]
+                 [duct/core "0.3.1"]
                  [duct/module.logging "0.2.0"]
                  [duct/module.web "0.3.0"]{{#cljs?}}
                  [duct/module.cljs "0.2.0"]{{/cljs?}}{{#jdbc?}}
