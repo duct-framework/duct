@@ -12,9 +12,7 @@
             [integrant.repl.state :refer [config system]]))
 
 (defn read-config []
-  (duct/read-config
-   (io/resource "dev.edn")
-   (io/resource "local.edn")))
+  (duct/read-config (io/resource "dev.edn")))
 
 (defn test []
   (eftest/run-tests (eftest/find-tests "test")))
