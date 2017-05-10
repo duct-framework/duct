@@ -1,3 +1,9 @@
+## 0.9.0-alpha5 (2017-05-10)
+
+* Updated `duct/module.web` to 0.3.2 (fixes issues with `:duct.core/include`)
+* Added `:duct.core/include` to `dev.edn` and `local.edn`
+* Moved `local.edn` reference into `local.clj`
+
 ## 0.9.0-alpha4 (2017-05-07)
 
 * Updated `duct/module.web` to 0.3.0 (adds routers)
