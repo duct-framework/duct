@@ -1,7 +1,7 @@
 (ns dev
   (:refer-clojure :exclude [test])
   (:require [clojure.repl :refer :all]
-            [clojure.pprint :refer [pprint]]
+            [fipp.edn :refer [pprint]]
             [clojure.tools.namespace.repl :refer [refresh]]
             [clojure.java.io :as io]
             [duct.core :as duct]{{#cljs?}}
