@@ -83,6 +83,11 @@
 
 (defmethod profile-files :sqlite [_ _] ["db"])
 
+(defmethod profile-data :ataraxy [_ _]
+  {:ataraxy? true})
+
+(defmethod profile-files :ataraxy [_ _] [])
+
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
     (keyword (subs hint 1))))
@@ -91,6 +96,7 @@
   "Create a new Duct web application using the alpha template.
 
 Accepts the following profile hints:
+  +ataraxy  - adds the Ataraxy router
   +cljs     - adds in ClojureScript compilation and hot-loading
   +example  - adds an example handler
   +heroku   - adds configuration for deploying to Heroku
