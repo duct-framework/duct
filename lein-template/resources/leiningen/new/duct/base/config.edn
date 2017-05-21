@@ -8,7 +8,7 @@
  :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>
 
  :duct.router/cascading
- [<<#example?>>#ig/ref :<<namespace>>.endpoint/example<</example?>>]<<#example?>>
+ [<<#example?>>#ig/ref :<<namespace>>.handler/example<</example?>>]<<#example?>>
 
- :<<namespace>>.endpoint/example
+ :<<namespace>>.handler/example
  {<<#jdbc?>>:db #ig/ref :duct.database/sql<</jdbc?>>}<</example?>>}

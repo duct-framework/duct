@@ -35,19 +35,19 @@
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
    "resources/{{dirs}}/public"
    "src/{{dirs}}/boundary"
-   "src/{{dirs}}/endpoint"
+   "src/{{dirs}}/handler"
    "test/{{dirs}}/boundary"
-   "test/{{dirs}}/endpoint"])
+   "test/{{dirs}}/handler"])
 
 (defmethod profile-data :example [_ _]
   {:example? true})
 
 (defmethod profile-files :example [_ data]
   (concat
-   [["src/{{dirs}}/endpoint/example.clj"       (render "example/endpoint.clj" data)]
-    ["test/{{dirs}}/endpoint/example_test.clj" (render "example/endpoint_test.clj" data)]]
+   [["src/{{dirs}}/handler/example.clj"       (render "example/handler.clj" data)]
+    ["test/{{dirs}}/handler/example_test.clj" (render "example/handler_test.clj" data)]]
    (if (:site? data)
-     [["resources/{{dirs}}/endpoint/example/example.html"
+     [["resources/{{dirs}}/handler/example/example.html"
        (render "example/example.html" data)]])))
 
 (defmethod profile-data :site [_ _]
@@ -92,7 +92,7 @@
 
 Accepts the following profile hints:
   +cljs     - adds in ClojureScript compilation and hot-loading
-  +example  - adds an example endpoint
+  +example  - adds an example handler
   +heroku   - adds configuration for deploying to Heroku
   +postgres - adds a PostgreSQL dependency and database component
   +site     - adds site middleware, a favicon, webjars and more
