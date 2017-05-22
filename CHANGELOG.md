@@ -1,3 +1,15 @@
+## 0.9.0-alpha6 (2017-05-22)
+
+* Renamed `endpoint` directory to `handler` (see 5804824)
+* Replaced `clojure.pprint/pprint` with `fipp.edn/pprint`
+* Added `+ataraxy` profile hint
+* Added `.dir-locals.el` to `lein duct setup`
+* Added logs directory to `.gitignore` (#55)
+* Updated `duct/core` to 0.3.3
+* Updated `duct/module.web` to 0.4.0
+* Updated example handler to be more concise
+* Fixed `dev.edn` template for project names with dashes (#54)
+
 ## 0.9.0-alpha5 (2017-05-10)
 
 * Updated `duct/module.web` to 0.3.2 (fixes issues with `:duct.core/include`)
