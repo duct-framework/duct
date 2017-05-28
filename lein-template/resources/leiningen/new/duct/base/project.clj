@@ -8,7 +8,7 @@
                  [duct/module.web "0.5.0"]{{#ataraxy?}}
                  [duct/module.ataraxy "0.1.4"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.2.0"]{{/cljs?}}{{#jdbc?}}
-                 [duct/module.sql "0.2.0"]{{/jdbc?}}{{#postgres?}}
+                 [duct/module.sql "0.2.1"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4.1212"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.16.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.9.0-alpha7"]]
