@@ -38,11 +38,12 @@ user=> (dev)
 :loaded
 ```
 
-Run `go` to initiate and start the system.
+Run `go` to prep and initiate the system.
 
 ```clojure
 dev=> (go)
-:started
+:duct.server.http.jetty/starting-server {:port 3000}
+:initiated
 ```
 
 By default this creates a web server at <http://localhost:3000>.
