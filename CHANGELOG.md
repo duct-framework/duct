@@ -1,3 +1,9 @@
+## 0.9.0-alpha7 (2017-05-28)
+
+* Added `+api` profile hint
+* Updated `duct/module.web` to 0.5.0
+* Updated `duct/module.web` to 0.5.0
+
 ## 0.9.0-alpha6 (2017-05-22)
 
 * Renamed `endpoint` directory to `handler` (see 5804824)
