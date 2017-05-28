@@ -22,7 +22,7 @@
      :namespace   main-ns
      :dirs        (name-to-path main-ns)
      :year        (year)
-     :web-module  :duct.module.web/api}))
+     :web-module  :duct.module/web}))
 
 (defmethod profile-files :base [_ data]
   [["project.clj"                   (render "base/project.clj" data)]
@@ -49,6 +49,12 @@
    (if (:site? data)
      [["resources/{{dirs}}/handler/example/example.html"
        (render "example/example.html" data)]])))
+
+(defmethod profile-data :api [_ _]
+  {:api?       true
+   :web-module :duct.module.web/api})
+
+(defmethod profile-files :api [_ _] [])
 
 (defmethod profile-data :site [_ _]
   {:site?      true
@@ -96,6 +102,7 @@
   "Create a new Duct web application using the alpha template.
 
 Accepts the following profile hints:
+  +api      - adds API middleware and handlers
   +ataraxy  - adds the Ataraxy router
   +cljs     - adds in ClojureScript compilation and hot-loading
   +example  - adds an example handler

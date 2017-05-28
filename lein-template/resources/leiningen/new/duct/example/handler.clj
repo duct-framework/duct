@@ -8,6 +8,6 @@
 (defmethod ig/init-key :<<namespace>>.handler/example [_ options]<<^ataraxy?>>
   (context "/example" []
     (GET "/" []
-      <<^site?>>"This is an example handler"<</site?>><<#site?>>(io/resource "<<dirs>>/handler/example/example.html")<</site?>>))<</ataraxy?>><<#ataraxy?>>
+      <<^site?>><<^api?>>"This is an example handler"<</api?>><</site?>><<#api?>>{:body {:example "data"}}<</api?>><<#site?>>(io/resource "<<dirs>>/handler/example/example.html")<</site?>>))<</ataraxy?>><<#ataraxy?>>
   (fn [{[_] :ataraxy/result}]
-    <<^site?>>[::response/ok "This is an example handler"]<</site?>><<#site?>>[::response/ok (io/resource "<<dirs>>/handler/example/example.html")]<</site?>>)<</ataraxy?>>)
+    [::response/ok <<^site?>><<^api?>>"This is an example handler"<</api?>><</site?>><<#api?>>{:example "data"}<</api?>><<#site?>>(io/resource "<<dirs>>/handler/example/example.html")<</site?>>])<</ataraxy?>>)
