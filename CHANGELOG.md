@@ -2,7 +2,7 @@
 
 * Added `+api` profile hint
 * Updated `duct/module.web` to 0.5.0
-* Updated `duct/module.web` to 0.5.0
+* Updated `duct/module.ataraxy` to 0.1.3
 
 ## 0.9.0-alpha6 (2017-05-22)
 
