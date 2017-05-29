@@ -1,3 +1,8 @@
+## 0.9.0-alpha8 (2017-05-29)
+
+* Updated `duct/module.ataraxy` to 0.1.4 (fixes error with empty routes)
+* Updated `duct/module.sql` to 0.2.1 (fixes warning message with Schema)
+
 ## 0.9.0-alpha7 (2017-05-28)
 
 * Added `+api` profile hint
