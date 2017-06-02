@@ -1,3 +1,10 @@
+## 0.9.0-beta1 (2017-06-02)
+
+* Updated `duct/core` to 0.4.0
+* Updated `duct/module.sql` to 0.2.2
+* Updated `duct/module.cljs` to 0.2.2 (fixes Figwheel error)
+* Removed `lein duct compile` subtask in favor of `lein run :duct/compiler`
+
 ## 0.9.0-alpha8 (2017-05-29)
 
 * Updated `duct/module.ataraxy` to 0.1.4 (fixes error with empty routes)
