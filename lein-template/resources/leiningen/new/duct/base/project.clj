@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
-                 [duct/core "0.3.3"]
+                 [duct/core "0.4.0"]
                  [duct/module.logging "0.2.0"]
                  [duct/module.web "0.5.0"]{{#ataraxy?}}
                  [duct/module.ataraxy "0.1.4"]{{/ataraxy?}}{{#cljs?}}
@@ -16,7 +16,7 @@
   :duct {:config-paths ["resources/{{dirs}}/config.edn"]}{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
   :resource-paths ["resources" "target/resources"]
-  :prep-tasks     ["javac" "compile" ["duct" "compile"]]
+  :prep-tasks     ["javac" "compile" ["run" ":duct/compiler"]]
   :profiles
   {:dev     [:project/dev :profiles/dev]
    :repl    {:prep-tasks   ^:replace ["javac" "compile"]

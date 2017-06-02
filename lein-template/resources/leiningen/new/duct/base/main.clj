@@ -4,4 +4,5 @@
             [duct.core :as duct]))
 
 (defn -main [& args]
-  (duct/exec (duct/read-config (io/resource "{{dirs}}/config.edn"))))
+  (duct/exec (duct/read-config (io/resource "{{dirs}}/config.edn"))
+             (duct/parse-keys args)))
