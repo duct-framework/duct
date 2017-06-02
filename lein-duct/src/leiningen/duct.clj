@@ -18,7 +18,7 @@
 
 (defn duct
   "Tasks for managing a Duct project."
-  {:subtasks [#'setup #'compile]}
+  {:subtasks [#'setup]}
   [project subtask & args]
   (case subtask
     "setup"   (apply setup project args)
