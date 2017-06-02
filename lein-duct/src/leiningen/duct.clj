@@ -16,21 +16,10 @@
   (copy-resource "leiningen/duct/local.edn" "dev/resources/local.edn")
   (copy-resource "leiningen/duct/local.clj" "dev/src/local.clj"))
 
-(defn compile
-  "Run keys derived from :duct/compiler in the configuration."
-  [project]
-  (let [{{:keys [config-paths]} :duct} project]
-    (when (seq config-paths)
-      (eval/eval-in-project
-       project
-       `(duct.core/compile (duct.core/read-config ~@config-paths))
-       `(require 'duct.core)))))
-
 (defn duct
   "Tasks for managing a Duct project."
   {:subtasks [#'setup #'compile]}
   [project subtask & args]
   (case subtask
     "setup"   (apply setup project args)
-    "compile" (apply compile project args)
     (main/abort "Unknown duct subtask:" subtask)))
