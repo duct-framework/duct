@@ -1,3 +1,11 @@
+## 0.9.0 (2017-06-15)
+
+* Changed Leiningen plugin license to MIT
+* Updated `duct.module.web` to 0.5.1
+* Updated `duct/module.ataraxy` to 0.1.6
+* Removed `:duct` key from project template
+* Fixed path in Heroku Procfile
+
 ## 0.9.0-beta1 (2017-06-02)
 
 * Updated `duct/core` to 0.4.0
