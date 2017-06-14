@@ -147,7 +147,4 @@ out of version control.
 
 Copyright © 2017 James Reeves
 
-Leiningen plugin distributed under the Eclipse Public License either
-version 1.0 or (at your option) any later version.
-
-Leiningen template distributed under the MIT license.
+Distributed under the MIT license.
