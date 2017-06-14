@@ -53,6 +53,7 @@
 
 ## 0.9.0-alpha1 (2017-04-18)
 
+* Changed Leiningen template license to MIT
 * Changed Duct to use Integrant rather than Component
 * Removed `duct/duct` project
 * Added a `duct/lein-duct` plugin project
