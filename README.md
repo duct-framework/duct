@@ -64,12 +64,12 @@ Namespaces should group functions by purpose, rather than by layer.
 ## Overview
 
 Duct is designed to produce a standalone application, logging to
-STDOUT, with external configuration supppled through environment
+STDOUT, with external configuration suppled through environment
 variables. This approach is common for server-side applications, and
 works well in environments like [Heroku][] and [Docker][].
 
 The core of every Duct application is the configuration map, loaded
-from one or more [edn][] resources, and interpretted by Integrant.
+from one or more [edn][] resources, and interpreted by Integrant.
 Each key/value pair in the configuration corresponds to a multimethod
 that can **initiate** the configuration into a concrete implementation.
 
