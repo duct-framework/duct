@@ -1,27 +1,34 @@
 # Duct
 
-Duct is a minimal framework for building web applications in Clojure,
-with a strong emphasis on [simplicity][].
+Duct is a highly modular framework for building server-side
+applications in Clojure using data-driven architecture.
 
-[simplicity]: http://www.infoq.com/presentations/Simple-Made-Easy
+It is similar in scope to [Arachne][], and is based on [Integrant][].
+Duct builds applications around an immutable configuration that acts
+as a structural blueprint. The configuration can be manipulated and
+queried to produce sophisticated behavior.
+
+[integrant]: https://github.com/weavejester/integrant
+[arachne]: http://arachne-framework.org/
 
 
-## Usage
+## Quick Start
 
-Create a new Duct project with Leiningen.
+To create a new Duct project with Leiningen:
 
 ```sh
-lein new duct <<your project name>>
+lein new duct <your project name>
 ```
 
 This will create a minimal Duct project. You can extend this by
 appending profile hints to add extra functionality.
 
+* `+api`      adds API middleware and handlers
+* `+ataraxy`  adds the Ataraxy router
 * `+cljs`     adds in ClojureScript compilation and hot-loading
-* `+example`  adds an example endpoint
+* `+example`  adds an example handler
 * `+heroku`   adds configuration for deploying to Heroku
 * `+postgres` adds a PostgreSQL dependency and database component
-* `+ragtime`  adds a Ragtime component to handle database migrations
 * `+site`     adds site middleware, a favicon, webjars and more
 * `+sqlite`   adds a SQLite dependency and database component
 
@@ -38,59 +45,51 @@ your project, refer to the project's `README.md` file.
 
 ## Concepts
 
-Duct consists of a [Leiningen][] template and a small support library.
+The structure of the application is defined by an Integrant configuration map.
 
-Duct depends on existing libraries for the majority of its functionality.
+The configuration map is transformed using modules.
 
-Externally, Duct follows the [Twelve-Factor App][12-factor] methodology.
+In development, Duct uses Stuart Sierra's [Reloaded Workflow][reloaded].
 
-Internally, Duct uses Stuart Sierra's [Reloaded Workflow][reloaded].
+In production, Duct follows the [Twelve-Factor App][12-factor] methodology.
 
-Duct prefers local bindings over global state.
+Local state is preferred over global state.
 
-Duct separates configuration and environment.
+Namespaces should group functions by purpose, rather than by layer.
 
-Duct applications are divided by purpose, rather than layer.
-
-[leiningen]: https://github.com/technomancy/leiningen
 [12-factor]: http://12factor.net/
-[reloaded]:  http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
+[reloaded]: http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
 
 
 ## Overview
 
-Duct is designed to produce a standalone web application, configured
-with environment variables, and logging to STDOUT. Typically it will
-sit behind a proxy or load-balancer, and works well in environments
-like [Heroku][] and [Docker][].
+Duct is designed to produce a standalone application, logging to
+STDOUT, with external configuration supppled through environment
+variables. This approach is common for server-side applications, and
+works well in environments like [Heroku][] and [Docker][].
 
-Internally, Duct projects are structured with the [Component][]
-library. **Components** handle the lifecycle of the web server, and
-connections to other services and databases. It's highly recommended
-you avoid any global state, and even dynamic bindings are discouraged.
+The core of every Duct application is the configuration map, loaded
+from one or more [edn][] resources, and interpretted by Integrant.
+Each key/value pair in the configuration corresponds to a multimethod
+that can **initiate** the configuration into a concrete implementation.
 
-Components are grouped into a **system**. In Duct, the system is
-created from one or more system definition files, written in [edn][].
-These files define the components in the system, the dependencies
-between components, and how they are configured.
+Before the configuration is initated, however, it is first transformed.
+Some keys in the configuration are **modules**; these are pure
+functions used to update the configuration, adding in new keys and
+references.
 
-The routes of the application are divided into **endpoints**. These
-are functions that take a component map, and return a [Ring][] handler
-function. Duct therefore relies on closures and lexical scoping to
-pass database connections and other configuration data to the routes.
+Modules can introduce broad functionality that affects many parts of
+the application. Because they manipulate an immutable data structure,
+they are also both transparent and customizable. Anything a module
+adds can be queried, examined, and if necessary, overridden.
 
-Endpoints should resemble microservices, grouping routes by purpose.
-An endpoint might handle user authentication, or handle comments on a
-post. Strive to keep your endpoints small and focused.
-
-Endpoints should communicate with components via **boundary**
-protocols. This draws a line between external services modeled by
-components, and the internal functionality modeled by endpoints.
-Protocols can be mocked, allowing efficient internal testing.
+Any I/O to an external service should be accessed through a
+**boundary** protocol. This not only provides a clear dividing line
+between what's internal and what's external to the application, it
+also allows external services to be mocked or stubbed when testing.
 
 [heroku]:    https://www.heroku.com/
 [docker]:    https://www.docker.com/
-[component]: https://github.com/stuartsierra/component
 [edn]:       https://github.com/edn-format/edn
 [ring]:      https://github.com/ring-clojure/ring
 
@@ -99,7 +98,6 @@ Protocols can be mocked, allowing efficient internal testing.
 
 * [Getting Started](https://github.com/weavejester/duct/wiki/Getting-Started)
 * [Configuration](https://github.com/weavejester/duct/wiki/Configuration)
-* [Compatible Libraries](https://github.com/weavejester/duct/wiki/Compatible-Libraries)
 
 
 ## Community
@@ -127,29 +125,21 @@ out of version control.
 ├── project.clj
 ├── resources
 │   └── {{project}}
-│       ├── endpoint
-│       │   └── {{endpoint}}
-│       ├── errors
-│       ├── migrations
-│       ├── public
-│       └── system.edn
+│       ├── config.edn
+│       └── public
 ├── src
 │   └── {{project}}
 │       ├── boundary
 │       │   └── {{boundary}}.clj
-│       ├── component
-│       │   └── {{component}}.clj
-│       ├── endpoint
-│       │   └── {{endpoint}}.clj
+│       ├── handler
+│       │   └── {{handler}}.clj
 │       └── main.clj
 └── test
     └── {{project}}
         ├── boundary
         │   └── {{boundary}}_test.clj
-        ├── component
-        │   └── {{component}}_test.clj
-        └── endpoint
-            └── {{endpoint}}_test.clj
+        └── handler
+            └── {{handler}}_test.clj
 ```
 
 
@@ -157,7 +147,7 @@ out of version control.
 
 Copyright © 2017 James Reeves
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Leiningen plugin distributed under the Eclipse Public License either
+version 1.0 or (at your option) any later version.
 
 Leiningen template distributed under the MIT license.
