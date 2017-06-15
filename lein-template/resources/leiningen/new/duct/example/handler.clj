@@ -1,6 +1,6 @@
 {{=<< >>=}}
 (ns <<namespace>>.handler.example
-  (:require <<^ataraxy?>>[compojure.core :refer :all]<</ataraxy?>><<#ataraxy?>>[ataraxy.core :as araraxy]
+  (:require <<^ataraxy?>>[compojure.core :refer :all]<</ataraxy?>><<#ataraxy?>>[ataraxy.core :as ataraxy]
             [ataraxy.response :as response] <</ataraxy?>><<#site?>>
             [clojure.java.io :as io]<</site?>>
             [integrant.core :as ig]))
