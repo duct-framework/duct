@@ -64,7 +64,7 @@ Namespaces should group functions by purpose, rather than by layer.
 ## Overview
 
 Duct is designed to produce a standalone application, logging to
-STDOUT, with external configuration suppled through environment
+STDOUT, with external configuration supplied through environment
 variables. This approach is common for server-side applications, and
 works well in environments like [Heroku][] and [Docker][].
 
@@ -73,7 +73,7 @@ from one or more [edn][] resources, and interpreted by Integrant.
 Each key/value pair in the configuration corresponds to a multimethod
 that can **initiate** the configuration into a concrete implementation.
 
-Before the configuration is initated, however, it is first transformed.
+Before the configuration is initiated, however, it is first transformed.
 Some keys in the configuration are **modules**; these are pure
 functions used to update the configuration, adding in new keys and
 references.
