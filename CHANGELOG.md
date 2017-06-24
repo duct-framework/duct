@@ -1,3 +1,12 @@
+## 0.9.1 (2017-06-24)
+
+* Updated `duct/core` to 0.5.0
+* Updated `duct/module.web`  to 0.5.4
+* Updated `duct/module.cljs` to 0.2.3
+* Updated SQLite and Postgres dependencies
+* Updated Eftest to 0.3.1
+* Fixed typo in Ataraxy example handler (#57)
+
 ## 0.9.0 (2017-06-15)
 
 * Changed Leiningen plugin license to MIT
