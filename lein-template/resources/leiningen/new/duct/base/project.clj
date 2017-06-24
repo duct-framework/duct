@@ -3,11 +3,11 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
-                 [duct/core "0.4.0"]
+                 [duct/core "0.5.0"]
                  [duct/module.logging "0.2.0"]
-                 [duct/module.web "0.5.2"]{{#ataraxy?}}
+                 [duct/module.web "0.5.4"]{{#ataraxy?}}
                  [duct/module.ataraxy "0.1.6"]{{/ataraxy?}}{{#cljs?}}
-                 [duct/module.cljs "0.2.2"]{{/cljs?}}{{#jdbc?}}
+                 [duct/module.cljs "0.2.3"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.2.2"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "9.4.1212"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.16.1"]{{/sqlite?}}]
