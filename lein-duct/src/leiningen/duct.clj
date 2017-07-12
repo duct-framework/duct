@@ -14,7 +14,7 @@
   (copy-resource "leiningen/duct/profiles.clj" "profiles.clj")
   (copy-resource "leiningen/duct/dir-locals.el" ".dir-locals.el")
   (copy-resource "leiningen/duct/local.edn" "dev/resources/local.edn")
-  (copy-resource "leiningen/duct/local.clj" "dev/src/local.clj"))
+  (copy-resource "leiningen/duct/local.clj" "dev/src/clj/local.clj"))
 
 (defn duct
   "Tasks for managing a Duct project."
