@@ -14,7 +14,7 @@
   :plugins [[duct/lein-duct "0.9.1"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
-  :resource-paths ["resources" "target/resources"]
+  :resource-paths ["resources"]
   :prep-tasks     ["javac" "compile" ["run" ":duct/compiler"]]
   :profiles
   {:dev  [:project/dev :profiles/dev]
