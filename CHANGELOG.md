@@ -1,3 +1,9 @@
+## 0.9.2 (2017-07-20)
+
+* Updated `duct/core` to 0.5.1
+* Updated `duct/module.web` to 0.5.5
+* Added explicit `set-refresh-dirs` to `dev.clj` template
+
 ## 0.9.1 (2017-06-24)
 
 * Updated `duct/core` to 0.5.0
