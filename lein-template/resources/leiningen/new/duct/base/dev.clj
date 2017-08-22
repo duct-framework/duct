@@ -12,6 +12,8 @@
             [integrant.repl :refer [clear halt go init prep reset]]
             [integrant.repl.state :refer [config system]]))
 
+(duct/load-hierarchy)
+
 (defn read-config []
   (duct/read-config (io/resource "dev.edn")))
 
@@ -22,7 +24,5 @@
 
 (when (io/resource "local.clj")
   (load "local"))
-
-(duct/load-hierarchy)
 
 (integrant.repl/set-prep! (comp duct/prep read-config))
