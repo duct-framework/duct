@@ -9,8 +9,8 @@
                  [duct/module.ataraxy "0.2.0"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.3.0"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.3.0"]{{/jdbc?}}{{#postgres?}}
-                 [org.postgresql/postgresql "42.1.1"]{{/postgres?}}{{#sqlite?}}
-                 [org.xerial/sqlite-jdbc "3.19.3"]{{/sqlite?}}]
+                 [org.postgresql/postgresql "42.1.4"]{{/postgres?}}{{#sqlite?}}
+                 [org.xerial/sqlite-jdbc "3.20.0"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.9.2"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
