@@ -1,3 +1,17 @@
+## 0.10.0 (2017-08-24)
+
+* Improved performance by only loading namespaces for relevant keys
+* Improved performance of modules and core by removing non-essential requires
+* Added support for `duct_hierarchy.edn` for derives without namespaces
+* Added custom data reader support to `prep`
+* Moved `prep` out of `exec` to allow for intermediate transformations
+* Updated `duct/core` to 0.6.1
+* Updated `duct/module.logging` to 0.3.0
+* Updated `duct/module.web` to 0.6.0
+* Updated `duct/module.ataraxy` to 0.2.0
+* Updated `duct/module.cljs` to 0.3.0
+* Updated `duct/module.sql` to 0.3.0
+
 ## 0.9.2 (2017-07-20)
 
 * Updated `duct/core` to 0.5.1
