@@ -1,3 +1,7 @@
+## 0.10.2 (2017-09-05)
+
+* Updated `duct/module.web` to 0.6.2
+
 ## 0.10.1 (2017-09-04)
 
 * Updated Clojure version to 1.9.0-alpha19
