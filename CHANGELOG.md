@@ -1,6 +1,7 @@
 ## 0.10.1 (2017-09-04)
 
 * Updated Clojure version to 1.9.0-alpha19
+* Updated `duct/module.web` to 0.6.1
 * Updated `duct/module.logging` to 0.3.1
 * Updated `duct/module.cljs` to 0.3.1
 * Updated `duct/module.sql` to 0.3.2
