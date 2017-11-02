@@ -5,7 +5,7 @@
   :dependencies [[org.clojure/clojure "1.9.0-beta4"]
                  [duct/core "0.6.1"]
                  [duct/module.logging "0.3.1"]
-                 [duct/module.web "0.6.2"]{{#ataraxy?}}
+                 [duct/module.web "0.6.3"]{{#ataraxy?}}
                  [duct/module.ataraxy "0.2.0"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.3.1"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.4.0"]{{/jdbc?}}{{#postgres?}}
