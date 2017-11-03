@@ -1,3 +1,11 @@
+## 0.10.4 (2017-11-03)
+
+* Updated Clojure version to 1.9.0-beta4
+* Updated `duct/module.web` to 0.6.3
+* Updated `duct/module.sql` to 0.4.1
+* Updated third party dependencies
+* Fixed example handler test failing on +ataraxy hint (#67)
+
 ## 0.10.3 (2017-10-18)
 
 * Updated Clojure version to 1.9.0-beta2
