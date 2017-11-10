@@ -2,13 +2,13 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
-  :dependencies [[org.clojure/clojure "1.9.0-beta4"]
+  :dependencies [[org.clojure/clojure "1.9.0-RC1"]
                  [duct/core "0.6.1"]
                  [duct/module.logging "0.3.1"]
                  [duct/module.web "0.6.3"]{{#ataraxy?}}
                  [duct/module.ataraxy "0.2.0"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.3.1"]{{/cljs?}}{{#jdbc?}}
-                 [duct/module.sql "0.4.1"]{{/jdbc?}}{{#postgres?}}
+                 [duct/module.sql "0.4.2"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "42.1.4"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.20.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.10.4"]]
