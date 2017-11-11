@@ -1,3 +1,8 @@
+## 0.10.5 (2017-11-11)
+
+* Updated Clojure version to 1.9.0-RC1
+* Updated `duct/module.sql` to 0.4.2
+
 ## 0.10.4 (2017-11-03)
 
 * Updated Clojure version to 1.9.0-beta4
