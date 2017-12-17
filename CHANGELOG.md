@@ -1,3 +1,12 @@
+## 0.10.6 (2017-12-17)
+
+* Updated Clojure version to 1.9.0
+* Updated `duct/core` to 0.6.2
+* Updated `duct/module.web` to 0.6.4
+* Updated `duct/module.cljs` to 0.3.2
+* Updated `org.xerial/sqlite-jdbc` to 3.21.0.1
+* Updated Eftest to 0.4.1
+
 ## 0.10.5 (2017-11-11)
 
 * Updated Clojure version to 1.9.0-RC1
