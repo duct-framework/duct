@@ -2,15 +2,15 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
-  :dependencies [[org.clojure/clojure "1.9.0-RC1"]
-                 [duct/core "0.6.1"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [duct/core "0.6.2"]
                  [duct/module.logging "0.3.1"]
-                 [duct/module.web "0.6.3"]{{#ataraxy?}}
+                 [duct/module.web "0.6.4"]{{#ataraxy?}}
                  [duct/module.ataraxy "0.2.0"]{{/ataraxy?}}{{#cljs?}}
-                 [duct/module.cljs "0.3.1"]{{/cljs?}}{{#jdbc?}}
+                 [duct/module.cljs "0.3.2"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.4.2"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "42.1.4"]{{/postgres?}}{{#sqlite?}}
-                 [org.xerial/sqlite-jdbc "3.20.1"]{{/sqlite?}}]
+                 [org.xerial/sqlite-jdbc "3.21.0.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.10.5"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
@@ -26,5 +26,5 @@
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
                   :dependencies   [[integrant/repl "0.2.0"]
-                                   [eftest "0.4.0"]
+                                   [eftest "0.4.1"]
                                    [kerodon "0.9.0"]]}})
