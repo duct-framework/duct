@@ -1,6 +1,3 @@
 {{=<< >>=}}
-{:duct.core/environment :development
- :duct.core/include ["<<dirs>>/config"]<<#jdbc?>>
-
- :duct.module/sql
+{<<#jdbc?>>:duct.module/sql
  {:database-url "<<dev-database>>"}<</jdbc?>>}

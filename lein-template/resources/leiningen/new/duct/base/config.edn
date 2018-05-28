@@ -1,17 +1,21 @@
 {{=<< >>=}}
-{:duct.core/project-ns  <<namespace>>
- :duct.core/environment :production
-
- :duct.module/logging {}
+{:duct.module/logging {}
  <<web-module>> {}<<#jdbc?>>
  :duct.module/sql {}<</jdbc?>><<#cljs?>>
  :duct.module/cljs {:main <<namespace>>.client}<</cljs?>><<#ataraxy?>>
 
  :duct.module/ataraxy
- {<<#example?>>[:get "/example"] [:example]<</example?>>}<</ataraxy?>><<^ataraxy?>>
- 
- :duct.router/cascading
- [<<#example?>>#ig/ref :<<namespace>>.handler/example<</example?>>]<</ataraxy?>><<#example?>>
+ {<<#example?>>[:get "/example"] [:example]<</example?>>}<</ataraxy?>>
 
- :<<namespace>>.handler/example
- {<<#jdbc?>>:db #ig/ref :duct.database/sql<</jdbc?>>}<</example?>>}
+ :duct.profile/base
+ {:duct.core/project-ns <<namespace>><<^ataraxy?>>
+
+  :duct.router/cascading
+  [<<#example?>>#ig/ref :<<namespace>>.handler/example<</example?>>]<</ataraxy?>><<#example?>>
+
+  :<<namespace>>.handler/example
+  {<<#jdbc?>>:db #ig/ref :duct.database/sql<</jdbc?>>}<</example?>>}
+
+ :duct.profile/dev   #duct/include "dev"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}}

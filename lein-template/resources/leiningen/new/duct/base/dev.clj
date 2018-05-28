@@ -15,14 +15,17 @@
 (duct/load-hierarchy)
 
 (defn read-config []
-  (duct/read-config (io/resource "dev.edn")))
+  (duct/read-config (io/resource "{{dirs}}/config.edn")))
 
 (defn test []
   (eftest/run-tests (eftest/find-tests "test")))
+
+(def profiles
+  [:duct.profile/dev :duct.profile/local])
 
 (clojure.tools.namespace.repl/set-refresh-dirs "dev/src" "src" "test")
 
 (when (io/resource "local.clj")
   (load "local"))
 
-(integrant.repl/set-prep! (comp duct/prep read-config))
+(integrant.repl/set-prep! #(duct/prep-config (read-config) profiles))
