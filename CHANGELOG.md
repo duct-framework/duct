@@ -1,3 +1,16 @@
+## 0.11.0-alpha1 (2018-05-30)
+
+* Updated template to use new Duct configurations
+* Updated `duct/core` to 0.7.0-alpha5
+* Updated `duct/module.logging` to 0.4.0-alpha1
+* Updated `duct/module.web` to 0.7.0-alpha1
+* Updated `duct/module.ataraxy` to 0.7.0-alpha1
+* Updated `duct/module.cljs` to 0.7.0-alpha1
+* Updated `duct/module.sql` to 0.7.0-alpha1
+* Updated Eftest to 0.5.2
+* Updated Integrant-REPL to 0.3.1
+* Updated PostgreSQL and SQLite dependencies
+
 ## 0.10.6 (2017-12-17)
 
 * Updated Clojure version to 1.9.0
