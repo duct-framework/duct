@@ -9,8 +9,8 @@
                  [duct/module.ataraxy "0.3.0-alpha1"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.4.0-alpha1"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.5.0-alpha1"]{{/jdbc?}}{{#postgres?}}
-                 [org.postgresql/postgresql "42.1.4"]{{/postgres?}}{{#sqlite?}}
-                 [org.xerial/sqlite-jdbc "3.21.0.1"]{{/sqlite?}}]
+                 [org.postgresql/postgresql "42.2.2"]{{/postgres?}}{{#sqlite?}}
+                 [org.xerial/sqlite-jdbc "3.23.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.10.6"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
@@ -25,6 +25,6 @@
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
-                  :dependencies   [[integrant/repl "0.3.0"]
-                                   [eftest "0.5.0"]
+                  :dependencies   [[integrant/repl "0.3.1"]
+                                   [eftest "0.5.2"]
                                    [kerodon "0.9.0"]]}})
