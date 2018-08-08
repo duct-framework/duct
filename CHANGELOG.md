@@ -1,3 +1,7 @@
+## 0.11.0-alpha2 (2018-08-08)
+
+* Fixed template namespace and function name
+
 ## 0.11.0-alpha1 (2018-05-30)
 
 * Updated template to use new Duct configurations
