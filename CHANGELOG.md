@@ -1,3 +1,7 @@
+## 0.11.0-alpha3 (2018-09-21)
+
+* Fixed bug in dev database configuration
+
 ## 0.11.0-alpha2 (2018-08-08)
 
 * Fixed template namespace and function name
