@@ -2,13 +2,13 @@
 {:duct.module/logging {}
  <<web-module>> {}<<#jdbc?>>
  :duct.module/sql {}<</jdbc?>><<#cljs?>>
- :duct.module/cljs {:main <<namespace>>.client}<</cljs?>><<#ataraxy?>>
-
- :duct.module/ataraxy
- {<<#example?>>[:get "/example"] [:example]<</example?>>}<</ataraxy?>>
+ :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>
 
  :duct.profile/base
- {:duct.core/project-ns <<namespace>><<^ataraxy?>>
+ {:duct.core/project-ns <<namespace>><<#ataraxy?>>
+
+  :duct.router/ataraxy
+  {:routes {<<#example?>>[:get "/example"] [:<<namespace>>.handler/example]<</example?>>}}<</ataraxy?>><<^ataraxy?>>
 
   :duct.router/cascading
   [<<#example?>>#ig/ref :<<namespace>>.handler/example<</example?>>]<</ataraxy?>><<#example?>>
