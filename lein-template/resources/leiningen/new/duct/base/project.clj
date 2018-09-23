@@ -3,13 +3,13 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [duct/core "0.7.0-alpha5"]
+                 [duct/core "0.7.0-alpha6"]
                  [duct/module.logging "0.4.0-alpha1"]
-                 [duct/module.web "0.7.0-alpha1"]{{#ataraxy?}}
-                 [duct/module.ataraxy "0.3.0-alpha1"]{{/ataraxy?}}{{#cljs?}}
+                 [duct/module.web "0.7.0-alpha2"]{{#ataraxy?}}
+                 [duct/module.ataraxy "0.3.0-alpha2"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.4.0-alpha1"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.5.0-alpha1"]{{/jdbc?}}{{#postgres?}}
-                 [org.postgresql/postgresql "42.2.2"]{{/postgres?}}{{#sqlite?}}
+                 [org.postgresql/postgresql "42.2.5"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.23.1"]{{/sqlite?}}]
   :plugins [[duct/lein-duct "0.11.0-alpha3"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
@@ -26,5 +26,5 @@
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
                   :dependencies   [[integrant/repl "0.3.1"]
-                                   [eftest "0.5.2"]
+                                   [eftest "0.5.3"]
                                    [kerodon "0.9.0"]]}})
