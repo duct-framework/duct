@@ -6,7 +6,7 @@
                  [duct/core "0.7.0-alpha8"]
                  [duct/module.logging "0.4.0-alpha1"]
                  [duct/module.web "0.7.0-alpha3"]{{#ataraxy?}}
-                 [duct/module.ataraxy "0.3.0-alpha2"]{{/ataraxy?}}{{#cljs?}}
+                 [duct/module.ataraxy "0.3.0-alpha3"]{{/ataraxy?}}{{#cljs?}}
                  [duct/module.cljs "0.4.0-alpha1"]{{/cljs?}}{{#jdbc?}}
                  [duct/module.sql "0.5.0-alpha1"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "42.2.5"]{{/postgres?}}{{#sqlite?}}
