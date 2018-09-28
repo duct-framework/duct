@@ -1,3 +1,12 @@
+## 0.11.0-alpha4 (2018-09-28)
+
+* Fixed +site and +api profile hints conflicting
+* Updated `duct/core` to 0.7.0-alpha8
+* Updated `duct/module.web` to 0.7.0-alpha3
+* Updated `duct/module.ataraxy` to 0.3.0-alpha3
+* Updated Eftest to 0.5.3
+* Updated PostgreSQL dependency
+
 ## 0.11.0-alpha3 (2018-09-21)
 
 * Fixed bug in dev database configuration
