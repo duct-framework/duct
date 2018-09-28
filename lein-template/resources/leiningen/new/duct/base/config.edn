@@ -1,11 +1,5 @@
 {{=<< >>=}}
-{:duct.module/logging {}<<#api?>>
- :duct.module.web/api {}<</api?>><<#site?>>
- :duct.module.web/site {}<</site?>><<#jdbc?>>
- :duct.module/sql {}<</jdbc?>><<#cljs?>>
- :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>
-
- :duct.profile/base
+{:duct.profile/base
  {:duct.core/project-ns <<namespace>><<#ataraxy?>>
 
   :duct.router/ataraxy
@@ -19,4 +13,10 @@
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
- :duct.profile/prod  {}}
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}<<#api?>>
+ :duct.module.web/api {}<</api?>><<#site?>>
+ :duct.module.web/site {}<</site?>><<#jdbc?>>
+ :duct.module/sql {}<</jdbc?>><<#cljs?>>
+ :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>}
