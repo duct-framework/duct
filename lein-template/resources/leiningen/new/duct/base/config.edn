@@ -1,6 +1,7 @@
 {{=<< >>=}}
-{:duct.module/logging {}
- <<web-module>> {}<<#jdbc?>>
+{:duct.module/logging {}<<#api?>>
+ :duct.module.web/api {}<</api?>><<#site?>>
+ :duct.module.web/site {}<</site?>><<#jdbc?>>
  :duct.module/sql {}<</jdbc?>><<#cljs?>>
  :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>
 
