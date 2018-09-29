@@ -51,14 +51,12 @@
        (render "example/example.html" data)]])))
 
 (defmethod profile-data :api [_ _]
-  {:api?       true
-   :web-module :duct.module.web/api})
+  {:api? true, :web? true})
 
 (defmethod profile-files :api [_ _] [])
 
 (defmethod profile-data :site [_ _]
-  {:site?      true
-   :web-module :duct.module.web/site})
+  {:site? true, :web? true})
 
 (defmethod profile-files :site [_ data] [])
 
