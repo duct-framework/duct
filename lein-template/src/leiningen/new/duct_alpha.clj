@@ -61,7 +61,7 @@
 (defmethod profile-files :site [_ data] [])
 
 (defmethod profile-data :cljs [_ _]
-  {:cljs? true})
+  {:cljs? true, :site? true, :web? true})
 
 (defmethod profile-files :cljs [_ data]
   [["src/{{dirs}}/client.cljs" (render "cljs/client.cljs" data)]])
@@ -88,7 +88,7 @@
 (defmethod profile-files :sqlite [_ _] ["db"])
 
 (defmethod profile-data :ataraxy [_ _]
-  {:ataraxy? true})
+  {:ataraxy? true, :web? true})
 
 (defmethod profile-files :ataraxy [_ _] [])
 
