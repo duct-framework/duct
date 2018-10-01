@@ -26,5 +26,5 @@
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
                   :dependencies   [[integrant/repl "0.3.1"]
-                                   [eftest "0.5.3"]
-                                   [kerodon "0.9.0"]]}})
+                                   [eftest "0.5.3"]{{#web?}}
+                                   [kerodon "0.9.0"]{{/web?}}]}})
