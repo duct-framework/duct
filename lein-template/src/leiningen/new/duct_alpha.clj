@@ -32,11 +32,11 @@
    ["dev/src/dev.clj"               (render "base/dev.clj" data)]
    ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
-   ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
-   "resources/{{dirs}}/public"
-   "src/{{dirs}}/boundary"
+   ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]])
+
+(def ^:private web-directories
+  ["resources/{{dirs}}/public"
    "src/{{dirs}}/handler"
-   "test/{{dirs}}/boundary"
    "test/{{dirs}}/handler"])
 
 (defmethod profile-data :example [_ _]
@@ -53,18 +53,21 @@
 (defmethod profile-data :api [_ _]
   {:api? true, :web? true})
 
-(defmethod profile-files :api [_ _] [])
+(defmethod profile-files :api [_ _]
+  web-directories)
 
 (defmethod profile-data :site [_ _]
   {:site? true, :web? true})
 
-(defmethod profile-files :site [_ data] [])
+(defmethod profile-files :site [_ data]
+  web-directories)
 
 (defmethod profile-data :cljs [_ _]
   {:cljs? true, :site? true, :web? true})
 
 (defmethod profile-files :cljs [_ data]
-  [["src/{{dirs}}/client.cljs" (render "cljs/client.cljs" data)]])
+  (conj web-directories
+        ["src/{{dirs}}/client.cljs" (render "cljs/client.cljs" data)]))
 
 (defmethod profile-data :heroku [_ name]
   {:heroku? true
@@ -90,7 +93,8 @@
 (defmethod profile-data :ataraxy [_ _]
   {:ataraxy? true, :web? true})
 
-(defmethod profile-files :ataraxy [_ _] [])
+(defmethod profile-files :ataraxy [_ _]
+  web-directories)
 
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
