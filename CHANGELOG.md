@@ -1,3 +1,9 @@
+## 0.11.0-alpha5 (2018-10-01)
+
+* Rearranged config.edn template
+* Removed web app assumption when run without profile hints
+* Updated +cljs and +ataraxy hints to work without +site or +api
+
 ## 0.11.0-alpha4 (2018-09-28)
 
 * Fixed +site and +api profile hints conflicting
