@@ -1,0 +1,2 @@
+{{=<< >>=}}
+{<<#example?>><<^web?>>:<<namespace>>.service/example [:duct/daemon]<</web?>><</example?>>}

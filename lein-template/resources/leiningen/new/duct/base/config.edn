@@ -8,7 +8,7 @@
   :duct.router/cascading
   [<<#example?>>#ig/ref :<<namespace>>.handler/example<</example?>>]<</ataraxy?>><</web?>><<#example?>>
 
-  :<<namespace>>.handler/example
+  :<<namespace>>.<<#web?>>handler<</web?>><<^web?>>service<</web?>>/example
   {<<#jdbc?>>:db #ig/ref :duct.database/sql<</jdbc?>>}<</example?>>}
 
  :duct.profile/dev   #duct/include "dev"

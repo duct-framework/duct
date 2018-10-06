@@ -32,7 +32,8 @@
    ["dev/src/dev.clj"               (render "base/dev.clj" data)]
    ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
-   ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]])
+   ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
+   ["src/duct_hierarchy.edn"        (render "base/duct_hierarchy.edn" data)]])
 
 (def ^:private web-directories
   ["resources/{{dirs}}/public"
@@ -43,12 +44,15 @@
   {:example? true})
 
 (defmethod profile-files :example [_ data]
-  (concat
-   [["src/{{dirs}}/handler/example.clj"       (render "example/handler.clj" data)]
-    ["test/{{dirs}}/handler/example_test.clj" (render "example/handler_test.clj" data)]]
-   (if (:site? data)
-     [["resources/{{dirs}}/handler/example/example.html"
-       (render "example/example.html" data)]])))
+  (if (:web? data)
+    (concat
+     [["src/{{dirs}}/handler/example.clj"       (render "example/handler.clj" data)]
+      ["test/{{dirs}}/handler/example_test.clj" (render "example/handler_test.clj" data)]]
+     (if (:site? data)
+       [["resources/{{dirs}}/handler/example/example.html"
+         (render "example/example.html" data)]]))
+    [["src/{{dirs}}/service/example.clj"       (render "example/service.clj" data)]
+     ["test/{{dirs}}/service/example_test.clj" (render "example/service_test.clj" data)]]))
 
 (defmethod profile-data :api [_ _]
   {:api? true, :web? true})
