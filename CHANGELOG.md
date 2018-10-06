@@ -1,3 +1,9 @@
+## 0.11.0-alpha6 (2018-10-06)
+
+* Improved support for non-web projects
+* Added non-web example service
+* Update Clojure version to 1.10.0-beta1
+
 ## 0.11.0-alpha5 (2018-10-01)
 
 * Rearranged config.edn template
