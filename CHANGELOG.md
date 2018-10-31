@@ -1,3 +1,11 @@
+## 0.11.0-beta2 (2018-10-31)
+
+* Fixed out-of-date `.dir-locals.el` template (#79)
+* Updated Clojure to 1.10.0-beta4
+* Updated `duct/module.logging` to 0.4.0-beta1
+* Updated `duct/module.web` to 0.7.0-beta1
+* Updated SQLite dependency
+
 ## 0.11.0-beta1 (2018-10-21)
 
 * Fixed ambiguous key error with `:duct.profile/base` (#77)

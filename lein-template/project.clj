@@ -1,4 +1,4 @@
-(defproject duct-beta/lein-template "0.11.0-beta1"
+(defproject duct-beta/lein-template "0.11.0-beta2"
   :description "A template for an Integrant-based web application"
   :url "https://github.com/duct-framework/duct"
   :scm {:dir ".."}
