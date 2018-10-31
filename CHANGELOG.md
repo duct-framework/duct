@@ -1,8 +1,9 @@
 ## 0.11.0-beta1 (2018-10-21)
 
 * Fixed ambiguous key error with `:duct.profile/base` (#77)
-* Updated ClojureScript dependencies
 * Updated Clojure to 1.10.0-beta3
+* Updated `duct/core` to 0.7.0-beta1
+* Updated `duct/module.cljs` to 0.7.0-beta1
 
 ## 0.11.0-alpha6 (2018-10-06)
 
