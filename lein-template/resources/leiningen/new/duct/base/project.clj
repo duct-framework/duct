@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.10.0-beta4"]
-                 [duct/core "0.7.0-beta1"]
+                 [duct/core "0.7.0-beta2"]
                  [duct/module.logging "0.4.0-beta1"]{{#web?}}
                  [duct/module.web "0.7.0-beta1"]{{/web?}}{{#ataraxy?}}
                  [duct/module.ataraxy "0.3.0-alpha3"]{{/ataraxy?}}{{#cljs?}}
