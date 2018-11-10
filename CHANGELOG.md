@@ -1,3 +1,7 @@
+## 0.11.0-beta3 (2018-11-10)
+
+* Updated `duct/core` to 0.7.0-beta2 (#80)
+
 ## 0.11.0-beta2 (2018-10-31)
 
 * Fixed out-of-date `.dir-locals.el` template (#79)
