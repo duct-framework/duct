@@ -33,7 +33,8 @@
    ["dev/resources/dev.edn"         (render "base/dev.edn" data)]
    ["resources/{{dirs}}/config.edn" (render "base/config.edn" data)]
    ["src/{{dirs}}/main.clj"         (render "base/main.clj" data)]
-   ["src/duct_hierarchy.edn"        (render "base/duct_hierarchy.edn" data)]])
+   ["src/duct_hierarchy.edn"        (render "base/duct_hierarchy.edn" data)]
+   "test/{{dirs}}"])
 
 (def ^:private web-directories
   ["resources/{{dirs}}/public"
