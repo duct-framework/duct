@@ -11,7 +11,7 @@
                  [duct/module.sql "0.5.0-beta1"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "42.2.5"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.25.2"]{{/sqlite?}}]
-  :plugins [[duct/lein-duct "0.11.0-beta3"]]
+  :plugins [[duct/lein-duct "0.11.0-beta4"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
   :resource-paths ["resources" "target/resources"]
