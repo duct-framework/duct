@@ -1,4 +1,4 @@
-## 0.11.0-beta4 (2018-01-03)
+## 0.11.0-beta4 (2018-12-03)
 
 * Updated `duct/module.sql` to 0.5.0-beta1 (#82)
 
