@@ -1,4 +1,4 @@
-(ns leiningen.new.duct-beta
+(ns leiningen.new.duct
   (:require [clojure.java.io :as io]
             [leiningen.core.main :as main]
             [leiningen.new.templates :refer [renderer year project-name
@@ -105,7 +105,7 @@
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
     (keyword (subs hint 1))))
 
-(defn duct-beta
+(defn duct
   "Create a new Duct web application.
 
 Accepts the following profile hints:

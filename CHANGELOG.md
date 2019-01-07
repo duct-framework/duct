@@ -1,3 +1,13 @@
+## 0.11.0 (2019-01-07)
+
+* Updated Clojure to 1.10.0
+* Updated `duct/core` to 0.7.0
+* Updated `duct/module.logging` to 0.4.0
+* Updated `duct/module.web` to 0.7.0
+* Updated `duct/module.cljs` to 0.4.0
+* Updated `duct/module.sql` to 0.5.0
+* Updated Eftest to 0.5.4
+
 ## 0.11.0-beta4 (2018-12-03)
 
 * Updated `duct/module.sql` to 0.5.0-beta1 (#82)
