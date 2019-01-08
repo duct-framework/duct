@@ -1,4 +1,4 @@
-(defproject duct/lein-duct "0.11.0"
+(defproject duct/lein-duct "0.11.1"
   :description "A plugin to be used in the Duct Leiningen template"
   :url "https://github.com/duct-framework/duct"
   :scm {:dir ".."}

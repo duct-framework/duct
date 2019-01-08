@@ -1,3 +1,7 @@
+## 0.11.1 (2019-01-08)
+
+* Fixed Piggieback setup for CLJS
+
 ## 0.11.0 (2019-01-07)
 
 * Updated Clojure to 1.10.0
