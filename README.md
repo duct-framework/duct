@@ -137,6 +137,6 @@ out of version control.
 
 ## License
 
-Copyright © 2018 James Reeves
+Copyright © 2019 James Reeves
 
 Distributed under the MIT license.
