@@ -2,7 +2,15 @@
   (:require [leiningen.core.main :as main]
             [leiningen.new.templates :refer [->files]]
             [leiningen.new.profiles :as profiles]
-            [leiningen.new.external-profiles :as external-profiles]))
+            [leiningen.new.external-profiles :as external-profiles]
+            [rewrite-clj.zip :as z]
+            [clojure.java.io :as io]))
+
+(defn insert-new-deps [deps-to-insert]
+  (let [data (z/of-string (slurp (io/resource "project.clj")))
+        prj-map (z/find-value data z/next 'defproject)
+        deps (-> prj-map (z/find-value :dependencies) (z/right))]
+    (-> deps (z/edit concat deps-to-insert) (z/root-string))))
 
 (defn duct
   "Create a new Duct web application.
@@ -28,5 +36,10 @@ Accepts the following profile hints:
     (main/info "EXTRA DEPS:")
     (main/info extra-deps)
     (main/info (str "Mods: " mods))
-    (apply ->files data files))
+    (apply ->files data files)
+    (spit "foobar/project.clj" (insert-new-deps
+                                    (reduce (fn [v {:keys [extra-deps]}]
+                                              (concat v extra-deps))
+                                            []
+                                            extra-deps))))
   (main/info "Run 'lein duct setup' in the project directory to create local config files."))
