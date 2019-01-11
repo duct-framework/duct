@@ -32,7 +32,7 @@ Accepts the following profile hints:
         mods  (cons :base native)
         data  (reduce into {} (map #(profiles/profile-data % name) mods))
         files (reduce into [] (map #(profiles/profile-files % data) mods))
-        {:keys [extra-deps extra-files]} (external-profiles/main external)]
+        {:keys [extra-deps extra-files]} (external-profiles/main external data)]
     (main/info "EXTRA DEPS:")
     (main/info extra-deps)
     (main/info (str "Mods: " mods))

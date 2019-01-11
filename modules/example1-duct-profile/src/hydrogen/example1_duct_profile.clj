@@ -3,6 +3,7 @@
 
 (def render (renderer "example1"))
 
-(defn main [{:keys [project-name] :as data}]
+(defn main [data]
   {:extra-deps ['[magnetcoop/stork "0.1.5"]]
-   :extra-files [["resources/parrot.txt" (render "parrot.txt" data)]]})
+   :extra-files [["resources/parrot.txt" (render "parrot.txt" data)]
+                 ["src/{{dirs}}/take_over_the_world.clj" (render "take_over_the_world.clj" data)]]})
