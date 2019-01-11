@@ -32,14 +32,13 @@ Accepts the following profile hints:
         mods  (cons :base native)
         data  (reduce into {} (map #(profiles/profile-data % name) mods))
         files (reduce into [] (map #(profiles/profile-files % data) mods))
-        extra-deps (external-profiles/extra-deps external)]
+        {:keys [extra-deps extra-files]} (external-profiles/main external)]
     (main/info "EXTRA DEPS:")
     (main/info extra-deps)
     (main/info (str "Mods: " mods))
-    (apply ->files data files)
-    (spit "foobar/project.clj" (insert-new-deps
-                                    (reduce (fn [v {:keys [extra-deps]}]
-                                              (concat v extra-deps))
-                                            []
-                                            extra-deps))))
+    (main/info "NEW FILES:")
+    (main/info (map first extra-files))
+    (apply ->files data (concat files
+                                extra-files))
+    (spit "foobar/project.clj" (insert-new-deps extra-deps)))
   (main/info "Run 'lein duct setup' in the project directory to create local config files."))

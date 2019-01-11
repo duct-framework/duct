@@ -1,8 +1,8 @@
 (ns hydrogen.example1-duct-profile
-  (:require [clojure.java.io :as io]))
+  (:require [leiningen.new.templates :refer [renderer]]))
 
-(defn main [{:keys [project-name]}]
-  {:extra-deps '[[magnetcoop/stork "0.1.5"]]
-   :extra-files {(str "src/" project-name "/schedules.clj")
-                 (io/resource "parrot.gif")}})
+(def render (renderer "example1"))
 
+(defn main [{:keys [project-name] :as data}]
+  {:extra-deps ['[magnetcoop/stork "0.1.5"]]
+   :extra-files [["resources/parrot.txt" (render "parrot.txt" data)]]})

@@ -17,5 +17,6 @@
     (str (namespace profile) "." (name profile) "-duct-profile")
     eval-profile))
 
-(defn extra-deps [profiles]
-  (map handle-profile profiles))
+(defn main [profiles]
+  (->> (map handle-profile profiles)
+       (apply merge-with into)))
