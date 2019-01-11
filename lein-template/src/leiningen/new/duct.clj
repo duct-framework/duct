@@ -40,5 +40,7 @@ Accepts the following profile hints:
     (main/info (map first extra-files))
     (apply ->files data (concat files
                                 extra-files))
-    (spit "foobar/project.clj" (insert-new-deps extra-deps)))
+    (main/info "DATA:")
+    (main/info data)
+    (spit (str (:name data) "/project.clj") (insert-new-deps extra-deps)))
   (main/info "Run 'lein duct setup' in the project directory to create local config files."))
