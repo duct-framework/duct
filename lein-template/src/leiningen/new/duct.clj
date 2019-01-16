@@ -15,7 +15,6 @@
       project-clj-rel-path
       (-> deps (z/edit #(vec (concat %1 %2)) deps-to-insert) (z/root-string)))))
 
-;; TODO Make sure it works if no dependencies are present natively.
 (defn duct
   "Create a new Duct web application.
 
