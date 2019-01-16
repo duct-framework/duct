@@ -6,12 +6,16 @@
             [rewrite-clj.zip :as z]
             [clojure.java.io :as io]))
 
-(defn insert-new-deps [deps-to-insert]
-  (let [data (z/of-string (slurp (io/resource "project.clj")))
+(defn insert-new-deps! [project-clj-rel-path deps-to-insert]
+  (let [project-file (io/file project-clj-rel-path)
+        data (z/of-string (slurp project-file))
         prj-map (z/find-value data z/next 'defproject)
         deps (-> prj-map (z/find-value :dependencies) (z/right))]
-    (-> deps (z/edit concat deps-to-insert) (z/root-string))))
+    (spit
+      project-clj-rel-path
+      (-> deps (z/edit #(vec (concat %1 %2)) deps-to-insert) (z/root-string)))))
 
+;; TODO Make sure it works if no dependencies are present natively.
 (defn duct
   "Create a new Duct web application.
 
@@ -33,14 +37,9 @@ Accepts the following profile hints:
         data  (reduce into {} (map #(profiles/profile-data % name) mods))
         files (reduce into [] (map #(profiles/profile-files % data) mods))
         {:keys [extra-deps extra-files]} (external-profiles/main external data)]
-    (main/info "EXTRA DEPS:")
-    (main/info extra-deps)
-    (main/info (str "Mods: " mods))
-    (main/info "NEW FILES:")
-    (main/info (map first extra-files))
     (apply ->files data (concat files
                                 extra-files))
-    (main/info "DATA:")
-    (main/info data)
-    (spit (str (:name data) "/project.clj") (insert-new-deps extra-deps)))
+    (insert-new-deps! (str (:name data)
+                           "/project.clj")
+                      extra-deps))
   (main/info "Run 'lein duct setup' in the project directory to create local config files."))
