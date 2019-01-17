@@ -1,7 +1,7 @@
-(ns hydrogen.example1-duct-profile
+(ns hydrogen.example2.duct-profile
   (:require [leiningen.new.templates :refer [renderer]]))
 
-(def render (renderer "example1"))
+(def render (renderer "hydrogen.example2"))
 
 (defn main [data]
   {:extra-deps ['[magnetcoop/stork "0.1.5"]]

@@ -1,6 +1,6 @@
-(ns hydrogen.example1-duct-profile-test
+(ns hydrogen.example2.duct-profile-test
   (:require [clojure.test :refer :all]
-            [hydrogen.example1-duct-profile :refer :all]))
+            [hydrogen.example2.duct-profile :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
