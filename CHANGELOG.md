@@ -1,3 +1,7 @@
+## 0.11.2 (2019-01-11)
+
+* Added explicit Leiningen middleware key to fix deprecation warning
+
 ## 0.11.1 (2019-01-08)
 
 * Fixed Piggieback setup for CLJS

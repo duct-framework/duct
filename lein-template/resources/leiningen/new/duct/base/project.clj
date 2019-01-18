@@ -11,11 +11,12 @@
                  [duct/module.sql "0.5.0"]{{/jdbc?}}{{#postgres?}}
                  [org.postgresql/postgresql "42.2.5"]{{/postgres?}}{{#sqlite?}}
                  [org.xerial/sqlite-jdbc "3.25.2"]{{/sqlite?}}]
-  :plugins [[duct/lein-duct "0.11.1"]]
+  :plugins [[duct/lein-duct "0.11.2"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
   :resource-paths ["resources" "target/resources"]
   :prep-tasks     ["javac" "compile" ["run" ":duct/compiler"]]
+  :middleware     [lein-duct.plugin/middleware]
   :profiles
   {:dev  [:project/dev :profiles/dev]
    :repl {:prep-tasks   ^:replace ["javac" "compile"]{{#cljs?}}

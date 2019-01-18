@@ -12,6 +12,11 @@ queried to produce sophisticated behavior.
 [arachne]: http://arachne-framework.org/
 
 
+## Upgrading
+
+See: [UPGRADING.md](https://github.com/duct-framework/duct/blob/master/UPGRADING.md).
+
+
 ## Quick Start
 
 To create a new Duct project with Leiningen:
@@ -47,8 +52,6 @@ your project, refer to the project's `README.md` file.
 
 The structure of the application is defined by an Integrant configuration map.
 
-The configuration map is transformed using modules.
-
 In development, Duct uses Stuart Sierra's [Reloaded Workflow][reloaded].
 
 In production, Duct follows the [Twelve-Factor App][12-factor] methodology.
@@ -57,41 +60,37 @@ Local state is preferred over global state.
 
 Namespaces should group functions by purpose, rather than by layer.
 
+Protocols should be used to wrap external APIs.
+
 [12-factor]: http://12factor.net/
 [reloaded]: http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded
 
 
-## Overview
+## Structure
 
-Duct is designed to produce a standalone application, logging to
-STDOUT, with external configuration supplied through environment
-variables. This approach is common for server-side applications, and
-works well in environments like [Heroku][] and [Docker][].
+Duct adds a layer of abstraction on top of Integrant. In Integrant,
+a configuration map is **initiated** into a running system map.
 
-The core of every Duct application is the configuration map, loaded
-from one or more [edn][] resources, and interpreted by Integrant.
-Each key/value pair in the configuration corresponds to a multimethod
-that can **initiate** the configuration into a concrete implementation.
+    ┌────────┐   ┌────────┐
+    │ config ├──>│ system │
+    └────────┘   └────────┘
 
-Before the configuration is initiated, however, it is first transformed.
-Some keys in the configuration are **modules**; these are pure
-functions used to update the configuration, adding in new keys and
-references.
+In Duct, the configuration is initiated twice. The configuration is
+first initiated into an intermediate configuration, which in turn is
+initiated into the system:
 
-Modules can introduce broad functionality that affects many parts of
-the application. Because they manipulate an immutable data structure,
-they are also both transparent and customizable. Anything a module
-adds can be queried, examined, and if necessary, overridden.
+    ┌────────┐   ┌──────────────┐   ┌────────┐
+    │ config ├──>│ intermediate ├──>│ system │
+    └────────┘   └──────────────┘   └────────┘
 
-Any I/O to an external service should be accessed through a
-**boundary** protocol. This not only provides a clear dividing line
-between what's internal and what's external to the application, it
-also allows external services to be mocked or stubbed when testing.
+In the same way that higher-order functions allow us to abstract
+common patterns of code, Duct's layered configurations allow us to
+abstract common patterns of configuration.
 
-[heroku]:    https://www.heroku.com/
-[docker]:    https://www.docker.com/
-[edn]:       https://github.com/edn-format/edn
-[ring]:      https://github.com/ring-clojure/ring
+Keys in a Duct configuration are expected to initiate into functions
+that transform a configuration map. There are two broad types:
+**profiles**, which merge their value into the configuration, and
+**modules**, which provide more complex manipulation.
 
 
 ## Documentation
@@ -103,6 +102,7 @@ also allows external services to be mocked or stubbed when testing.
 ## Community
 
 * [Google Group](https://groups.google.com/forum/#!forum/duct-clojure)
+* #duct on [Clojurians Slack](http://clojurians.net/)
 
 
 ## File structure
@@ -114,37 +114,29 @@ out of version control.
 {{project}}
 ├── README.md
 ├── dev
-│   ├── resources
-│   │   ├── dev.edn
-│   │   └── local.edn *
-│   └── src
-│       ├── dev.clj
-│       ├── local.clj *
-│       └── user.clj
-├── profiles.clj *
+│   ├── resources
+│   │   ├── dev.edn
+│   │   └── local.edn *
+│   └── src
+│       ├── dev.clj
+│       ├── local.clj *
+│       └── user.clj
+├── profiles.clj
 ├── project.clj
 ├── resources
 │   └── {{project}}
-│       ├── config.edn
-│       └── public
+│       └── config.edn
 ├── src
-│   └── {{project}}
-│       ├── boundary
-│       │   └── {{boundary}}.clj
-│       ├── handler
-│       │   └── {{handler}}.clj
-│       └── main.clj
+│   ├── duct_hierarchy.edn
+│   └── {{project}}
+│       └── main.clj
 └── test
     └── {{project}}
-        ├── boundary
-        │   └── {{boundary}}_test.clj
-        └── handler
-            └── {{handler}}_test.clj
 ```
 
 
 ## License
 
-Copyright © 2017 James Reeves
+Copyright © 2019 James Reeves
 
 Distributed under the MIT license.
