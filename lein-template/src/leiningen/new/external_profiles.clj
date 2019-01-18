@@ -35,13 +35,11 @@
 (defn resolve-template [profile]
   (let [name (name profile)
         sym (symbol (str name ".duct-profile"))]
-    hydrogen.abc.duct-profile/hydrogen.abc
-    duct-profile.hydrogen.abc/hydrogen.abc
     (if (try (require sym)
              true
              (catch FileNotFoundException _
                (resolve-remote-template name sym)))
-      (resolve (symbol (str sym "/main")))                  ;; THIS IS SYMBOL OF THE MAIN FUNCTION RETURNING EXTRA DEPS AND FILES
+      (resolve (symbol (str sym "/" name)))
       (abort "Could not find template" name "on the classpath."))))
 
 (defn main [profiles project-data]
