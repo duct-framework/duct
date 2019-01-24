@@ -118,3 +118,9 @@
 (defn profiles [hints]
   (for [hint hints :when (re-matches #"^\++\w+(\.\w+)*$" hint)]
     (keyword (subs hint 1))))
+
+(defn merge-profiles-data
+  [& profiles]
+  (if (every? coll? profiles)
+    (vec (apply concat profiles))
+    (some identity profiles)))

@@ -22,7 +22,9 @@ Accepts the following profile hints:
     (main/abort "Failed to create project: no project name specified."))
   (main/info (str "Generating a new Duct project named " name "..."))
   (let [mods (cons :base (profiles/profiles hints))
-        data (reduce into {} (map #(profiles/profile-data % name) mods))
+        data (apply
+               (partial merge-with profiles/merge-profiles-data)
+               (map #(profiles/profile-data % name) mods))
         files (reduce into [] (map #(profiles/profile-files % data) mods))]
     (apply ->files data files))
   (main/info "Run 'lein duct setup' in the project directory to create local config files."))
