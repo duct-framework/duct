@@ -55,19 +55,27 @@
      ["test/{{dirs}}/service/example_test.clj" (render "example/service_test.clj" data)]]))
 
 (defmethod profile-data :api [_ _]
-  {:api? true, :web? true})
+  {:api? true
+   :web? true
+   :deps [['duct/module.web "0.7.0"]]})
 
 (defmethod profile-files :api [_ _]
   web-directories)
 
 (defmethod profile-data :site [_ _]
-  {:site? true, :web? true})
+  {:site? true
+   :web? true
+   :deps [['duct/module.web "0.7.0"]]})
 
 (defmethod profile-files :site [_ data]
   web-directories)
 
 (defmethod profile-data :cljs [_ _]
-  {:cljs? true, :site? true, :web? true})
+  {:cljs? true
+   :site? true
+   :web? true
+   :deps [['duct/module.web "0.7.0"]
+          ['duct/module.cljs "0.4.0"]]})
 
 (defmethod profile-files :cljs [_ data]
   (conj web-directories
@@ -83,19 +91,26 @@
 (defmethod profile-data :postgres [_ name]
   {:jdbc? true
    :postgres? true
-   :dev-database "jdbc:postgresql://localhost/postgres"})
+   :dev-database "jdbc:postgresql://localhost/postgres"
+   :deps [['duct/module.sql "0.5.0"]
+          ['org.postgresql/postgresql "42.2.5"]]})
 
 (defmethod profile-files :postgres [_ name] [])
 
 (defmethod profile-data :sqlite [_ _]
   {:jdbc? true
    :sqlite? true
-   :dev-database "jdbc:sqlite:db/dev.sqlite"})
+   :dev-database "jdbc:sqlite:db/dev.sqlite"
+   :deps [['duct/module.sql "0.5.0"]
+          ['org.xerial/sqlite-jdbc "3.25.2"]]})
 
 (defmethod profile-files :sqlite [_ _] ["db"])
 
 (defmethod profile-data :ataraxy [_ _]
-  {:ataraxy? true, :web? true})
+  {:ataraxy? true
+   :web? true
+   :deps [['duct/module.web "0.7.0"]
+          ['duct/module.ataraxy "0.3.0"]]})
 
 (defmethod profile-files :ataraxy [_ _]
   web-directories)
