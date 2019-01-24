@@ -50,8 +50,22 @@
 
 (defn profile-data [module project-name]
   (prn (str "YEAH " module))
-  {})
+  (let [name (name module)
+        sym (symbol (str name ".duct-profile"))]
+    (if (try (require sym)
+             true
+             (catch FileNotFoundException _
+               (resolve-remote-template name sym)))
+      ((resolve (symbol (str sym "/profile-data"))) project-name)
+      (abort "Could not find template" name "on the classpath."))))
 
 (defn profile-files [module data]
   (prn (str "FILES " module))
-  [])
+  (let [name (name module)
+        sym (symbol (str name ".duct-profile"))]
+    (if (try (require sym)
+             true
+             (catch FileNotFoundException _
+               (resolve-remote-template name sym)))
+      ((resolve (symbol (str sym "/profile-files"))) data)
+      (abort "Could not find template" name "on the classpath."))))
