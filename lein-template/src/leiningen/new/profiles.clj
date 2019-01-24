@@ -1,14 +1,18 @@
 (ns leiningen.new.profiles
   (:require [leiningen.new.templates :refer [renderer year project-name
-                                             ->files sanitize-ns name-to-path]]))
+                                             ->files sanitize-ns name-to-path]]
+            [leiningen.new.external-profiles :as external-profiles]))
 
 (def render (renderer "duct"))
 
 (defmulti profile-data  (fn [module name] module))
 (defmulti profile-files (fn [module data] module))
 
-(defmethod profile-data  :default [_ _] {})
-(defmethod profile-files :default [_ _] [])
+(defmethod profile-data :default [module name]
+  (external-profiles/profile-data module name))
+
+(defmethod profile-files :default [module data]
+  (external-profiles/profile-files module data))
 
 (defmethod profile-data :base [_ name]
   (let [main-ns (sanitize-ns name)]
@@ -96,24 +100,6 @@
 (defmethod profile-files :ataraxy [_ _]
   web-directories)
 
-#_(defmethod profile-data :hydrogen-object-storage [_ _]
-    (main/info "Handling hydrogen object-storage hint!")
-    {})
-
-#_(defmethod profile-files :hydrogen-object-storage [_ _]
-    [])
-
-(defn- is-native?
-  [profile]
-  (boolean
-    (or
-      (get (methods profile-files) profile)
-      (get (methods profile-data) profile))))
-
-(defn group-profiles [hints]
-  (let [profiles (->> hints
-                      (filter #(= (first %) \+))
-                      (mapv #(keyword (subs % 1))))
-        {native-profiles true
-         external-profiles false} (group-by is-native? profiles)]
-    [native-profiles external-profiles]))
+(defn profiles [hints]
+  (for [hint hints :when (re-matches #"^\++\w+(\.\w+)*$" hint)]
+    (keyword (subs hint 1))))

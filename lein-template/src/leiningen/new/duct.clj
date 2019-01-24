@@ -2,18 +2,8 @@
   (:require [leiningen.core.main :as main]
             [leiningen.new.templates :refer [->files]]
             [leiningen.new.profiles :as profiles]
-            [leiningen.new.external-profiles :as external-profiles]
             [rewrite-clj.zip :as z]
             [clojure.java.io :as io]))
-
-(defn insert-new-deps! [project-clj-rel-path deps-to-insert]
-  (let [project-file (io/file project-clj-rel-path)
-        data (z/of-string (slurp project-file))
-        prj-map (z/find-value data z/next 'defproject)
-        deps (-> prj-map (z/find-value :dependencies) (z/right))]
-    (spit
-      project-clj-rel-path
-      (-> deps (z/edit #(vec (concat %1 %2)) deps-to-insert) (z/root-string)))))
 
 (defn duct
   "Create a new Duct web application.
@@ -31,14 +21,8 @@ Accepts the following profile hints:
   (when (.startsWith name "+")
     (main/abort "Failed to create project: no project name specified."))
   (main/info (str "Generating a new Duct project named " name "..."))
-  (let [[native external] (profiles/group-profiles hints)
-        mods  (cons :base native)
-        data  (reduce into {} (map #(profiles/profile-data % name) mods))
-        files (reduce into [] (map #(profiles/profile-files % data) mods))
-        {:keys [extra-deps extra-files]} (external-profiles/main external data)]
-    (apply ->files data (concat files
-                                extra-files))
-    (insert-new-deps! (str (:name data)
-                           "/project.clj")
-                      extra-deps))
+  (let [mods (cons :base (profiles/profiles hints))
+        data (reduce into {} (map #(profiles/profile-data % name) mods))
+        files (reduce into [] (map #(profiles/profile-files % data) mods))]
+    (apply ->files data files))
   (main/info "Run 'lein duct setup' in the project directory to create local config files."))

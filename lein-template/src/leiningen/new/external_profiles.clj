@@ -45,3 +45,13 @@
 (defn main [profiles project-data]
   (->> (map #((resolve-template %) project-data) profiles)
        (apply merge-with into)))
+
+;;======================================================================================================================
+
+(defn profile-data [module project-name]
+  (prn (str "YEAH " module))
+  {})
+
+(defn profile-files [module data]
+  (prn (str "FILES " module))
+  [])
