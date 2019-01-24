@@ -32,22 +32,6 @@
          (abort (str "Could not load template, failed with: " (.getMessage e))))
        (catch Exception e nil)))
 
-(defn resolve-template [profile]
-  (let [name (name profile)
-        sym (symbol (str name ".duct-profile"))]
-    (if (try (require sym)
-             true
-             (catch FileNotFoundException _
-               (resolve-remote-template name sym)))
-      (resolve (symbol (str sym "/" name)))
-      (abort "Could not find template" name "on the classpath."))))
-
-(defn main [profiles project-data]
-  (->> (map #((resolve-template %) project-data) profiles)
-       (apply merge-with into)))
-
-;;======================================================================================================================
-
 (defn profile-data [module project-name]
   (let [name (name module)
         sym (symbol (str name ".duct-profile"))]
