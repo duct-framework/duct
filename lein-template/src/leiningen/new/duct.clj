@@ -15,7 +15,8 @@
      :profiles     (set profiles)}))
 
 (defn base-profile [{:keys [project-name project-ns project-path raw-name]}]
-  {:vars
+  {:deps '[[duct/module.logging "0.4.0"]]
+   :vars
    {:raw-name   raw-name
     :name       project-name
     :namespace  project-ns
@@ -49,7 +50,7 @@
     (var-get (resolve sym))))
 
 (defn merge-deps [a b]
-  (-> {} (into a) (into b) vec))
+  (-> (sorted-map) (into a) (into b) vec))
 
 (defn merge-profiles [a b]
   {:vars      (merge (:vars a) (:vars b))
