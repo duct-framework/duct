@@ -115,7 +115,7 @@ In 0.11 this would be changed to:
 
 ```clojure
 (defmethod ig/prep-key :foo.module/example [_ opts]
-  (assoc opts ::requires (ig/ref :some.existing/module)))
+  (assoc opts :duct.core/requires (ig/ref :some.existing/module)))
 
 (defmethod ig/init-key :foo.module/example [_ opts]
   (fn [config] ...))
