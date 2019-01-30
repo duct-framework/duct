@@ -3,8 +3,8 @@
             [leiningen.core.main :as main]
             [leiningen.new.templates :as templates]))
 
-(defn resource [name]
-  (io/resource (str "leiningen/new/duct/" name)))
+(defn resource [path]
+  (io/resource (str "leiningen/new/duct/" path)))
 
 (defn project-data [raw-name profiles]
   (let [main-ns (templates/sanitize-ns raw-name)]

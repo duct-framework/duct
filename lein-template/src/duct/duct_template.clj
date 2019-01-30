@@ -1,8 +1,8 @@
 (ns duct.duct-template
   (:require [clojure.java.io :as io]))
 
-(defn resource [name]
-  (io/resource (str "leiningen/new/duct/" name)))
+(defn resource [path]
+  (io/resource (str "duct/duct_template/" path)))
 
 (def ^:private web-directories
   ["resources/{{dirs}}/public"
