@@ -39,7 +39,7 @@
     "src/duct_hierarchy.edn"        (resource "base/duct_hierarchy.edn")}})
 
 (defn profile-names [hints]
-  (for [hint hints :when (re-matches #"\+[A-Za-z0-9-/]+" hint)]
+  (for [hint hints :when (re-matches #"\+[A-Za-z0-9-/.]+" hint)]
     (keyword (subs hint 1))))
 
 (defn profile-function-symbol [profile-kw]
