@@ -1,6 +1,9 @@
 (ns leiningen.new.duct
   (:require [clojure.java.io :as io]
+            [leiningen.core.classpath :as cp]
             [leiningen.core.main :as main]
+            [leiningen.core.project :as project]
+            [leiningen.core.user :as user]
             [leiningen.new.templates :as templates]))
 
 (defn resource [path]
@@ -36,7 +39,7 @@
     "src/duct_hierarchy.edn"        (resource "base/duct_hierarchy.edn")}})
 
 (defn profile-names [hints]
-  (for [hint hints :when (re-matches #"\+[A-Za-z0-9-]+" hint)]
+  (for [hint hints :when (re-matches #"\+[A-Za-z0-9-/]+" hint)]
     (keyword (subs hint 1))))
 
 (defn profile-function-symbol [profile-kw]
@@ -44,10 +47,39 @@
     (symbol (str ns ".duct-template")
             (str (name profile-kw) "-profile"))))
 
+(defn profile-dependency [profile-kw]
+  (let [ns (or (namespace profile-kw) "duct")]
+    [(symbol ns "duct-template") "RELEASE"]))
+
+(defn fake-lein-project [dep]
+  (let [user-profiles (:user (user/profiles))
+        repositories  (reduce
+                       (:reduce (meta project/default-repositories))
+                       project/default-repositories
+                       (:plugin-repositories user-profiles))]
+    (merge {:templates [dep] :repositories repositories}
+           (select-keys user-profiles [:mirrors]))))
+
+(defn try-require [sym]
+  (try (require sym)
+       true
+       (catch clojure.lang.Compiler$CompilerException e
+         (main/abort (str "Could not load template, failed with: " (.getMessage e))))
+       (catch Exception _ nil)))
+
+(defn try-require-remote [dep sym]
+  (try (cp/resolve-dependencies :templates (fake-lein-project dep) :add-classpath? true)
+       (try-require sym)
+       (catch Exception _ nil)))
+
 (defn profile-function [profile-kw]
-  (let [sym (profile-function-symbol profile-kw)]
-    (require (symbol (namespace sym)))
-    (var-get (resolve sym))))
+  (let [sym (profile-function-symbol profile-kw)
+        ns  (symbol (namespace sym))]
+    (or (try-require ns)
+        (try-require-remote (profile-dependency profile-kw) ns))
+    (if-let [v (resolve sym)]
+      (var-get v)
+      (main/abort (str "Could not find var " sym " for profile " profile-kw)))))
 
 (defn merge-deps [a b]
   (-> (sorted-map) (into a) (into b) vec))
