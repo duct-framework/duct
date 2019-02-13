@@ -107,10 +107,10 @@
        (sort-by key)
        (map (fn [[path temp]] [path (render-resource data temp)]))))
 
-(defn generate-project [{:keys [vars templates] :as profile}]
+(defn generate-project [{:keys [vars templates dirs] :as profile}]
   (let [data  (merge vars (select-keys profile [:deps :dev-deps]))
         files (render-templates data templates)]
-    (apply templates/->files data files)))
+    (apply templates/->files data (concat files dirs))))
 
 (defn duct
   "Create a new Duct web application.
