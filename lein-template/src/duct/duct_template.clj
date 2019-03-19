@@ -40,7 +40,7 @@
 
 (defn cljs-profile [_]
   {:deps      '[[duct/module.web "0.7.0"]
-                [duct/module.cljs "0.4.0"]]
+                [duct/module.cljs "0.4.1"]]
    :dev-deps  '[[kerodon "0.9.0"]]
    :vars      {:cljs? true}
    :dirs      web-directories
@@ -59,7 +59,7 @@
 
 (defn sqlite-profile [_]
   {:deps '[[duct/module.sql "0.5.0"]
-           [org.xerial/sqlite-jdbc "3.25.2"]]
+           [org.xerial/sqlite-jdbc "3.27.2"]]
    :dirs ["db"]
    :vars {:jdbc?        true
           :sqlite?      true

@@ -14,7 +14,7 @@
   :profiles
   {:dev  [:project/dev :profiles/dev]
    :repl {:prep-tasks   ^:replace ["javac" "compile"]{{#cljs?}}
-          :dependencies [[cider/piggieback "0.3.10"]]{{/cljs?}}
+          :dependencies [[cider/piggieback "0.4.0"]]{{/cljs?}}
           :repl-options {:init-ns user{{#cljs?}}
                          :nrepl-middleware [cider.piggieback/wrap-cljs-repl]{{/cljs?}}}}
    :uberjar {:aot :all}
@@ -22,5 +22,5 @@
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
                   :dependencies   [[integrant/repl "0.3.1"]
-                                   [eftest "0.5.4"]{{#dev-deps}}
+                                   [eftest "0.5.7"]{{#dev-deps}}
                                    {{&.}}{{/dev-deps}}]}})
