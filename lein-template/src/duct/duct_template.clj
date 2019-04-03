@@ -29,13 +29,13 @@
 (defn api-profile [_]
   {:deps     '[[duct/module.web "0.7.0"]]
    :dev-deps '[[kerodon "0.9.0"]]
-   :vars     {:api? true}
+   :vars     {:web? true, :api? true}
    :dirs     web-directories})
 
 (defn site-profile [_]
   {:deps     '[[duct/module.web "0.7.0"]]
    :dev-deps '[[kerodon "0.9.0"]]
-   :vars     {:site? true}
+   :vars     {:web? true, :site? true}
    :dirs     web-directories})
 
 (defn cljs-profile [_]
