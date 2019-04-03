@@ -1,5 +1,20 @@
 # Upgrading
 
+## 0.12 from 0.11
+
+Update the Duct dependencies in your project file:
+
+```clojure
+
+[duct/module.cljs "0.4.1"]
+```
+
+Update the `duct/lein-duct` plugin version:
+
+```clojure
+[duct/lein-duct "0.12.0"]
+```
+
 ## 0.11 from 0.10
 
 Update the Duct dependencies in your project file:

@@ -1,3 +1,10 @@
+## 0.12.0 (2019-04-02)
+
+* Refactor profiles hints to support third-party extensions (experimental)
+* Updated Piggieback to 0.4.0
+* Updated Eftest to 0.5.7
+* Updated `duct/module.cljs` to 0.4.1
+
 ## 0.11.2 (2019-01-11)
 
 * Added explicit Leiningen middleware key to fix deprecation warning
