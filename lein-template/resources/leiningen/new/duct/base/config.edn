@@ -3,21 +3,20 @@
  {:duct.core/project-ns <<namespace>><<#ataraxy?>>
 
   :duct.router/ataraxy
-  {:routes {<<#example?>>[:get "/example"] [:<<namespace>>.handler/example]<</example?>>}}<</ataraxy?>><<#web?>><<^ataraxy?>>
+  {:routes {<<#example?>>[:get "/example"] [:<<namespace>>.handler/example]<</example?>>}}<</ataraxy?>><<#web?>><<^ataraxy?>><<#cascading-routes>>
 
-  :duct.router/cascading
-  [<<#example?>>#ig/ref :<<namespace>>.handler/example<</example?>>]<</ataraxy?>><</web?>><<#example?>>
+  :duct.router/cascading<<&.>><</cascading-routes>><<^cascading-routes>>
 
-  :<<namespace>>.<<#web?>>handler<</web?>><<^web?>>service<</web?>>/example
-  {<<#jdbc?>>:db #ig/ref :duct.database/sql<</jdbc?>>}<</example?>>}
+  :duct.router/cascading []<</cascading-routes>><</ataraxy?>><</web?>><<#example?>>
+
+  :<<namespace>>.<<#web?>>handler<</web?>><<^web?>>service<</web?>>/example<<^jdbc?>> {}<</jdbc?>><<#jdbc?>>
+  {:db #ig/ref :duct.database/sql}<</jdbc?>><</example?>><<#profile-base>>
+  <<&.>><</profile-base>>}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
  :duct.profile/prod  {}
 
- :duct.module/logging {}<<#api?>>
- :duct.module.web/api {}<</api?>><<#site?>>
- :duct.module.web/site {}<</site?>><<#web?>><<^site?>><<^api?>>
- :duct.module/web {}<</api?>><</site?>><</web?>><<#jdbc?>>
- :duct.module/sql {}<</jdbc?>><<#cljs?>>
- :duct.module/cljs {:main <<namespace>>.client}<</cljs?>>}
+ :duct.module/logging {}<<#web?>><<^site?>><<^api?>>
+ :duct.module/web {}<</api?>><</site?>><</web?>><<#modules>>
+ <<&.>><</modules>>}

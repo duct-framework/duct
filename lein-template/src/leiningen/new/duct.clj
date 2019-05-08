@@ -1,5 +1,7 @@
 (ns leiningen.new.duct
   (:require [clojure.java.io :as io]
+            [clojure.pprint :refer [pprint]]
+            [clojure.string :as str]
             [leiningen.core.classpath :as cp]
             [leiningen.core.main :as main]
             [leiningen.core.project :as project]
@@ -18,13 +20,14 @@
      :profiles     (set profiles)}))
 
 (defn base-profile [{:keys [project-name project-ns project-path raw-name]}]
-  {:deps '[[duct/module.logging "0.4.0"]]
+  {:deps
+   '[[duct/module.logging "0.4.0"]]
    :vars
-   {:raw-name   raw-name
-    :name       project-name
-    :namespace  project-ns
-    :dirs       project-path
-    :year       (templates/year)}
+   {:raw-name  raw-name
+    :name      project-name
+    :namespace project-ns
+    :dirs      project-path
+    :year      (templates/year)}
    :dirs
    ["test/{{dirs}}"]
    :templates
@@ -36,7 +39,9 @@
     "dev/resources/dev.edn"         (resource "base/dev.edn")
     "resources/{{dirs}}/config.edn" (resource "base/config.edn")
     "src/{{dirs}}/main.clj"         (resource "base/main.clj")
-    "src/duct_hierarchy.edn"        (resource "base/duct_hierarchy.edn")}})
+    "src/duct_hierarchy.edn"        (resource "base/duct_hierarchy.edn")}
+   :repl-options
+   {:init-ns 'user}})
 
 (defn profile-names [hints]
   (for [hint hints :when (re-matches #"\+[A-Za-z0-9-/.]+" hint)]
@@ -85,11 +90,15 @@
   (-> (sorted-map) (into a) (into b) vec))
 
 (defn merge-profiles [a b]
-  {:vars      (merge (:vars a) (:vars b))
-   :dirs      (into (set (:dirs a)) (:dirs b))
-   :deps      (merge-deps (:deps a) (:deps b))
-   :dev-deps  (merge-deps (:dev-deps a) (:dev-deps b))
-   :templates (into (:templates a) (:templates b))})
+  {:vars         (merge (:vars a) (:vars b))
+   :dirs         (into (set (:dirs a)) (:dirs b))
+   :deps         (merge-deps (:deps a) (:deps b))
+   :dev-deps     (merge-deps (:dev-deps a) (:dev-deps b))
+   :templates    (into (:templates a) (:templates b))
+   :modules      (merge (:modules a) (:modules b))
+   :profile-base (merge (:profile-base a) (:profile-base b))
+   :profile-dev  (merge (:profile-dev a) (:profile-dev b))
+   :repl-options (merge (:repl-options a) (:repl-options b))})
 
 (defn project-template [name hints]
   (let [profiles (profile-names hints)
@@ -107,8 +116,18 @@
        (sort-by key)
        (map (fn [[path temp]] [path (render-resource data temp)]))))
 
-(defn generate-project [{:keys [vars templates dirs] :as profile}]
-  (let [data  (merge vars (select-keys profile [:deps :dev-deps]))
+(defn- format-kv [[k v]]
+  (if (string? v)
+    [(str k v)]
+    [(str k) (str/trim-newline (with-out-str (pprint v)))]))
+
+(defn generate-project
+  [{:keys [vars templates dirs modules profile-base profile-dev] :as profile}]
+  (let [data (-> vars
+                 (merge (select-keys profile [:deps :dev-deps :repl-options]))
+                 (assoc :modules (mapcat format-kv modules))
+                 (assoc :profile-base (mapcat format-kv profile-base))
+                 (assoc :profile-dev (mapcat format-kv profile-dev)))
         files (render-templates data templates)]
     (apply templates/->files data (concat files dirs))))
 
