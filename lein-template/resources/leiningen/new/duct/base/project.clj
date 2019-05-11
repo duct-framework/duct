@@ -5,7 +5,7 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [duct/core "0.7.0"]{{#deps}}
                  {{&.}}{{/deps}}]
-  :plugins [[duct/lein-duct "0.12.0"]]
+  :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
   :uberjar-name  "{{uberjar-name}}"{{/uberjar-name}}
   :resource-paths ["resources" "target/resources"]

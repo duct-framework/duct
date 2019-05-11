@@ -12,7 +12,7 @@ Update the Duct dependencies in your project file:
 Update the `duct/lein-duct` plugin version:
 
 ```clojure
-[duct/lein-duct "0.12.0"]
+[duct/lein-duct "0.12.1"]
 ```
 
 ## 0.11 from 0.10

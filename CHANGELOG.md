@@ -1,3 +1,7 @@
+## 0.12.1 (2019-05-11)
+
+* Add support for third-party profiles to modify the configuration
+
 ## 0.12.0 (2019-04-02)
 
 * Refactor profiles hints to support third-party extensions (experimental)
