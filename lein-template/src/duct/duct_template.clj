@@ -9,13 +9,15 @@
    "src/{{dirs}}/handler"
    "test/{{dirs}}/handler"])
 
-(defn example-profile [{:keys [profiles]}]
-  {:vars {:example? true}
+(defn example-profile [{:keys [profiles project-ns]}]
+  {:vars
+   {:example?         true
+    :cascading-routes (format "\n  [#ig/ref [:%s.handler/example]]" project-ns)}
    :templates
    (cond
      (profiles :site)
-     {"src/{{dirs}}/handler/example.clj"       (resource "example/handler.clj")
-      "test/{{dirs}}/handler/example_test.clj" (resource "example/handler_test.clj")
+     {"src/{{dirs}}/handler/example.clj"                (resource "example/handler.clj")
+      "test/{{dirs}}/handler/example_test.clj"          (resource "example/handler_test.clj")
       "resources/{{dirs}}/handler/example/example.html" (resource "example/example.html")}
 
      (profiles :api)
@@ -30,40 +32,51 @@
   {:deps     '[[duct/module.web "0.7.0"]]
    :dev-deps '[[kerodon "0.9.0"]]
    :vars     {:web? true, :api? true}
+   :modules  {:duct.module.web/api {}}
    :dirs     web-directories})
 
 (defn site-profile [_]
   {:deps     '[[duct/module.web "0.7.0"]]
    :dev-deps '[[kerodon "0.9.0"]]
    :vars     {:web? true, :site? true}
+   :modules  {:duct.module.web/site {}}
    :dirs     web-directories})
 
-(defn cljs-profile [_]
-  {:deps      '[[duct/module.web "0.7.0"]
-                [duct/module.cljs "0.4.1"]]
-   :dev-deps  '[[kerodon "0.9.0"]]
-   :vars      {:cljs? true}
-   :dirs      web-directories
-   :templates {"src/{{dirs}}/client.cljs" (resource "cljs/client.cljs")}})
+(defn cljs-profile [{:keys [project-ns]}]
+  {:deps         '[[duct/module.web "0.7.0"]
+                   [duct/module.cljs "0.4.1"]]
+   :dev-deps     '[[kerodon "0.9.0"]]
+   :vars         {:cljs? true, :web? true}
+   :dirs         web-directories
+   :modules      {:duct.module/cljs {:main (symbol (str project-ns ".client"))}}
+   :templates    {"src/{{dirs}}/client.cljs" (resource "cljs/client.cljs")}
+   :repl-options {:nrepl-middleware '[cider.piggieback/wrap-cljs-repl]}})
 
 (defn heroku-profile [{:keys [project-name]}]
   {:vars      {:uberjar-name (str project-name "-standalone.jar")}
    :templates {"Procfile" (resource "heroku/Procfile")}})
 
 (defn postgres-profile [_]
-  {:deps '[[duct/module.sql "0.5.0"]
-           [org.postgresql/postgresql "42.2.5"]]
-   :vars {:jdbc?        true
-          :postgres?    true
-          :dev-database "jdbc:postgresql://localhost/postgres"}})
+  (let [postgresql-uri "jdbc:postgresql://localhost/postgres"]
+    {:deps        '[[duct/module.sql "0.5.0"]
+                    [org.postgresql/postgresql "42.2.5"]]
+     :modules     {:duct.module/sql {}}
+     :profile-dev {:duct.database/sql {:connection-uri postgresql-uri}}
+     :vars        {:jdbc?        true
+                   :postgres?    true
+                   :dev-database postgresql-uri}}))
 
 (defn sqlite-profile [_]
-  {:deps '[[duct/module.sql "0.5.0"]
-           [org.xerial/sqlite-jdbc "3.27.2"]]
-   :dirs ["db"]
-   :vars {:jdbc?        true
-          :sqlite?      true
-          :dev-database "jdbc:sqlite:db/dev.sqlite"}})
+  (let [sqlite-uri "jdbc:sqlite:db/dev.sqlite"]
+    {:deps        '[[duct/module.sql "0.5.0"]
+                    [org.xerial/sqlite-jdbc "3.27.2"]]
+     :dirs        ["db"]
+     :modules     {:duct.module/sql {}}
+     :profile-dev {:duct.database/sql
+                   {:connection-uri sqlite-uri}}
+     :vars        {:jdbc?        true
+                   :sqlite?      true
+                   :dev-database sqlite-uri}}))
 
 (defn ataraxy-profile [_]
   {:deps '[[duct/module.ataraxy "0.3.0"]]
