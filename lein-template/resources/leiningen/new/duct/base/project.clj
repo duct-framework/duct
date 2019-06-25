@@ -21,5 +21,6 @@
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
                   :dependencies   [[integrant/repl "0.3.1"]
-                                   [eftest "0.5.7"]{{#dev-deps}}
+                                   [eftest "0.5.7"]
+                                   [hawk "0.2.11"]{{#dev-deps}}
                                    {{&.}}{{/dev-deps}}]}})

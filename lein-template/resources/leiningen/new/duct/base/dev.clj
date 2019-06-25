@@ -23,6 +23,34 @@
 (def profiles
   [:duct.profile/dev :duct.profile/local])
 
+(def ^:private event->file-name
+  (comp #(.getName %)
+        :file))
+
+(def ^:private matches-clojure-file?
+  (partial re-matches #"^[a-zA-Z]{1}[a-zA-Z_]*(.clj|.edn)$"))
+
+(defn- clojure-file?
+  [ctx event]
+  (-> event
+      event->file-name
+      matches-clojure-file?))
+
+(defn- auto-reset-handler
+  [ctx event]
+  (binding [*ns* true]
+    (ns dev)
+    (reset)
+    ctx))
+
+(defn auto-reset
+  "Automatically reset Duct configuration on file change.
+  This affects Clojure and EDN files within [src/ resources/]."
+  []
+  (hawk/watch! [{:paths ["src/" "resources/"]
+                 :filter clojure-file?
+                 :handler auto-reset-handler}]))
+
 (clojure.tools.namespace.repl/set-refresh-dirs "dev/src" "src" "test")
 
 (when (io/resource "local.clj")
