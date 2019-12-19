@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [duct/core "0.7.0"]{{#deps}}
+                 [duct/core "0.8.0"]{{#deps}}
                  {{&.}}{{/deps}}]
   :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot {{namespace}}.main{{#uberjar-name}}
@@ -21,5 +21,6 @@
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
                   :dependencies   [[integrant/repl "0.3.1"]
+                                   [hawk "0.2.11"]
                                    [eftest "0.5.7"]{{#dev-deps}}
                                    {{&.}}{{/dev-deps}}]}})
