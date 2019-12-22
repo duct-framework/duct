@@ -58,7 +58,7 @@
 
 (defn postgres-profile [_]
   (let [postgresql-uri "jdbc:postgresql://localhost/postgres"]
-    {:deps        '[[duct/module.sql "0.5.0"]
+    {:deps        '[[duct/module.sql "0.6.0"]
                     [org.postgresql/postgresql "42.2.5"]]
      :modules     {:duct.module/sql {}}
      :profile-dev {:duct.database/sql {:connection-uri postgresql-uri}}
@@ -68,7 +68,7 @@
 
 (defn sqlite-profile [_]
   (let [sqlite-uri "jdbc:sqlite:db/dev.sqlite"]
-    {:deps        '[[duct/module.sql "0.5.0"]
+    {:deps        '[[duct/module.sql "0.6.0"]
                     [org.xerial/sqlite-jdbc "3.27.2"]]
      :dirs        ["db"]
      :modules     {:duct.module/sql {}}
