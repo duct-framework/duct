@@ -16,7 +16,8 @@
    :repl {:prep-tasks   ^:replace ["javac" "compile"]{{#cljs?}}
           :dependencies [[cider/piggieback "0.4.0"]]{{/cljs?}}{{#repl-options}}
           :repl-options {{&.}}{{/repl-options}}}
-   :uberjar {:aot :all}
+   :uberjar {:aot :all
+             :resource-paths ["src/duct_hierarchy.edn"]}
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
