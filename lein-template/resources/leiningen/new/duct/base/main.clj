@@ -9,4 +9,5 @@
         profiles [:duct.profile/prod]]
     (-> (duct/resource "{{dirs}}/config.edn")
         (duct/read-config)
-        (duct/exec-config profiles keys))))
+        (duct/exec-config profiles keys))
+    (System/exit 0)))
