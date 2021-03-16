@@ -29,23 +29,23 @@
       "test/{{dirs}}/service/example_test.clj" (resource "example/service_test.clj")})})
 
 (defn api-profile [_]
-  {:deps     '[[duct/module.web "0.7.0"]]
-   :dev-deps '[[kerodon "0.9.0"]]
+  {:deps     '[[duct/module.web "0.7.2"]]
+   :dev-deps '[[kerodon "0.9.1"]]
    :vars     {:web? true, :api? true}
    :modules  {:duct.module.web/api {}}
    :dirs     web-directories})
 
 (defn site-profile [_]
-  {:deps     '[[duct/module.web "0.7.0"]]
-   :dev-deps '[[kerodon "0.9.0"]]
+  {:deps     '[[duct/module.web "0.7.2"]]
+   :dev-deps '[[kerodon "0.9.1"]]
    :vars     {:web? true, :site? true}
    :modules  {:duct.module.web/site {}}
    :dirs     web-directories})
 
 (defn cljs-profile [{:keys [project-ns]}]
-  {:deps         '[[duct/module.web "0.7.0"]
+  {:deps         '[[duct/module.web "0.7.2"]
                    [duct/module.cljs "0.4.1"]]
-   :dev-deps     '[[kerodon "0.9.0"]]
+   :dev-deps     '[[kerodon "0.9.1"]]
    :vars         {:cljs? true, :web? true}
    :dirs         web-directories
    :modules      {:duct.module/cljs {:main (symbol (str project-ns ".client"))}}
@@ -58,8 +58,8 @@
 
 (defn postgres-profile [_]
   (let [postgresql-uri "jdbc:postgresql://localhost/postgres"]
-    {:deps        '[[duct/module.sql "0.6.0"]
-                    [org.postgresql/postgresql "42.2.5"]]
+    {:deps        '[[duct/module.sql "0.6.1"]
+                    [org.postgresql/postgresql "42.2.19"]]
      :modules     {:duct.module/sql {}}
      :profile-dev {:duct.database/sql {:connection-uri postgresql-uri}}
      :vars        {:jdbc?        true
@@ -68,8 +68,8 @@
 
 (defn sqlite-profile [_]
   (let [sqlite-uri "jdbc:sqlite:db/dev.sqlite"]
-    {:deps        '[[duct/module.sql "0.6.0"]
-                    [org.xerial/sqlite-jdbc "3.27.2"]]
+    {:deps        '[[duct/module.sql "0.6.1"]
+                    [org.xerial/sqlite-jdbc "3.34.0"]]
      :dirs        ["db"]
      :modules     {:duct.module/sql {}}
      :profile-dev {:duct.database/sql

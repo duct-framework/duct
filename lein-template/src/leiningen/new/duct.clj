@@ -21,7 +21,7 @@
 
 (defn base-profile [{:keys [project-name project-ns project-path raw-name]}]
   {:deps
-   '[[duct/module.logging "0.4.0"]]
+   '[[duct/module.logging "0.5.0"]]
    :vars
    {:raw-name  raw-name
     :name      project-name
