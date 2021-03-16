@@ -5,14 +5,17 @@
 Update the Duct dependencies in your project file:
 
 ```clojure
-
+[duct/core "0.8.0"]
 [duct/module.cljs "0.4.1"]
+[duct/module.logging "0.5.0"]
+[duct/module.sql "0.6.1"]
+[duct/module.web "0.7.2"]
 ```
 
 Update the `duct/lein-duct` plugin version:
 
 ```clojure
-[duct/lein-duct "0.12.1"]
+[duct/lein-duct "0.12.2"]
 ```
 
 ## 0.11 from 0.10
@@ -22,11 +25,11 @@ Update the Duct dependencies in your project file:
 ```clojure
 
 [duct/core "0.7.0"]
-[duct/module.logging "0.4.0"]
-[duct/module.web "0.7.0"]
 [duct/module.ataraxy "0.3.0"]
 [duct/module.cljs "0.4.0"]
+[duct/module.logging "0.4.0"]
 [duct/module.sql "0.5.0"]
+[duct/module.web "0.7.0"]
 ```
 
 Update the `duct/lein-duct` plugin version:

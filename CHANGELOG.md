@@ -1,3 +1,13 @@
+## 0.12.2 (2021-03-16)
+
+* Updated Clojure to 1.10.3
+* Updated `duct/core` to 0.8.0
+* Updated `duct/module.logging` to 0.5.0
+* Updated `duct/module.sql` to 0.6.1
+* Updated `duct/module.web` to 0.7.2
+* Updated Eftest to 0.5.9
+* Updated Postgres and SQLite dependencies
+
 ## 0.12.1 (2019-05-11)
 
 * Add support for third-party profiles to modify the configuration
