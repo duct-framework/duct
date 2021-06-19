@@ -1,3 +1,7 @@
+## 0.12.3 (2021-06-19)
+
+* Updated `duct/module.web` to 0.7.3
+
 ## 0.12.2 (2021-03-16)
 
 * Updated Clojure to 1.10.3

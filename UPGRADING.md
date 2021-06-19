@@ -9,7 +9,7 @@ Update the Duct dependencies in your project file:
 [duct/module.cljs "0.4.1"]
 [duct/module.logging "0.5.0"]
 [duct/module.sql "0.6.1"]
-[duct/module.web "0.7.2"]
+[duct/module.web "0.7.3"]
 ```
 
 Update the `duct/lein-duct` plugin version:
