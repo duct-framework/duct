@@ -29,21 +29,21 @@
       "test/{{dirs}}/service/example_test.clj" (resource "example/service_test.clj")})})
 
 (defn api-profile [_]
-  {:deps     '[[duct/module.web "0.7.2"]]
+  {:deps     '[[duct/module.web "0.7.3"]]
    :dev-deps '[[kerodon "0.9.1"]]
    :vars     {:web? true, :api? true}
    :modules  {:duct.module.web/api {}}
    :dirs     web-directories})
 
 (defn site-profile [_]
-  {:deps     '[[duct/module.web "0.7.2"]]
+  {:deps     '[[duct/module.web "0.7.3"]]
    :dev-deps '[[kerodon "0.9.1"]]
    :vars     {:web? true, :site? true}
    :modules  {:duct.module.web/site {}}
    :dirs     web-directories})
 
 (defn cljs-profile [{:keys [project-ns]}]
-  {:deps         '[[duct/module.web "0.7.2"]
+  {:deps         '[[duct/module.web "0.7.3"]
                    [duct/module.cljs "0.4.1"]]
    :dev-deps     '[[kerodon "0.9.1"]]
    :vars         {:cljs? true, :web? true}
