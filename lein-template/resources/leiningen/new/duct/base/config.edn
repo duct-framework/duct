@@ -13,8 +13,8 @@
   {:db #ig/ref :duct.database/sql}<</jdbc?>><</example?>><<#profile-base>>
   <<&.>><</profile-base>>}
 
- :duct.profile/dev   #duct/include "dev"
- :duct.profile/local #duct/include "local"
+ :duct.profile/dev   #duct/include "dev.edn"
+ :duct.profile/local #duct/include "local.edn"
  :duct.profile/prod  {}
 
  :duct.module/logging {}<<#web?>><<^site?>><<^api?>>
